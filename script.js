@@ -288,60 +288,55 @@ function updateActiveNavLink() {
 }
 
 // Funkcja aktualizująca podsumowanie formularza
-function updateSummary(formPage) {
+function updateSummary() {
     // Sprawdź, czy element podsumowania istnieje
     const summaryElement = document.querySelector('.form-summary');
     if (!summaryElement) return;
 
-    // Pokaż element podsumowania
-    summaryElement.classList.add('visible');
+    // Aktualizacja pól podsumowania na podstawie wszystkich danych z formularza
+    // Pobierz wszystkie inputy, selecty i textarea z całego formularza
+    const inputs = document.querySelectorAll('.form-page input:not([type="radio"]):not([type="checkbox"]), .form-page select, .form-page textarea');
+    const radios = document.querySelectorAll('.form-page input[type="radio"]:checked');
+    const checkboxes = document.querySelectorAll('.form-page input[type="checkbox"]:checked');
 
-    // Aktualizacja pól podsumowania na podstawie aktualnej strony formularza
-    if (formPage) {
-        // Pobierz wszystkie inputy, selecty i textareateria z bieżącej strony
-        const inputs = formPage.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), select, textarea');
-        const radios = formPage.querySelectorAll('input[type="radio"]:checked');
-        const checkboxes = formPage.querySelectorAll('input[type="checkbox"]:checked');
-
-        // Aktualizuj wartości w podsumowaniu
-        inputs.forEach(input => {
-            if (input.id && input.value) {
-                const summaryValue = document.querySelector(`.summary-value[data-for="${input.id}"]`);
-                if (summaryValue) {
-                    summaryValue.textContent = input.value;
-                    summaryValue.classList.remove('empty');
-                }
-            }
-        });
-
-        radios.forEach(radio => {
-            if (radio.name && radio.value) {
-                const summaryValue = document.querySelector(`.summary-value[data-for="${radio.name}"]`);
-                if (summaryValue) {
-                    summaryValue.textContent = radio.value;
-                    summaryValue.classList.remove('empty');
-                }
-            }
-        });
-
-        // Dla checkboxów zbieramy wszystkie zaznaczone wartości
-        const checkboxGroups = {};
-        checkboxes.forEach(checkbox => {
-            if (checkbox.name && checkbox.value) {
-                if (!checkboxGroups[checkbox.name]) {
-                    checkboxGroups[checkbox.name] = [];
-                }
-                checkboxGroups[checkbox.name].push(checkbox.value);
-            }
-        });
-
-        // Aktualizuj podsumowanie dla grup checkboxów
-        for (const [name, values] of Object.entries(checkboxGroups)) {
-            const summaryValue = document.querySelector(`.summary-value[data-for="${name}"]`);
+    // Aktualizuj wartości w podsumowaniu
+    inputs.forEach(input => {
+        if (input.id && input.value) {
+            const summaryValue = document.querySelector(`.summary-value[data-for="${input.id}"]`);
             if (summaryValue) {
-                summaryValue.textContent = values.join(', ');
+                summaryValue.textContent = input.value;
                 summaryValue.classList.remove('empty');
             }
+        }
+    });
+
+    radios.forEach(radio => {
+        if (radio.name && radio.value) {
+            const summaryValue = document.querySelector(`.summary-value[data-for="${radio.name}"]`);
+            if (summaryValue) {
+                summaryValue.textContent = radio.value;
+                summaryValue.classList.remove('empty');
+            }
+        }
+    });
+
+    // Dla checkboxów zbieramy wszystkie zaznaczone wartości
+    const checkboxGroups = {};
+    checkboxes.forEach(checkbox => {
+        if (checkbox.name && checkbox.value) {
+            if (!checkboxGroups[checkbox.name]) {
+                checkboxGroups[checkbox.name] = [];
+            }
+            checkboxGroups[checkbox.name].push(checkbox.value);
+        }
+    });
+
+    // Aktualizuj podsumowanie dla grup checkboxów
+    for (const [name, values] of Object.entries(checkboxGroups)) {
+        const summaryValue = document.querySelector(`.summary-value[data-for="${name}"]`);
+        if (summaryValue) {
+            summaryValue.textContent = values.join(', ');
+            summaryValue.classList.remove('empty');
         }
     }
 }
@@ -403,8 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formSteps[pageIndex].classList.add('active');
         updateProgress();
         
-        // Aktualizuj podsumowanie dla bieżącej strony
-        updateSummary(formPages[pageIndex]);
+        // Nie aktualizujemy podsumowania po każdej stronie - zostawiamy to na koniec
     }
     
     nextButtons.forEach(button => {
@@ -432,26 +426,71 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.addEventListener('click', () => {
             // Walidacja ostatniej strony przed wysłaniem
             if (validateCurrentPage(currentPage)) {
-                // Pokaż animację ładowania
+                // Aktualizacja podsumowania przed pokazaniem ekranu ładowania
+                updateSummary();
+                
+                // Ukryj formularz i pokaż podsumowanie
                 formContent.style.display = 'none';
                 document.querySelector('.form-progress').style.display = 'none';
-                loadingAnimation.classList.add('visible');
+                document.querySelector('.form-summary').style.display = 'block';
                 
-                // Symulacja przetwarzania danych - w rzeczywistej aplikacji tutaj byłoby wysłanie do API
-                setTimeout(() => {
-                    // Ukryj animację ładowania i pokaż wyniki
-                    loadingAnimation.classList.remove('visible');
-                    updateResults();
-                    resultsSection.style.display = 'block';
+                // Dodajemy przycisk potwierdzenia do podsumowania, jeśli jeszcze nie istnieje
+                if (!document.querySelector('.confirm-summary-btn')) {
+                    const confirmBtn = document.createElement('button');
+                    confirmBtn.className = 'btn btn-primary confirm-summary-btn';
+                    confirmBtn.innerHTML = 'Generuj plan treningowy';
+                    confirmBtn.style.marginTop = '20px';
+                    document.querySelector('.form-summary').appendChild(confirmBtn);
                     
-                    // Dodaj klasy animation-order do kart wyników dla animacji kaskadowej
-                    document.querySelectorAll('.results-card').forEach((card, index) => {
-                        card.style.setProperty('--animation-order', index);
+                    // Obsługa przycisku potwierdzenia podsumowania
+                    confirmBtn.addEventListener('click', () => {
+                        // Ukryj podsumowanie i pokaż animację ładowania
+                        document.querySelector('.form-summary').style.display = 'none';
+                        loadingAnimation.classList.add('visible');
+                        
+                        // Symulacja przetwarzania danych - w rzeczywistej aplikacji tutaj byłoby wysłanie do API
+                        setTimeout(() => {
+                            // Ukryj animację ładowania i pokaż wyniki
+                            loadingAnimation.classList.remove('visible');
+                            updateResults();
+                            resultsSection.style.display = 'block';
+                            
+                            // Dodaj klasy animation-order do kart wyników dla animacji kaskadowej
+                            document.querySelectorAll('.results-card').forEach((card, index) => {
+                                card.style.setProperty('--animation-order', index);
+                            });
+                        }, 2000);
                     });
-                }, 2000);
+                }
             }
         });
     }
+    
+    // Dodajemy obsługę pokazywania/ukrywania sekcji szczegółów kontuzji
+    const hadInjuryRadioButtons = document.querySelectorAll('input[name="had-injury"]');
+    const injuryDetailsSection = document.querySelector('.injury-details');
+    
+    hadInjuryRadioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'Tak') {
+                injuryDetailsSection.style.display = 'block';
+                // Dodajemy atrybut required do pól kontuzji, gdy wybrano "Tak"
+                document.getElementById('injury-type').setAttribute('required', '');
+                document.getElementById('injury-when').setAttribute('required', '');
+                document.querySelectorAll('input[name="injury-healed"]').forEach(radio => {
+                    radio.setAttribute('required', '');
+                });
+            } else {
+                injuryDetailsSection.style.display = 'none';
+                // Usuwamy atrybut required z pól kontuzji, gdy wybrano "Nie"
+                document.getElementById('injury-type').removeAttribute('required');
+                document.getElementById('injury-when').removeAttribute('required');
+                document.querySelectorAll('input[name="injury-healed"]').forEach(radio => {
+                    radio.removeAttribute('required');
+                });
+            }
+        });
+    });
     
     // Walidacja bieżącej strony formularza
     function validateCurrentPage(pageIndex) {
@@ -460,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let isValid = true;
         
         requiredFields.forEach(field => {
-            if (!field.value) {
+            if (!field.value && field.type !== 'radio') {
                 isValid = false;
                 field.classList.add('error');
                 
@@ -478,6 +517,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+        
+        // Sprawdź czy wybrano wymagane pola radio
+        const requiredRadioGroups = {};
+        currentFormPage.querySelectorAll('input[type="radio"][required]').forEach(radio => {
+            requiredRadioGroups[radio.name] = true;
+        });
+        
+        for (const radioGroupName in requiredRadioGroups) {
+            const checkedRadio = currentFormPage.querySelector(`input[name="${radioGroupName}"]:checked`);
+            if (!checkedRadio) {
+                isValid = false;
+                const radioGroup = currentFormPage.querySelector(`.radio-group:has(input[name="${radioGroupName}"])`);
+                
+                // Dodaj komunikat o błędzie jeśli nie istnieje
+                if (radioGroup && (!radioGroup.nextElementSibling || !radioGroup.nextElementSibling.classList.contains('error-message'))) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = 'Wybierz jedną z opcji';
+                    radioGroup.parentNode.insertBefore(errorMessage, radioGroup.nextSibling);
+                }
+            }
+        }
         
         // Sprawdź specyficzne walidacje dla różnych stron
         if (pageIndex === 0) {
@@ -554,6 +615,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     errorMessage.textContent = 'Wybierz rodzaj kontuzji';
                     injuryType.parentNode.insertBefore(errorMessage, injuryType.nextSibling);
                 }
+            } else if (injuryType) {
+                injuryType.classList.remove('error');
+                if (injuryType.nextElementSibling && injuryType.nextElementSibling.classList.contains('error-message')) {
+                    injuryType.nextElementSibling.remove();
+                }
             }
             
             if (injuryWhen && !injuryWhen.value) {
@@ -567,6 +633,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     errorMessage.textContent = 'Wybierz kiedy wystąpiła kontuzja';
                     injuryWhen.parentNode.insertBefore(errorMessage, injuryWhen.nextSibling);
                 }
+            } else if (injuryWhen) {
+                injuryWhen.classList.remove('error');
+                if (injuryWhen.nextElementSibling && injuryWhen.nextElementSibling.classList.contains('error-message')) {
+                    injuryWhen.nextElementSibling.remove();
+                }
             }
             
             if (!injuryHealed) {
@@ -579,6 +650,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     errorMessage.className = 'error-message';
                     errorMessage.textContent = 'Wybierz czy kontuzja jest wyleczona';
                     radioContainer.parentNode.insertBefore(errorMessage, radioContainer.nextSibling);
+                }
+            } else if (injuryHealed) {
+                const radioContainer = currentFormPage.querySelector('.radio-group-injury-healed');
+                if (radioContainer && radioContainer.nextElementSibling && radioContainer.nextElementSibling.classList.contains('error-message')) {
+                    radioContainer.nextElementSibling.remove();
                 }
             }
         }
