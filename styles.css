@@ -2283,10 +2283,10 @@ header {
     align-items: center;
     justify-content: center;
     flex: 1;
-    padding: 24px 15px;
+    padding: 30px 20px;
     background-color: var(--bg-white);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     cursor: pointer;
@@ -2304,8 +2304,8 @@ header {
 }
 
 .level-circle {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     border: 2px solid var(--border-color);
     position: absolute;
@@ -2364,8 +2364,7 @@ header {
 .level-option span {
     font-weight: 600;
     color: var(--text-medium);
-    margin-top: 10px;
-    transition: var(--transition);
+    font-size: 1.05rem;
     text-align: center;
 }
 
