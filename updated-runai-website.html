@@ -431,56 +431,76 @@
             z-index: 1;
         }
 
+        /* Stylowy pasek postępu formularza */
         .form-progress {
-            display: flex;
             background-color: var(--bg-light);
             position: relative;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            overflow: hidden;
+            box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.05);
         }
 
         .form-progress-bar {
-            height: 4px;
-            background-color: var(--primary);
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
             position: absolute;
             top: 0;
             left: 0;
-            width: 0%;
-            transition: width 0.3s ease;
+            width: 25%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(93, 95, 239, 0.3);
+            z-index: 10;
         }
 
         .form-steps {
             display: flex;
             width: 100%;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 24px 0 20px;
+            position: relative;
         }
 
         .form-step {
             flex: 1;
-            padding: 16px;
+            padding: 0 16px;
             text-align: center;
             font-weight: 600;
             position: relative;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             color: var(--text-muted);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .step-number {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background-color: var(--bg-light);
+            background-color: var(--bg-white);
             border: 2px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 700;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number::before {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background-color: var(--bg-white);
+            border-radius: 50%;
+            z-index: -1;
+            transform: scale(0);
+            transition: transform 0.3s ease;
         }
 
         .form-step.active {
@@ -491,6 +511,24 @@
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(93, 95, 239, 0.3);
+            transform: scale(1.1);
+        }
+
+        .form-step.active .step-number::before {
+            background-color: rgba(93, 95, 239, 0.3);
+            transform: scale(1.5);
+        }
+
+        .form-step span {
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .form-step.active span {
+            font-weight: 700;
+            transform: translateY(2px);
         }
 
         .form-step.completed {
@@ -501,6 +539,31 @@
             background-color: var(--success);
             color: white;
             border-color: var(--success);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+
+        .form-step.completed .step-number::after {
+            content: "✓";
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .form-steps {
+                overflow-x: auto;
+                padding: 20px 0 16px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE and Edge */
+            }
+
+            .form-steps::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, Opera */
+            }
+
+            .form-step {
+                min-width: 120px;
+            }
         }
 
         .form-content {
@@ -521,21 +584,108 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Style nagłówków formularza */
         .form-title {
+            position: relative;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .form-title h3 {
+            margin-top: 16px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-dark);
+            padding-left: 0;
+        }
+
+        .form-title h3::before {
+            display: none;
         }
 
         .form-title p {
             color: var(--text-medium);
             font-size: 1.1rem;
-            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .title-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 20px rgba(93, 95, 239, 0.25);
+            position: relative;
+            z-index: 1;
+        }
+
+        .title-icon::before {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: white;
+            z-index: -1;
+        }
+
+        .title-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--primary);
+            stroke-width: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .form-title h3 {
+                font-size: 1.75rem;
+            }
+
+            .form-title p {
+                font-size: 1rem;
+            }
+
+            .title-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .title-icon::before {
+                width: 60px;
+                height: 60px;
+            }
+
+            .title-icon svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-title h3 {
+                font-size: 1.5rem;
+            }
+
+            .form-title {
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+            }
         }
 
         .form-group {
@@ -2173,6 +2323,112 @@
                 margin-bottom: 1rem;
             }
         }
+
+        /* Nagłówek sekcji formularza */
+        .form-section .section-title {
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 50px;
+        }
+
+        .form-section .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(93, 95, 239, 0.25);
+            z-index: 1;
+        }
+
+        .form-section .section-title::before {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .form-section .badge {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(93, 95, 239, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .form-section h2 {
+            font-size: 3.25rem;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .form-section h2::before {
+            display: none;
+        }
+
+        .form-section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: var(--radius-full);
+        }
+
+        .form-section .section-title p {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .form-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .form-section .section-title p {
+                font-size: 1.1rem;
+            }
+            
+            .form-section .section-title {
+                margin-bottom: 40px;
+                padding-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-section h2 {
+                font-size: 2rem;
+            }
+
+            .form-section .section-title p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2373,7 +2629,7 @@
 
     <section class="form-section" id="generator">
         <div class="container">
-            <div class="section-header">
+            <div class="section-title">
                 <span class="badge badge-primary mb-4">Generator Planów</span>
                 <h2>Stwórz swój plan treningowy</h2>
                 <p>Odpowiedz na kilka pytań, a nasza sztuczna inteligencja stworzy dla Ciebie idealny plan treningowy.</p>
@@ -2408,6 +2664,12 @@
                     <!-- Strona 1: Dane podstawowe -->
                     <div class="form-page active">
                         <div class="form-title">
+                            <div class="title-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
                             <h3>Dane podstawowe</h3>
                             <p>Informacje ogólne pomogą nam lepiej dopasować plan do Twoich potrzeb.</p>
                         </div>
@@ -2461,6 +2723,11 @@
                     <!-- Strona 2: Cele treningowe -->
                     <div class="form-page">
                         <div class="form-title">
+                            <div class="title-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </div>
                             <h3>Cele treningowe</h3>
                             <p>Wybierz główne cele, które chcesz osiągnąć dzięki planowi treningowemu.</p>
                         </div>
@@ -2522,6 +2789,12 @@
                     <!-- Strona 3: Historia kontuzji -->
                     <div class="form-page">
                         <div class="form-title">
+                            <div class="title-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
                             <h3>Historia kontuzji</h3>
                             <p>Informacje o przebytych kontuzjach pomogą nam stworzyć bezpieczny plan treningowy.</p>
                         </div>
@@ -2585,6 +2858,14 @@
                     <!-- Strona 4: Preferencje -->
                     <div class="form-page">
                         <div class="form-title">
+                            <div class="title-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
                             <h3>Preferencje treningowe</h3>
                             <p>Dostosuj swój plan do swoich preferencji i możliwości czasowych.</p>
                         </div>
