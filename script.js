@@ -5,49 +5,53 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSmoothScroll();
     initFloatingElements();
-    initFormNavigation();
     initFormValidation();
     initResultsDisplay();
+    initCookieBanner();
 });
 
 // Obsługa menu mobilnego
 function initMobileMenu() {
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (mobileMenuButton && navLinks) {
-        mobileMenuButton.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuButton.setAttribute('aria-expanded', 
-                navLinks.classList.contains('active') ? 'true' : 'false');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuLinks = document.querySelectorAll('.mobile-menu a');
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
         });
     }
 }
 
 // Płynne przewijanie do sekcji po kliknięciu w linki nawigacyjne
 function initSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
+    const links = document.querySelectorAll('a[href^="#"]:not([href="#"])');
     
     links.forEach(link => {
         link.addEventListener('click', (e) => {
-            const targetId = link.getAttribute('href');
-            if (targetId === '#') return;
-            
             e.preventDefault();
+            const targetId = link.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
-                
-                // Zamknij menu mobilne po kliknięciu w link
-                const navLinks = document.querySelector('.nav-links');
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    document.querySelector('.mobile-menu-button').setAttribute('aria-expanded', 'false');
-                }
             }
         });
     });
@@ -55,99 +59,24 @@ function initSmoothScroll() {
 
 // Animacja unoszących się elementów
 function initFloatingElements() {
-    const floatingElements = document.querySelectorAll('.floating');
+    const elements = document.querySelectorAll('.float-in');
     
-    if (floatingElements.length) {
-        window.addEventListener('scroll', () => {
-            floatingElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight * 0.8) {
-                    element.classList.add('visible');
-                }
-            });
-        });
-        
-        // Wywołaj raz, aby pokazać elementy widoczne od razu
-        window.dispatchEvent(new Event('scroll'));
-    }
-}
-
-// Obsługa nawigacji formularza
-function initFormNavigation() {
-    const formPages = document.querySelectorAll('.form-page');
-    const nextButtons = document.querySelectorAll('.next-button');
-    const prevButtons = document.querySelectorAll('.prev-button');
-    const progressBar = document.querySelector('.progress-bar');
-    const formSteps = document.querySelectorAll('.form-step');
-    const resultsSection = document.querySelector('.results-section');
-    
-    if (!formPages.length) return;
-    
-    let currentPage = 0;
-    updateFormProgress();
-    
-    // Obsługa przycisków "Dalej"
-    nextButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (validateCurrentPage()) {
-                if (currentPage < formPages.length - 1) {
-                    formPages[currentPage].classList.remove('active');
-                    currentPage++;
-                    formPages[currentPage].classList.add('active');
-                    updateFormProgress();
-                } else {
-                    showResults();
-                }
-            }
-        });
-    });
-    
-    // Obsługa przycisków "Wstecz"
-    prevButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (currentPage > 0) {
-                formPages[currentPage].classList.remove('active');
-                currentPage--;
-                formPages[currentPage].classList.add('active');
-                updateFormProgress();
-            }
-        });
-    });
-    
-    // Aktualizacja paska postępu i kroków
-    function updateFormProgress() {
-        if (progressBar) {
-            const progressPercentage = (currentPage / (formPages.length - 1)) * 100;
-            progressBar.style.width = `${progressPercentage}%`;
-        }
-        
-        if (formSteps.length) {
-            formSteps.forEach((step, index) => {
-                if (index < currentPage) {
-                    step.classList.add('completed');
-                    step.classList.remove('active');
-                } else if (index === currentPage) {
-                    step.classList.add('active');
-                    step.classList.remove('completed');
-                } else {
-                    step.classList.remove('completed', 'active');
-                }
-            });
-        }
-    }
-    
-    // Wyświetlanie wyników po zakończeniu formularza
-    function showResults() {
-        if (resultsSection) {
-            formPages.forEach(page => page.classList.remove('active'));
-            resultsSection.classList.add('active');
+    function checkVisibility() {
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
             
-            // Wypełnij wyniki danymi z formularza
-            populateResults();
-        }
+            if (elementTop < windowHeight - 50) {
+                element.classList.add('visible');
+            }
+        });
     }
+    
+    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener('resize', checkVisibility);
+    
+    // Check on initial load
+    checkVisibility();
 }
 
 // Walidacja formularza
@@ -159,22 +88,6 @@ function initFormValidation() {
             validateInput(input);
         });
     });
-}
-
-function validateCurrentPage() {
-    const currentPage = document.querySelector('.form-page.active');
-    if (!currentPage) return true;
-    
-    const requiredInputs = currentPage.querySelectorAll('[required]');
-    let isValid = true;
-    
-    requiredInputs.forEach(input => {
-        if (!validateInput(input)) {
-            isValid = false;
-        }
-    });
-    
-    return isValid;
 }
 
 function validateInput(input) {
@@ -374,6 +287,71 @@ function updateActiveNavLink() {
     });
 }
 
+// Funkcja aktualizująca podsumowanie formularza
+function updateSummary(formPage) {
+    // Sprawdź, czy element podsumowania istnieje
+    const summaryElement = document.querySelector('.form-summary');
+    if (!summaryElement) return;
+
+    // Pokaż element podsumowania
+    summaryElement.classList.add('visible');
+
+    // Aktualizacja pól podsumowania na podstawie aktualnej strony formularza
+    if (formPage) {
+        // Pobierz wszystkie inputy, selecty i textareateria z bieżącej strony
+        const inputs = formPage.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), select, textarea');
+        const radios = formPage.querySelectorAll('input[type="radio"]:checked');
+        const checkboxes = formPage.querySelectorAll('input[type="checkbox"]:checked');
+
+        // Aktualizuj wartości w podsumowaniu
+        inputs.forEach(input => {
+            if (input.id && input.value) {
+                const summaryValue = document.querySelector(`.summary-value[data-for="${input.id}"]`);
+                if (summaryValue) {
+                    summaryValue.textContent = input.value;
+                    summaryValue.classList.remove('empty');
+                }
+            }
+        });
+
+        radios.forEach(radio => {
+            if (radio.name && radio.value) {
+                const summaryValue = document.querySelector(`.summary-value[data-for="${radio.name}"]`);
+                if (summaryValue) {
+                    summaryValue.textContent = radio.value;
+                    summaryValue.classList.remove('empty');
+                }
+            }
+        });
+
+        // Dla checkboxów zbieramy wszystkie zaznaczone wartości
+        const checkboxGroups = {};
+        checkboxes.forEach(checkbox => {
+            if (checkbox.name && checkbox.value) {
+                if (!checkboxGroups[checkbox.name]) {
+                    checkboxGroups[checkbox.name] = [];
+                }
+                checkboxGroups[checkbox.name].push(checkbox.value);
+            }
+        });
+
+        // Aktualizuj podsumowanie dla grup checkboxów
+        for (const [name, values] of Object.entries(checkboxGroups)) {
+            const summaryValue = document.querySelector(`.summary-value[data-for="${name}"]`);
+            if (summaryValue) {
+                summaryValue.textContent = values.join(', ');
+                summaryValue.classList.remove('empty');
+            }
+        }
+    }
+}
+
+// Funkcja aktualizująca wyniki po przetworzeniu formularza
+function updateResults() {
+    // Implementacja funkcji populującej wyniki
+    populateResults();
+}
+
 // Animacje przy przewijaniu dla elementów pojawiających się na stronie
 window.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .form-container');
@@ -390,4 +368,263 @@ window.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(element => {
         observer.observe(element);
     });
-}); 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Nawigacja w formularzu
+    const nextButtons = document.querySelectorAll('.btn-next');
+    const prevButtons = document.querySelectorAll('.btn-prev');
+    const submitButton = document.querySelector('.btn-submit');
+    const formPages = document.querySelectorAll('.form-page');
+    const formSteps = document.querySelectorAll('.form-step');
+    const progressBar = document.querySelector('.form-progress-bar');
+    const resultsSection = document.querySelector('.results-section');
+    const formContent = document.querySelector('.form-content');
+    const loadingAnimation = document.querySelector('.loading-animation');
+    
+    let currentPage = 0;
+    
+    function updateProgress() {
+        const progress = ((currentPage + 1) / formPages.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+    
+    function showPage(pageIndex) {
+        formPages.forEach((page, index) => {
+            page.classList.remove('active');
+            formSteps[index].classList.remove('active', 'completed');
+        });
+        
+        for (let i = 0; i < pageIndex; i++) {
+            formSteps[i].classList.add('completed');
+        }
+        
+        formPages[pageIndex].classList.add('active');
+        formSteps[pageIndex].classList.add('active');
+        updateProgress();
+        
+        // Aktualizuj podsumowanie dla bieżącej strony
+        updateSummary(formPages[pageIndex]);
+    }
+    
+    nextButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Najpierw walidujemy bieżącą stronę
+            if (validateCurrentPage(currentPage)) {
+                if (currentPage < formPages.length - 1) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            }
+        });
+    });
+    
+    prevButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+    });
+    
+    if (submitButton) {
+        submitButton.addEventListener('click', () => {
+            // Walidacja ostatniej strony przed wysłaniem
+            if (validateCurrentPage(currentPage)) {
+                // Pokaż animację ładowania
+                formContent.style.display = 'none';
+                document.querySelector('.form-progress').style.display = 'none';
+                loadingAnimation.classList.add('visible');
+                
+                // Symulacja przetwarzania danych - w rzeczywistej aplikacji tutaj byłoby wysłanie do API
+                setTimeout(() => {
+                    // Ukryj animację ładowania i pokaż wyniki
+                    loadingAnimation.classList.remove('visible');
+                    updateResults();
+                    resultsSection.style.display = 'block';
+                    
+                    // Dodaj klasy animation-order do kart wyników dla animacji kaskadowej
+                    document.querySelectorAll('.results-card').forEach((card, index) => {
+                        card.style.setProperty('--animation-order', index);
+                    });
+                }, 2000);
+            }
+        });
+    }
+    
+    // Walidacja bieżącej strony formularza
+    function validateCurrentPage(pageIndex) {
+        const currentFormPage = document.querySelectorAll('.form-page')[pageIndex];
+        const requiredFields = currentFormPage.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value) {
+                isValid = false;
+                field.classList.add('error');
+                
+                // Dodaj komunikat o błędzie jeśli nie istnieje
+                if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('error-message')) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = 'To pole jest wymagane';
+                    field.parentNode.insertBefore(errorMessage, field.nextSibling);
+                }
+            } else {
+                field.classList.remove('error');
+                if (field.nextElementSibling && field.nextElementSibling.classList.contains('error-message')) {
+                    field.nextElementSibling.remove();
+                }
+            }
+        });
+        
+        // Sprawdź specyficzne walidacje dla różnych stron
+        if (pageIndex === 0) {
+            // Walidacja wieku - musi być liczbą między 16 a 99
+            const ageField = currentFormPage.querySelector('#age');
+            if (ageField && ageField.value) {
+                const age = parseInt(ageField.value);
+                if (isNaN(age) || age < 16 || age > 99) {
+                    isValid = false;
+                    ageField.classList.add('error');
+                    
+                    // Dodaj komunikat o błędzie
+                    if (!ageField.nextElementSibling || !ageField.nextElementSibling.classList.contains('error-message')) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'error-message';
+                        errorMessage.textContent = 'Wiek musi być liczbą między 16 a 99';
+                        ageField.parentNode.insertBefore(errorMessage, ageField.nextSibling);
+                    }
+                }
+            }
+            
+            // Walidacja wzrostu - musi być liczbą między 100 a 250
+            const heightField = currentFormPage.querySelector('#height');
+            if (heightField && heightField.value) {
+                const height = parseInt(heightField.value);
+                if (isNaN(height) || height < 100 || height > 250) {
+                    isValid = false;
+                    heightField.classList.add('error');
+                    
+                    // Dodaj komunikat o błędzie
+                    if (!heightField.nextElementSibling || !heightField.nextElementSibling.classList.contains('error-message')) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'error-message';
+                        errorMessage.textContent = 'Wzrost musi być liczbą między 100 a 250 cm';
+                        heightField.parentNode.insertBefore(errorMessage, heightField.nextSibling);
+                    }
+                }
+            }
+            
+            // Walidacja wagi - musi być liczbą między 30 a 250
+            const weightField = currentFormPage.querySelector('#weight');
+            if (weightField && weightField.value) {
+                const weight = parseInt(weightField.value);
+                if (isNaN(weight) || weight < 30 || weight > 250) {
+                    isValid = false;
+                    weightField.classList.add('error');
+                    
+                    // Dodaj komunikat o błędzie
+                    if (!weightField.nextElementSibling || !weightField.nextElementSibling.classList.contains('error-message')) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.className = 'error-message';
+                        errorMessage.textContent = 'Waga musi być liczbą między 30 a 250 kg';
+                        weightField.parentNode.insertBefore(errorMessage, weightField.nextSibling);
+                    }
+                }
+            }
+        }
+        
+        // Jeśli strona zawiera pytanie o kontuzje, sprawdź czy potrzebne pola są wypełnione
+        const hadInjuryRadio = currentFormPage.querySelector('input[name="had-injury"]:checked');
+        if (hadInjuryRadio && hadInjuryRadio.value === 'Tak') {
+            const injuryType = currentFormPage.querySelector('#injury-type');
+            const injuryWhen = currentFormPage.querySelector('#injury-when');
+            const injuryHealed = currentFormPage.querySelector('input[name="injury-healed"]:checked');
+            
+            if (injuryType && !injuryType.value) {
+                isValid = false;
+                injuryType.classList.add('error');
+                
+                // Dodaj komunikat o błędzie
+                if (!injuryType.nextElementSibling || !injuryType.nextElementSibling.classList.contains('error-message')) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = 'Wybierz rodzaj kontuzji';
+                    injuryType.parentNode.insertBefore(errorMessage, injuryType.nextSibling);
+                }
+            }
+            
+            if (injuryWhen && !injuryWhen.value) {
+                isValid = false;
+                injuryWhen.classList.add('error');
+                
+                // Dodaj komunikat o błędzie
+                if (!injuryWhen.nextElementSibling || !injuryWhen.nextElementSibling.classList.contains('error-message')) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = 'Wybierz kiedy wystąpiła kontuzja';
+                    injuryWhen.parentNode.insertBefore(errorMessage, injuryWhen.nextSibling);
+                }
+            }
+            
+            if (!injuryHealed) {
+                isValid = false;
+                const radioContainer = currentFormPage.querySelector('.radio-group-injury-healed');
+                
+                // Dodaj komunikat o błędzie
+                if (radioContainer && (!radioContainer.nextElementSibling || !radioContainer.nextElementSibling.classList.contains('error-message'))) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = 'Wybierz czy kontuzja jest wyleczona';
+                    radioContainer.parentNode.insertBefore(errorMessage, radioContainer.nextSibling);
+                }
+            }
+        }
+        
+        return isValid;
+    }
+});
+
+// Obsługa bannera cookies
+function initCookieBanner() {
+    const cookieBanner = document.querySelector('.cookie-banner');
+    const acceptButton = document.getElementById('accept-cookies');
+    const settingsButton = document.getElementById('cookie-settings');
+    
+    if (cookieBanner) {
+        // Sprawdzanie czy użytkownik już zaakceptował cookies
+        if (!localStorage.getItem('cookies-accepted')) {
+            cookieBanner.style.display = 'block';
+        } else {
+            cookieBanner.style.display = 'none';
+        }
+        
+        // Obsługa przycisku akceptacji
+        if (acceptButton) {
+            acceptButton.addEventListener('click', () => {
+                localStorage.setItem('cookies-accepted', 'true');
+                cookieBanner.classList.add('hidden');
+                setTimeout(() => {
+                    cookieBanner.style.display = 'none';
+                }, 500);
+            });
+        }
+        
+        // Obsługa przycisku ustawień
+        if (settingsButton) {
+            settingsButton.addEventListener('click', () => {
+                // Można tutaj otworzyć modal z ustawieniami cookies
+                alert('Ustawienia cookies zostaną wkrótce dodane.');
+                // Na razie po prostu ukrywamy banner
+                cookieBanner.classList.add('hidden');
+                setTimeout(() => {
+                    cookieBanner.style.display = 'none';
+                }, 500);
+            });
+        }
+    }
+}
+
+// ... existing code ...

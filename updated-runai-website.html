@@ -243,122 +243,128 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Zawartość formularza -->
+                
                 <div class="form-content">
-                    <!-- Strona 1: Dane podstawowe -->
                     <div class="form-page active">
                         <div class="form-title">
                             <div class="title-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
                                 </svg>
                             </div>
                             <h3>Dane podstawowe</h3>
-                            <p>Informacje ogólne pomogą nam lepiej dopasować plan do Twoich potrzeb.</p>
+                            <p>Podaj swoje podstawowe dane, które pomogą nam stworzyć spersonalizowany plan.</p>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="name">Imię i nazwisko</label>
-                            <input type="text" id="name" class="form-control" placeholder="Wpisz swoje imię i nazwisko">
+                            <label for="name">Imię</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="email">Adres e-mail</label>
-                            <input type="email" id="email" class="form-control" placeholder="Wpisz swój adres e-mail">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
                         </div>
+                        
                         <div class="form-group">
                             <label for="age">Wiek</label>
-                            <input type="number" id="age" class="form-control" placeholder="Wpisz swój wiek">
+                            <input type="number" id="age" name="age" min="16" max="99" class="form-control" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label>Doświadczenie biegowe</label>
+                            <label for="height">Wzrost (cm)</label>
+                            <input type="number" id="height" name="height" min="100" max="250" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weight">Waga (kg)</label>
+                            <input type="number" id="weight" name="weight" min="30" max="250" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-buttons">
+                            <button type="button" class="btn btn-outline btn-prev" disabled>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                                    <polyline points="12 19 5 12 12 5"></polyline>
+                                </svg>
+                                Wstecz
+                            </button>
+                            <button type="button" class="btn btn-primary btn-next">
+                                Dalej
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-page">
+                        <div class="form-title">
+                            <div class="title-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Cele treningowe</h3>
+                            <p>Określ swoje cele treningowe i preferencje dotyczące planu.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Cel treningowy</label>
+                            <div class="radio-group">
+                                <label class="custom-radio">
+                                    <input type="radio" name="training-goal" value="Poprawa wydolności" required>
+                                    <span>Poprawa wydolności</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="training-goal" value="Schudnięcie">
+                                    <span>Schudnięcie</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="training-goal" value="Przygotowanie do zawodów">
+                                    <span>Przygotowanie do zawodów</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Poziom zaawansowania</label>
                             <div class="level-selection-container">
                                 <label class="level-option">
-                                    <input type="radio" name="experience" value="beginner">
-                                    <div class="level-circle"></div>
+                                    <input type="radio" name="experience" value="Początkujący" required>
+                                    <span class="level-circle"></span>
                                     <span>Początkujący</span>
                                 </label>
                                 <label class="level-option">
-                                    <input type="radio" name="experience" value="intermediate">
-                                    <div class="level-circle"></div>
+                                    <input type="radio" name="experience" value="Średniozaawansowany">
+                                    <span class="level-circle"></span>
                                     <span>Średniozaawansowany</span>
                                 </label>
                                 <label class="level-option">
-                                    <input type="radio" name="experience" value="advanced">
-                                    <div class="level-circle"></div>
+                                    <input type="radio" name="experience" value="Zaawansowany">
+                                    <span class="level-circle"></span>
                                     <span>Zaawansowany</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="form-buttons">
-                            <button type="button" class="btn btn-outline btn-prev" disabled>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                                    <polyline points="12 19 5 12 12 5"></polyline>
-                                </svg>
-                                Wstecz
-                            </button>
-                            <button type="button" class="btn btn-primary btn-next">
-                                Dalej
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Strona 2: Cele treningowe -->
-                    <div class="form-page">
-                        <div class="form-title">
-                            <div class="title-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                                </svg>
-                            </div>
-                            <h3>Cele treningowe</h3>
-                            <p>Wybierz główne cele, które chcesz osiągnąć dzięki planowi treningowemu.</p>
-                        </div>
+                        
                         <div class="form-group">
-                            <label>Cel główny</label>
-                            <div class="checkbox-group">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="goals" value="endurance">
-                                    <div class="checkbox-content">
-                                        <strong>Wytrzymałość</strong>
-                                        <span>Poprawa ogólnej wytrzymałości biegowej</span>
-                                    </div>
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="goals" value="speed">
-                                    <div class="checkbox-content">
-                                        <strong>Szybkość</strong>
-                                        <span>Poprawa tempa i szybkości biegania</span>
-                                    </div>
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="goals" value="marathon">
-                                    <div class="checkbox-content">
-                                        <strong>Maraton</strong>
-                                        <span>Przygotowanie do biegu maratońskiego</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="distance">Docelowy dystans</label>
-                            <select id="distance" class="form-control">
-                                <option value="">Wybierz dystans docelowy</option>
-                                <option value="5k">5 km</option>
-                                <option value="10k">10 km</option>
-                                <option value="half">Półmaraton (21,1 km)</option>
-                                <option value="marathon">Maraton (42,2 km)</option>
-                                <option value="ultra">Ultramaraton (powyżej 42,2 km)</option>
+                            <label for="target-distance">Docelowy dystans</label>
+                            <select id="target-distance" name="target-distance" class="form-control" required>
+                                <option value="">Wybierz dystans</option>
+                                <option value="5 km">5 km</option>
+                                <option value="10 km">10 km</option>
+                                <option value="15 km">15 km</option>
+                                <option value="Półmaraton">Półmaraton (21,0975 km)</option>
+                                <option value="Maraton">Maraton (42,195 km)</option>
                             </select>
                         </div>
+                        
                         <div class="form-buttons">
                             <button type="button" class="btn btn-outline btn-prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="19" y1="12" x2="5" y2="12"></line>
                                     <polyline points="12 19 5 12 12 5"></polyline>
                                 </svg>
@@ -366,68 +372,85 @@
                             </button>
                             <button type="button" class="btn btn-primary btn-next">
                                 Dalej
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
                             </button>
                         </div>
                     </div>
-
-                    <!-- Strona 3: Historia kontuzji -->
+                    
                     <div class="form-page">
                         <div class="form-title">
                             <div class="title-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
                             </div>
                             <h3>Historia kontuzji</h3>
-                            <p>Informacje o przebytych kontuzjach pomogą nam stworzyć bezpieczny plan treningowy.</p>
+                            <p>Podaj informacje o ewentualnych kontuzjach, które mogą mieć wpływ na trening.</p>
                         </div>
+                        
                         <div class="form-group">
-                            <label>Czy miałeś/aś kontuzje w przeszłości?</label>
+                            <label>Czy miałeś/aś jakiekolwiek kontuzje w ciągu ostatnich 12 miesięcy?</label>
                             <div class="radio-group">
                                 <label class="custom-radio">
-                                    <input type="radio" name="had_injuries" value="yes">
+                                    <input type="radio" name="had-injury" value="Tak" required>
                                     <span>Tak</span>
                                 </label>
                                 <label class="custom-radio">
-                                    <input type="radio" name="had_injuries" value="no">
+                                    <input type="radio" name="had-injury" value="Nie">
                                     <span>Nie</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Lokalizacje bólu lub dyskomfortu</label>
-                            <div class="checkbox-group">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="pain_locations" value="knee">
-                                    <div class="checkbox-content">
-                                        <strong>Kolano</strong>
-                                        <span>Ból lub dyskomfort w okolicy kolana</span>
-                                    </div>
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="pain_locations" value="ankle">
-                                    <div class="checkbox-content">
-                                        <strong>Kostka</strong>
-                                        <span>Problemy ze stawem skokowym</span>
-                                    </div>
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="pain_locations" value="back">
-                                    <div class="checkbox-content">
-                                        <strong>Plecy</strong>
-                                        <span>Ból lub dyskomfort w plecach</span>
-                                    </div>
-                                </label>
+                        
+                        <div class="injury-details" style="display: none;">
+                            <div class="form-group">
+                                <label for="injury-type">Rodzaj kontuzji</label>
+                                <select id="injury-type" name="injury-type" class="form-control">
+                                    <option value="">Wybierz rodzaj kontuzji</option>
+                                    <option value="Kolano">Kolano</option>
+                                    <option value="Kostka">Kostka</option>
+                                    <option value="Biodro">Biodro</option>
+                                    <option value="Ścięgno Achillesa">Ścięgno Achillesa</option>
+                                    <option value="Łydka">Łydka</option>
+                                    <option value="Stopa">Stopa</option>
+                                    <option value="Plecy">Plecy</option>
+                                    <option value="Inne">Inne</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="injury-when">Kiedy wystąpiła kontuzja?</label>
+                                <select id="injury-when" name="injury-when" class="form-control">
+                                    <option value="">Wybierz kiedy wystąpiła kontuzja</option>
+                                    <option value="W ciągu ostatniego miesiąca">W ciągu ostatniego miesiąca</option>
+                                    <option value="1-3 miesiące temu">1-3 miesiące temu</option>
+                                    <option value="3-6 miesięcy temu">3-6 miesięcy temu</option>
+                                    <option value="6-12 miesięcy temu">6-12 miesięcy temu</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Czy kontuzja jest całkowicie wyleczona?</label>
+                                <div class="radio-group radio-group-injury-healed">
+                                    <label class="custom-radio">
+                                        <input type="radio" name="injury-healed" value="Tak">
+                                        <span>Tak</span>
+                                    </label>
+                                    <label class="custom-radio">
+                                        <input type="radio" name="injury-healed" value="Nie">
+                                        <span>Nie</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="form-buttons">
                             <button type="button" class="btn btn-outline btn-prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="19" y1="12" x2="5" y2="12"></line>
                                     <polyline points="12 19 5 12 12 5"></polyline>
                                 </svg>
@@ -435,62 +458,95 @@
                             </button>
                             <button type="button" class="btn btn-primary btn-next">
                                 Dalej
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
                             </button>
                         </div>
                     </div>
-
-                    <!-- Strona 4: Preferencje -->
+                    
                     <div class="form-page">
                         <div class="form-title">
                             <div class="title-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
                             </div>
                             <h3>Preferencje treningowe</h3>
-                            <p>Dostosuj swój plan do swoich preferencji i możliwości czasowych.</p>
+                            <p>Podaj dodatkowe informacje dotyczące Twoich preferencji treningowych.</p>
                         </div>
+                        
                         <div class="form-group">
                             <label>Preferowane dni treningowe</label>
                             <div class="checkbox-group">
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" name="training_days" value="monday">
-                                    <span>Poniedziałek</span>
+                                    <input type="checkbox" name="training-days" value="Poniedziałek">
+                                    <span class="checkbox-content">
+                                        <strong>Poniedziałek</strong>
+                                    </span>
                                 </label>
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" name="training_days" value="wednesday">
-                                    <span>Środa</span>
+                                    <input type="checkbox" name="training-days" value="Wtorek">
+                                    <span class="checkbox-content">
+                                        <strong>Wtorek</strong>
+                                    </span>
                                 </label>
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" name="training_days" value="friday">
-                                    <span>Piątek</span>
+                                    <input type="checkbox" name="training-days" value="Środa">
+                                    <span class="checkbox-content">
+                                        <strong>Środa</strong>
+                                    </span>
                                 </label>
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" name="training_days" value="sunday">
-                                    <span>Niedziela</span>
+                                    <input type="checkbox" name="training-days" value="Czwartek">
+                                    <span class="checkbox-content">
+                                        <strong>Czwartek</strong>
+                                    </span>
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="training-days" value="Piątek">
+                                    <span class="checkbox-content">
+                                        <strong>Piątek</strong>
+                                    </span>
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="training-days" value="Sobota">
+                                    <span class="checkbox-content">
+                                        <strong>Sobota</strong>
+                                    </span>
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="training-days" value="Niedziela">
+                                    <span class="checkbox-content">
+                                        <strong>Niedziela</strong>
+                                    </span>
                                 </label>
                             </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="plan_length">Długość planu treningowego</label>
-                            <select id="plan_length" class="form-control">
+                            <label for="plan-length">Długość planu treningowego</label>
+                            <select id="plan-length" name="plan-length" class="form-control" required>
                                 <option value="">Wybierz długość planu</option>
-                                <option value="4w">4 tygodnie</option>
-                                <option value="8w">8 tygodni</option>
-                                <option value="12w">12 tygodni</option>
-                                <option value="16w">16 tygodni</option>
+                                <option value="4 tygodnie">4 tygodnie</option>
+                                <option value="8 tygodni">8 tygodni</option>
+                                <option value="12 tygodni">12 tygodni</option>
+                                <option value="16 tygodni">16 tygodni</option>
                             </select>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="additional-notes">Dodatkowe uwagi (opcjonalnie)</label>
+                            <textarea id="additional-notes" name="additional-notes" class="form-control" rows="4"></textarea>
+                        </div>
+                        
                         <div class="form-buttons">
                             <button type="button" class="btn btn-outline btn-prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="19" y1="12" x2="5" y2="12"></line>
                                     <polyline points="12 19 5 12 12 5"></polyline>
                                 </svg>
@@ -498,587 +554,204 @@
                             </button>
                             <button type="button" class="btn btn-primary btn-submit">
                                 Generuj plan
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
                                 </svg>
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Sekcja wyników -->
-                <div class="results-section" style="display: none;">
-                    <div class="results-header">
-                        <h3>Twój spersonalizowany plan treningowy</h3>
-                        <p>Plan został wygenerowany na podstawie Twoich odpowiedzi i preferencji.</p>
-                    </div>
-                    <div class="results-content">
-                        <div class="results-grid">
-                            <!-- Podstawowe informacje -->
-                            <div class="results-card">
-                                <div class="card-header">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                    <h4>Dane podstawowe</h4>
-                                </div>
-                                <div class="card-content">
-                                    <ul class="results-list">
-                                        <li>
-                                            <span class="label">Imię:</span>
-                                            <span id="result-name" class="value"></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Wiek:</span>
-                                            <span id="result-age" class="value"></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Doświadczenie:</span>
-                                            <span id="result-experience" class="value"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Cele treningowe -->
-                            <div class="results-card">
-                                <div class="card-header">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    <h4>Cele treningowe</h4>
-                                </div>
-                                <div class="card-content">
-                                    <ul class="results-list">
-                                        <li>
-                                            <span class="label">Główny cel:</span>
-                                            <span id="result-main-goal" class="value"></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Dystans docelowy:</span>
-                                            <span id="result-distance" class="value"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Historia kontuzji -->
-                            <div class="results-card">
-                                <div class="card-header">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                    </svg>
-                                    <h4>Historia kontuzji</h4>
-                                </div>
-                                <div class="card-content">
-                                    <ul class="results-list">
-                                        <li>
-                                            <span class="label">Przebyte kontuzje:</span>
-                                            <span id="result-injuries" class="value"></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Obszary wymagające uwagi:</span>
-                                            <div id="result-pain-locations" class="value-list"></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Preferencje treningowe -->
-                            <div class="results-card">
-                                <div class="card-header">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                                    </svg>
-                                    <h4>Preferencje treningowe</h4>
-                                </div>
-                                <div class="card-content">
-                                    <ul class="results-list">
-                                        <li>
-                                            <span class="label">Dni treningowe:</span>
-                                            <div id="result-training-days" class="value-list"></div>
-                                        </li>
-                                        <li>
-                                            <span class="label">Długość planu:</span>
-                                            <span id="result-plan-length" class="value"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                
+                <div class="loading-animation">
+                    <h3>Analizujemy Twoje dane i generujemy plan...</h3>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                </div>
+                
+                <!-- Podsumowanie formularza -->
+                <div class="form-summary">
+                    <h4>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                            <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                        </svg>
+                        Podsumowanie
+                    </h4>
+                    
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <div class="summary-label">Imię:</div>
+                            <div class="summary-value empty" data-for="name">Nie podano</div>
                         </div>
-
-                        <!-- Przykładowy tydzień treningowy -->
-                        <div class="results-card weekly-plan">
-                            <div class="card-header">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                                </svg>
-                                <h4>Przykładowy plan treningowy</h4>
-                            </div>
-                            <div class="card-content">
-                                <!-- Metadane planu -->
-                                <div class="plan-metadata">
-                                    <div class="metadata-item">
-                                        <span class="label">Dyscyplina:</span>
-                                        <span class="value">Triathlon</span>
-                                    </div>
-                                    <div class="metadata-item">
-                                        <span class="label">Cel:</span>
-                                        <span class="value">Prewencja kontuzji</span>
-                                    </div>
-                                    <div class="metadata-item">
-                                        <span class="label">Poziom:</span>
-                                        <span class="value">Doświadczony</span>
-                                    </div>
-                                    <div class="metadata-item">
-                                        <span class="label">Częstotliwość:</span>
-                                        <span class="value">Codziennie (rutyna korekcyjna)</span>
-                                    </div>
-                                </div>
-
-                                <!-- Opis planu -->
-                                <div class="plan-description">
-                                    <p>Codzienna rutyna (rolowanie, rozciąganie, aktywacja) dla triatlonisty z zidentyfikowanymi asymetriami i osłabieniami. Celem jest prewencja kontuzji biegowych poprzez wzmocnienie słabych ogniw, poprawę stabilności, mobilności i kontroli nerwowo-mięśniowej.</p>
-                                </div>
-
-                                <!-- Harmonogram tygodniowy -->
-                                <div class="weekly-schedule" id="result-weekly-schedule">
-                                    <div class="schedule-day">
-                                        <h5>Codziennie</h5>
-                                        <div class="exercise-group">
-                                            <h6>Rolowanie (1-2 minuty na stronę)</h6>
-                                            <ul>
-                                                <li>Przód uda</li>
-                                                <li>Naprężacz powięzi szerokiej (TFL)</li>
-                                            </ul>
-                                        </div>
-                                        <div class="exercise-group">
-                                            <h6>Rozciąganie (1-3 serie x 10 powtórzeń)</h6>
-                                            <ul>
-                                                <li>Przód uda (leżąc/stojąc)</li>
-                                                <li>Przywodziciele</li>
-                                                <li>Rotacje 90/90</li>
-                                            </ul>
-                                        </div>
-                                        <div class="exercise-group">
-                                            <h6>Aktywacja (1-3 serie)</h6>
-                                            <ul>
-                                                <li>Mostowanie bioder</li>
-                                                <li>Martwy robak</li>
-                                                <li>Kołyska gimnastyczna</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Monitoring bólu -->
-                                <div class="pain-monitoring">
-                                    <h5>Monitoring odczuć</h5>
-                                    <ul>
-                                        <li><span class="status good">✓</span> Uczucie pracy mięśniowej - kontynuuj</li>
-                                        <li><span class="status warning">!</span> Dyskomfort - zmniejsz intensywność</li>
-                                        <li><span class="status danger">✕</span> Ból ostry - przerwij ćwiczenie</li>
-                                    </ul>
-                                </div>
-
-                                <!-- Dodatkowe wskazówki -->
-                                <div class="additional-notes">
-                                    <h5>Ważne wskazówki</h5>
-                                    <ul>
-                                        <li>Minimum 10 000 kroków dziennie</li>
-                                        <li>Regularne przerwy w pracy siedzącej</li>
-                                        <li>Dbaj o technikę wykonywania ćwiczeń</li>
-                                        <li>Obserwuj reakcję organizmu</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Email:</div>
+                            <div class="summary-value empty" data-for="email">Nie podano</div>
                         </div>
-
-                        <style>
-                            .plan-metadata {
-                                display: grid;
-                                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                                gap: 1rem;
-                                margin-bottom: 2rem;
-                                background: var(--bg-light);
-                                padding: 1.5rem;
-                                border-radius: var(--radius);
-                            }
-
-                            .metadata-item {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 0.5rem;
-                            }
-
-                            .metadata-item .label {
-                                color: var(--text-muted);
-                                font-size: 0.9rem;
-                            }
-
-                            .metadata-item .value {
-                                color: var(--text-dark);
-                                font-weight: 600;
-                            }
-
-                            .plan-description {
-                                margin-bottom: 2rem;
-                                padding: 1rem;
-                                border-left: 4px solid var(--primary);
-                                background: rgba(93, 95, 239, 0.05);
-                                border-radius: 0 var(--radius) var(--radius) 0;
-                            }
-
-                            .plan-description p {
-                                margin: 0;
-                                line-height: 1.6;
-                                color: var(--text-medium);
-                            }
-
-                            .schedule-day {
-                                background: white;
-                                padding: 1.5rem;
-                                border-radius: var(--radius);
-                                box-shadow: var(--shadow);
-                            }
-
-                            .schedule-day h5 {
-                                color: var(--primary);
-                                margin-bottom: 1rem;
-                                font-size: 1.2rem;
-                                border-bottom: 2px solid var(--primary-light);
-                                padding-bottom: 0.5rem;
-                            }
-
-                            .exercise-group {
-                                margin-bottom: 1.5rem;
-                            }
-
-                            .exercise-group h6 {
-                                color: var(--text-dark);
-                                margin-bottom: 0.75rem;
-                                font-size: 1rem;
-                                font-weight: 600;
-                            }
-
-                            .exercise-group ul {
-                                list-style: none;
-                                padding: 0;
-                                margin: 0;
-                            }
-
-                            .exercise-group ul li {
-                                padding: 0.5rem 0;
-                                color: var(--text-medium);
-                                position: relative;
-                                padding-left: 1.5rem;
-                            }
-
-                            .exercise-group ul li::before {
-                                content: "•";
-                                color: var(--primary);
-                                position: absolute;
-                                left: 0.5rem;
-                            }
-
-                            .pain-monitoring {
-                                margin-top: 2rem;
-                                padding: 1.5rem;
-                                background: white;
-                                border-radius: var(--radius);
-                                box-shadow: var(--shadow);
-                            }
-
-                            .pain-monitoring h5 {
-                                color: var(--text-dark);
-                                margin-bottom: 1rem;
-                            }
-
-                            .pain-monitoring ul {
-                                list-style: none;
-                                padding: 0;
-                                margin: 0;
-                            }
-
-                            .pain-monitoring ul li {
-                                display: flex;
-                                align-items: center;
-                                gap: 0.75rem;
-                                padding: 0.5rem 0;
-                            }
-
-                            .status {
-                                width: 24px;
-                                height: 24px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                border-radius: 50%;
-                                font-size: 0.9rem;
-                            }
-
-                            .status.good {
-                                background: rgba(34, 197, 94, 0.1);
-                                color: var(--success);
-                            }
-
-                            .status.warning {
-                                background: rgba(245, 158, 11, 0.1);
-                                color: var(--warning);
-                            }
-
-                            .status.danger {
-                                background: rgba(239, 68, 68, 0.1);
-                                color: var(--danger);
-                            }
-
-                            .additional-notes {
-                                margin-top: 2rem;
-                                padding: 1.5rem;
-                                background: white;
-                                border-radius: var(--radius);
-                                box-shadow: var(--shadow);
-                            }
-
-                            .additional-notes h5 {
-                                color: var(--text-dark);
-                                margin-bottom: 1rem;
-                            }
-
-                            .additional-notes ul {
-                                list-style: none;
-                                padding: 0;
-                                margin: 0;
-                            }
-
-                            .additional-notes ul li {
-                                padding: 0.5rem 0;
-                                color: var(--text-medium);
-                                position: relative;
-                                padding-left: 1.5rem;
-                            }
-
-                            .additional-notes ul li::before {
-                                content: "→";
-                                color: var(--primary);
-                                position: absolute;
-                                left: 0;
-                            }
-
-                            @media (max-width: 768px) {
-                                .plan-metadata {
-                                    grid-template-columns: 1fr;
-                                }
-
-                                .schedule-day {
-                                    padding: 1rem;
-                                }
-
-                                .exercise-group {
-                                    margin-bottom: 1rem;
-                                }
-                            }
-                        </style>
-
-                        <script>
-                            // Aktualizacja skryptu do obsługi nowego formatu planu
-                            function updateResults() {
-                                // ... istniejący kod ...
-
-                                // Dodatkowa logika dla nowego formatu planu
-                                const planMetadata = {
-                                    discipline: "Triathlon",
-                                    goal: "Prewencja kontuzji",
-                                    level: "Doświadczony",
-                                    frequency: "Codziennie (rutyna korekcyjna)"
-                                };
-
-                                // Aktualizacja metadanych
-                                Object.entries(planMetadata).forEach(([key, value]) => {
-                                    const element = document.querySelector(`[data-metadata="${key}"]`);
-                                    if (element) {
-                                        element.textContent = value;
-                                    }
-                                });
-                            }
-                        </script>
-
-                        <!-- Przycisk pobrania planu -->
-                        <div class="results-actions">
-                            <button class="btn btn-primary btn-download">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                </svg>
-                                Pobierz szczegółowy plan treningowy (PDF)
-                            </button>
+                        <div class="summary-item">
+                            <div class="summary-label">Wiek:</div>
+                            <div class="summary-value empty" data-for="age">Nie podano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Wzrost:</div>
+                            <div class="summary-value empty" data-for="height">Nie podano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Waga:</div>
+                            <div class="summary-value empty" data-for="weight">Nie podano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Cel treningowy:</div>
+                            <div class="summary-value empty" data-for="training-goal">Nie wybrano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Poziom zaawansowania:</div>
+                            <div class="summary-value empty" data-for="experience">Nie wybrano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Docelowy dystans:</div>
+                            <div class="summary-value empty" data-for="target-distance">Nie wybrano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Historia kontuzji:</div>
+                            <div class="summary-value empty" data-for="had-injury">Nie wybrano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Preferowane dni treningowe:</div>
+                            <div class="summary-value empty" data-for="training-days">Nie wybrano</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Długość planu:</div>
+                            <div class="summary-value empty" data-for="plan-length">Nie wybrano</div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="results-section" style="display: none;">
+                <div class="results-header">
+                    <h2>Twój spersonalizowany plan treningowy</h2>
+                    <p>Wygenerowaliśmy plan treningowy dostosowany do Twoich potrzeb i celów</p>
+                </div>
+                <div class="results-content">
+                    <!-- Miejsce na wyniki -->
+                </div>
+                <div class="results-actions">
+                    <button class="btn-download">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Pobierz plan treningowy
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer" id="contact">
+    <footer class="footer">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19.364 5.636a9 9 0 0 0-12.728 0l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414a7 7 0 0 1 9.9 9.9l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414a9 9 0 0 0 0-12.728z"/>
+                            <path d="m3.221 16.779 1.414-1.414a1 1 0 0 1 1.414 1.414l-1.414 1.414a7 7 0 0 0 9.9 0l1.414-1.414a1 1 0 0 1 1.414 1.414l-1.414 1.414a9 9 0 0 1-12.728 0z"/>
+                            <path d="M11.65 5.293a1 1 0 0 0-1.414 0L5.293 10.236a1 1 0 0 0 0 1.414l4.943 4.943a1 1 0 0 0 1.414 0l4.943-4.943a1 1 0 0 0 0-1.414l-4.943-4.943zm-2.45 9.877L6.707 12.7 9.2 10.207l2.493 2.493-2.493 2.47z"/>
                         </svg>
                         <span>RunAI</span>
                     </div>
-                    <p class="footer-description">Twój osobisty asystent treningowy napędzany sztuczną inteligencją.</p>
+                    <p class="footer-description">
+                        RunAI to innowacyjna platforma wykorzystująca sztuczną inteligencję do tworzenia spersonalizowanych planów treningowych dostosowanych do Twoich celów, historii kontuzji i możliwości.
+                    </p>
                 </div>
-
-                <nav class="footer-nav">
-                    <div class="footer-menu">
-                        <h4>Menu</h4>
-                        <ul>
-                            <li><a href="#features">Funkcje</a></li>
-                            <li><a href="#generator">Generator planów</a></li>
-                            <li><a href="#testimonials">Opinie</a></li>
-                            <li><a href="#contact">Kontakt</a></li>
-                        </ul>
+                
+                <div class="footer-nav">
+                    <h4>Informacje</h4>
+                    <ul>
+                        <li><a href="#features">Funkcje</a></li>
+                        <li><a href="#generator">Generator planów</a></li>
+                        <li><a href="#testimonials">Opinie</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Przydatne linki</h4>
+                    <ul>
+                        <li><a href="#">O nas</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Wsparcie</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><a href="mailto:kontakt@runai.pl">kontakt@runai.pl</a></li>
+                        <li><a href="tel:+48123456789">+48 123 456 789</a></li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
                     </div>
-
-                    <div class="footer-contact">
-                        <h4>Kontakt</h4>
-                        <ul>
-                            <li>
-                                <a href="mailto:kontakt@runai.pl">kontakt@runai.pl</a>
-                            </li>
-                            <li>
-                                <a href="tel:+48123456789">+48 123 456 789</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-social">
-                        <h4>Śledź nas</h4>
-                        <div class="social-links">
-                            <a href="#" aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                            </a>
-                            <a href="#" aria-label="Facebook">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                </svg>
-                            </a>
-                            <a href="#" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
+                </div>
             </div>
-
+            
             <div class="footer-bottom">
-                <p class="copyright">&copy; 2024 RunAI. Wszelkie prawa zastrzeżone.</p>
+                <p class="copyright">© 2025 RunAI. Wszelkie prawa zastrzeżone.</p>
                 <div class="footer-legal">
-                    <a href="/polityka-prywatnosci">Polityka prywatności</a>
-                    <a href="/regulamin">Regulamin</a>
+                    <a href="#">Polityka prywatności</a>
+                    <a href="#">Warunki korzystania</a>
+                    <a href="#">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
+    
+    <div class="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <circle cx="7" cy="7" r="1"></circle>
+                    <circle cx="17" cy="7" r="1"></circle>
+                    <circle cx="17" cy="17" r="1"></circle>
+                    <circle cx="7" cy="17" r="1"></circle>
+                </svg>
+            </div>
+            <div class="cookie-text">
+                <h4>Używamy ciasteczek (cookies)</h4>
+                <p>Ta strona korzysta z plików cookies, aby zapewnić najlepsze doświadczenie użytkownika. Kontynuując przeglądanie strony, zgadzasz się na ich wykorzystanie.</p>
+            </div>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-btn-primary" id="accept-cookies">Akceptuję</button>
+                <button class="cookie-btn cookie-btn-secondary" id="cookie-settings">Ustawienia</button>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const nextButtons = document.querySelectorAll('.btn-next');
-            const prevButtons = document.querySelectorAll('.btn-prev');
-            const submitButton = document.querySelector('.btn-submit');
-            const formPages = document.querySelectorAll('.form-page');
-            const formSteps = document.querySelectorAll('.form-step');
-            const progressBar = document.querySelector('.form-progress-bar');
-            const resultsSection = document.querySelector('.results-section');
-            const formContent = document.querySelector('.form-content');
-            
-            let currentPage = 0;
-            
-            function updateProgress() {
-                const progress = ((currentPage + 1) / formPages.length) * 100;
-                progressBar.style.width = `${progress}%`;
-            }
-            
-            function showPage(pageIndex) {
-                formPages.forEach((page, index) => {
-                    page.classList.remove('active');
-                    formSteps[index].classList.remove('active', 'completed');
-                });
-                
-                for (let i = 0; i < pageIndex; i++) {
-                    formSteps[i].classList.add('completed');
-                }
-                
-                formPages[pageIndex].classList.add('active');
-                formSteps[pageIndex].classList.add('active');
-                updateProgress();
-            }
-            
-            nextButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (currentPage < formPages.length - 1) {
-                        currentPage++;
-                        showPage(currentPage);
-                    }
-                });
-            });
-            
-            prevButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (currentPage > 0) {
-                        currentPage--;
-                        showPage(currentPage);
-                    }
-                });
-            });
-            
-            if (submitButton) {
-                submitButton.addEventListener('click', () => {
-                    formContent.style.display = 'none';
-                    document.querySelector('.form-progress').style.display = 'none';
-                    resultsSection.style.display = 'block';
-                });
-            }
-            
-            // Obsługa zaznaczania poziomów doświadczenia
-            const levelOptions = document.querySelectorAll('.level-option');
-            
-            levelOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Usunięcie klasy selected ze wszystkich opcji
-                    levelOptions.forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    
-                    // Dodanie klasy selected do klikniętej opcji
-                    this.classList.add('selected');
-                    
-                    // Zaznaczenie odpowiedniego radio inputa
-                    const radioInput = this.querySelector('input[type="radio"]');
-                    radioInput.checked = true;
-                });
-            });
-        });
-    </script>
     <script src="script.js"></script>
 </body>
-</html> 
-
-        
+</html>
