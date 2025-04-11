@@ -336,6 +336,115 @@ header {
     color: var(--text-dark);
     font-size: 1.5rem;
     cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
+    stroke-width: 2px;
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-toggle:hover svg {
+    transform: scale(1.1);
+}
+
+.mobile-menu-toggle.active svg {
+    transform: rotate(90deg);
+}
+
+/* Style dla mobilnego menu hamburgerowego */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(93, 95, 239, 0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(-20px);
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.mobile-menu-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    stroke-width: 2px;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.mobile-nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 15px;
+    transition: var(--transition-fast);
+    border-radius: 8px;
+}
+
+.mobile-nav-link:hover, .mobile-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.mobile-cta-button {
+    margin-top: 40px;
+    background-color: white;
+    color: var(--primary);
+}
+
+.mobile-cta-button:hover {
+    background-color: white;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
 /* Utilities */
@@ -430,12 +539,36 @@ header {
         font-size: 1.75rem;
     }
     
+    .header-container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-gap: 10px;
+        align-items: center;
+    }
+    
+    .logo {
+        grid-column: 1;
+    }
+    
     .nav-links {
         display: none;
     }
     
     .mobile-menu-toggle {
-        display: block;
+        display: flex;
+        grid-column: 2;
+        justify-self: end;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(93, 95, 239, 0.1);
+        border-radius: 8px;
+        z-index: 1050;
+    }
+    
+    header .cta-button {
+        display: none; /* Ukrycie przycisku Utwórz konto w nagłówku na urządzeniach mobilnych */
     }
 }
 
@@ -2875,4 +3008,30 @@ header {
 
 .confirm-summary-btn:active {
     transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        grid-gap: 10px;
+        padding: 10px 20px;
+    }
+    
+    .logo {
+        grid-column: 1;
+    }
+    
+    .mobile-menu-toggle {
+        grid-column: 2;
+        justify-self: end;
+    }
+    
+    .cta-button {
+        grid-column: 3;
+    }
+    
+    .nav-links {
+        display: none;
+    }
 }
