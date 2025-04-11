@@ -570,6 +570,108 @@ header {
     header .cta-button {
         display: none; /* Ukrycie przycisku Utwórz konto w nagłówku na urządzeniach mobilnych */
     }
+    
+    /* Style mobilne dla formularza */
+    .form-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+    .form-content {
+        padding: 20px 15px;
+    }
+    
+    .form-steps {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    
+    .form-step {
+        padding: 8px;
+    }
+    
+    .form-step span {
+        font-size: 0.8rem;
+    }
+    
+    .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        padding: 12px;
+    }
+    
+    .radio-group, .checkbox-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .custom-radio, .custom-checkbox {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 12px;
+    }
+    
+    .form-title {
+        flex-direction: column;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .form-title h3 {
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
+    
+    .title-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .level-selection-container {
+        flex-direction: column;
+    }
+    
+    .level-option {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .injury-details {
+        margin-top: 15px;
+    }
+    
+    .results-section {
+        padding: 20px 10px;
+    }
+    
+    .loading-animation h3 {
+        font-size: 1.2rem;
+    }
+    
+    .form-summary {
+        padding: 15px;
+    }
+    
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -591,6 +693,70 @@ header {
 
     .results-section h3 {
         font-size: 1.5rem;
+    }
+    
+    .form-title h3 {
+        font-size: 1.3rem;
+    }
+    
+    .form-step span {
+        display: none;
+    }
+    
+    .step-number {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .title-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .title-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .form-content {
+        padding: 15px 10px;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-control {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .custom-radio, .custom-checkbox {
+        padding: 12px 10px;
+    }
+    
+    .form-buttons {
+        margin-top: 30px;
+    }
+    
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    
+    .btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .loading-animation {
+        padding: 20px 10px;
+    }
+    
+    .loading-dot {
+        width: 12px;
+        height: 12px;
     }
 }
 
@@ -3033,5 +3199,38 @@ header {
     
     .nav-links {
         display: none;
+    }
+}
+
+/* Efekty dotykowe dla urządzeń mobilnych */
+.touch-active {
+    transform: scale(0.97);
+    opacity: 0.9;
+    transition: all 0.2s ease;
+}
+
+.mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.mobile-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+@media (max-width: 768px) {
+    .btn:active {
+        transform: scale(0.97);
+        opacity: 0.9;
+    }
+    
+    .custom-radio:active, .custom-checkbox:active {
+        background-color: rgba(93, 95, 239, 0.05);
+        transform: scale(0.98);
+    }
+    
+    .form-control:focus {
+        box-shadow: 0 0 0 2px rgba(93, 95, 239, 0.2);
     }
 }

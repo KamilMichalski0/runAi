@@ -690,7 +690,92 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return isValid;
     }
+    
+    // Obsługa formularza na urządzeniach mobilnych
+    initMobileFormHandler();
 });
+
+// Dodaje obsługę formularza na urządzeniach mobilnych
+function initMobileFormHandler() {
+    const formSteps = document.querySelectorAll('.form-step');
+    const formContent = document.querySelector('.form-content');
+    
+    // Obsługa przewijania kroków formularza na urządzeniach mobilnych
+    if (formSteps.length > 0 && window.innerWidth <= 768) {
+        // Dodaj obsługę przewijania w poziomie dla kroków formularza
+        const formStepsContainer = document.querySelector('.form-steps');
+        
+        if (formStepsContainer) {
+            // Dodaj klasy dla lepszej obsługi na urządzeniach mobilnych
+            formStepsContainer.classList.add('mobile-scroll');
+            
+            // Dodaj obserwator zmiany widoczności dla aktywnego kroku
+            const formStepObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Przewiń do aktywnego kroku, aby był widoczny
+                        const activeStep = document.querySelector('.form-step.active');
+                        if (activeStep) {
+                            activeStep.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'nearest',
+                                inline: 'center'
+                            });
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            // Obserwuj zmiany aktywnego kroku
+            formSteps.forEach(step => {
+                formStepObserver.observe(step);
+            });
+        }
+    }
+    
+    // Dostosuj zachowanie inputów na urządzeniach mobilnych
+    const mobileInputs = document.querySelectorAll('.form-control');
+    
+    mobileInputs.forEach(input => {
+        // Przewiń do aktywnego pola po tap/click
+        input.addEventListener('focus', function() {
+            // Lekkie opóźnienie, aby zapewnić prawidłowe przewijanie na urządzeniach mobilnych
+            setTimeout(() => {
+                this.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 300);
+        });
+    });
+    
+    // Popraw obsługę przycisków na urządzeniach mobilnych
+    const formButtons = document.querySelectorAll('.form-buttons .btn');
+    
+    formButtons.forEach(button => {
+        // Dodaj efekt dotknięcia na urządzeniach mobilnych
+        button.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        });
+        
+        button.addEventListener('touchend', function() {
+            this.classList.remove('touch-active');
+        });
+    });
+    
+    // Popraw obsługę radio buttonów i checkboxów
+    const customInputs = document.querySelectorAll('.custom-radio, .custom-checkbox');
+    
+    customInputs.forEach(input => {
+        input.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        });
+        
+        input.addEventListener('touchend', function() {
+            this.classList.remove('touch-active');
+        });
+    });
+}
 
 // Obsługa bannera cookies
 function initCookieBanner() {
