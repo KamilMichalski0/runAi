@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFormValidation();
     initResultsDisplay();
     initCookieBanner();
+    initAccordion();
 });
 
 // Obsługa mobilnego menu
@@ -817,4 +818,25 @@ function initCookieBanner() {
     }
 }
 
-// ... existing code ...
+function initAccordion() {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const isActive = this.classList.contains('active');
+            
+            // Zamknij wszystkie akordeony
+            accordionButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.nextElementSibling.style.maxHeight = null;
+            });
+            
+            // Otwórz kliknięty akordeon, jeśli nie był aktywny
+            if (!isActive) {
+                this.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+    });
+}

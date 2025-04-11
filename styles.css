@@ -1706,6 +1706,7 @@ header {
     transition: var(--transition);
     cursor: pointer;
     position: relative;
+    overflow: visible;
 }
 
 .custom-checkbox:hover {
@@ -1716,56 +1717,80 @@ header {
 
 .custom-checkbox input {
     appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
     position: absolute;
-    top: 15px;
-    left: 15px;
-    cursor: pointer;
-    transition: var(--transition-fast);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    opacity: 0;
 }
 
-.custom-checkbox input:checked {
-    background-color: var(--primary);
-    border-color: var(--primary);
-}
-
-.custom-checkbox input:checked::after {
+.custom-checkbox input:checked ~ .checkbox-content::after {
     content: "✓";
     position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgba(93, 95, 239, 0.3);
 }
 
-.custom-checkbox input:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.15);
+.custom-checkbox input:checked {
+    z-index: 2;
+}
+
+.custom-checkbox input:checked ~ .checkbox-content {
+    color: var(--primary);
+}
+
+.custom-checkbox input:checked ~ .checkbox-content strong {
+    color: var(--primary);
+}
+
+.custom-checkbox input:checked {
+    background-color: transparent;
+}
+
+.custom-checkbox input:checked ~ .checkbox-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(93, 95, 239, 0.05);
+    border-radius: var(--radius-md);
+    z-index: -1;
 }
 
 .checkbox-content {
-    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .checkbox-content strong {
-    display: block;
-    margin-bottom: 8px;
     font-weight: 600;
+    color: var(--text-dark);
     font-size: 1.05rem;
-    color: var(--text-medium);
+    display: block;
+    text-align: center;
 }
 
 .checkbox-content span {
-    font-size: 0.9rem;
     color: var(--text-medium);
+    font-size: 0.9rem;
     display: block;
+    text-align: center;
 }
 
 .radio-group {
@@ -1777,12 +1802,11 @@ header {
 
 .custom-radio {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     flex: 1;
-    min-width: 180px;
-    padding: 30px 20px;
+    min-width: 160px;
+    padding: 20px 15px;
     background-color: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -1790,6 +1814,7 @@ header {
     transition: var(--transition);
     cursor: pointer;
     position: relative;
+    overflow: visible;
 }
 
 .custom-radio:hover {
@@ -1800,50 +1825,55 @@ header {
 
 .custom-radio input {
     appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
     position: absolute;
-    top: 15px;
-    left: 15px;
-    cursor: pointer;
-    transition: var(--transition-fast);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    opacity: 0;
 }
 
-.custom-radio input:checked {
-    border-color: var(--primary);
-    background-color: var(--primary);
-}
-
-.custom-radio input:checked::after {
+.custom-radio input:checked ~ span::after {
     content: "✓";
     position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.custom-radio input:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.15);
+    box-shadow: 0 2px 6px rgba(93, 95, 239, 0.3);
 }
 
 .custom-radio span {
     font-weight: 600;
     color: var(--text-medium);
     font-size: 1.05rem;
-    text-align: center;
+    position: relative;
 }
 
 .custom-radio input:checked ~ span {
     color: var(--primary);
-    font-weight: 700;
+}
+
+.custom-radio input:checked ~ span::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background-color: rgba(93, 95, 239, 0.05);
+    border-radius: var(--radius-md);
+    z-index: -1;
 }
 
 .form-buttons {
@@ -3232,5 +3262,123 @@ header {
     
     .form-control:focus {
         box-shadow: 0 0 0 2px rgba(93, 95, 239, 0.2);
+    }
+}
+
+.accordion-button {
+    background-color: #f1f1f1;
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button.active, .accordion-button:hover {
+    background-color: #ccc;
+}
+
+.accordion-content {
+    padding: 0 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: white;
+}
+
+.faq {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.faq-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-content h3 {
+    font-size: 24px;
+    margin: 40px 0 20px;
+    color: #333;
+}
+
+.accordion {
+    margin-bottom: 30px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.accordion-button {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #fff;
+    border: none;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+    background-color: #f0f0f0;
+}
+
+.accordion-button::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.accordion-button.active::after {
+    content: '-';
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: #fff;
+}
+
+.accordion-content p {
+    padding: 15px 20px;
+    margin: 0;
+    line-height: 1.6;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .faq {
+        padding: 40px 0;
+    }
+    
+    .faq-content h3 {
+        font-size: 20px;
+        margin: 30px 0 15px;
+    }
+    
+    .accordion-button {
+        font-size: 15px;
+        padding: 12px 15px;
+    }
+    
+    .accordion-content p {
+        padding: 12px 15px;
+        font-size: 14px;
     }
 }
