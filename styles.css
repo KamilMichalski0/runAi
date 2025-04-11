@@ -3382,3 +3382,23 @@ header {
         font-size: 14px;
     }
 }
+
+.accordion-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.accordion-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.accordion-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.accordion-content p:last-child {
+    margin-bottom: 0;
+}
