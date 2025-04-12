@@ -1240,25 +1240,65 @@
         </div>
     </footer>
     
-    <div class="cookie-banner">
-        <div class="cookie-banner-content">
-            <div class="cookie-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <circle cx="7" cy="7" r="1"></circle>
-                    <circle cx="17" cy="7" r="1"></circle>
-                    <circle cx="17" cy="17" r="1"></circle>
-                    <circle cx="7" cy="17" r="1"></circle>
-                </svg>
-            </div>
-            <div class="cookie-text">
-                <h4>Używamy ciasteczek (cookies)</h4>
+    <!-- Usuwam istniejący baner cookie i dodaję nowy cookie consent banner oraz modal -->
+    
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent-banner">
+        <div class="cookie-consent-container">
+            <div class="cookie-consent-text">
+                <h3>Używamy ciasteczek (cookies)</h3>
                 <p>Ta strona korzysta z plików cookies, aby zapewnić najlepsze doświadczenie użytkownika. Kontynuując przeglądanie strony, zgadzasz się na ich wykorzystanie.</p>
             </div>
-            <div class="cookie-actions">
-                <button class="cookie-btn cookie-btn-primary" id="accept-cookies">Akceptuję</button>
-                <button class="cookie-btn cookie-btn-secondary" id="cookie-settings">Ustawienia</button>
+            <div class="cookie-consent-buttons">
+                <button class="cookie-btn cookie-btn-primary" id="accept-cookies">Akceptuję wszystkie</button>
+                <button class="cookie-btn cookie-btn-secondary" id="cookie-settings-btn">Ustawienia</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-settings-modal">
+        <div class="cookie-settings-content">
+            <span class="cookie-close-modal">&times;</span>
+            <h3>Ustawienia plików cookie</h3>
+            <p>Możesz zdecydować, które rodzaje plików cookie chcesz zaakceptować. Kliknij na kategorie, aby uzyskać więcej informacji o każdym z nich i zmienić domyślne ustawienia.</p>
+            
+            <div class="cookie-settings-options">
+                <div class="cookie-option">
+                    <input type="checkbox" id="necessary-cookies" checked disabled>
+                    <label for="necessary-cookies">
+                        <strong>Niezbędne</strong>
+                        <p>Te pliki cookie są niezbędne do działania strony i nie mogą być wyłączone. Zwykle są one ustawiane tylko w odpowiedzi na podjęte przez Ciebie działania, takie jak ustawienie preferencji prywatności, logowanie lub wypełnianie formularzy.</p>
+                    </label>
+                </div>
+                
+                <div class="cookie-option">
+                    <input type="checkbox" id="functional-cookies" checked>
+                    <label for="functional-cookies">
+                        <strong>Funkcjonalne</strong>
+                        <p>Te pliki cookie umożliwiają stronie zapewnienie lepszej funkcjonalności i personalizacji. Mogą być ustawiane przez nas lub przez zewnętrznych dostawców, których usługi dodaliśmy do naszych stron.</p>
+                    </label>
+                </div>
+                
+                <div class="cookie-option">
+                    <input type="checkbox" id="analytics-cookies" checked>
+                    <label for="analytics-cookies">
+                        <strong>Analityczne</strong>
+                        <p>Te pliki cookie pomagają nam zrozumieć, w jaki sposób użytkownicy wchodzą w interakcję z naszą witryną. Pomagają nam ulepszać naszą stronę i zapewniać bardziej angażujące treści.</p>
+                    </label>
+                </div>
+                
+                <div class="cookie-option">
+                    <input type="checkbox" id="marketing-cookies">
+                    <label for="marketing-cookies">
+                        <strong>Marketingowe</strong>
+                        <p>Te pliki cookie są używane do śledzenia użytkowników na różnych stronach internetowych w celu wyświetlania odpowiednich reklam. Dezaktywacja tych plików cookie spowoduje wyświetlanie mniej trafnych reklam.</p>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="cookie-settings-buttons">
+                <button class="cookie-btn cookie-btn-primary" id="save-preferences">Zapisz preferencje</button>
             </div>
         </div>
     </div>
