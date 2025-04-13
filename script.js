@@ -822,20 +822,50 @@ function initAccordion() {
     const accordionButtons = document.querySelectorAll('.accordion-button');
     
     accordionButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(event) {
+            // Zatrzymaj propagację zdarzenia, aby kliknięcie w przycisk zagnieżdżonego akordeonu
+            // nie powodowało zamknięcia akordeonu nadrzędnego
+            event.stopPropagation();
+            
             const content = this.nextElementSibling;
             const isActive = this.classList.contains('active');
             
-            // Zamknij wszystkie akordeony
-            accordionButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.nextElementSibling.style.maxHeight = null;
+            // Znajdź wszystkie przyciski akordeonu na tym samym poziomie
+            // (czyli dzieci tego samego rodzica co obecny przycisk)
+            const parentAccordion = this.closest('.accordion');
+            const siblingButtons = parentAccordion.querySelectorAll(':scope > .accordion-item > .accordion-button');
+            
+            // Zamknij wszystkie akordeony na tym samym poziomie
+            siblingButtons.forEach(btn => {
+                if (btn !== this) {
+                    btn.classList.remove('active');
+                    const siblingContent = btn.nextElementSibling;
+                    siblingContent.style.maxHeight = null;
+                }
             });
             
-            // Otwórz kliknięty akordeon, jeśli nie był aktywny
-            if (!isActive) {
+            // Otwórz lub zamknij kliknięty akordeon
+            if (isActive) {
+                this.classList.remove('active');
+                content.style.maxHeight = null;
+            } else {
                 this.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + 'px';
+                
+                // Jeśli akordeon zawiera zagnieżdżone akordeony, musimy dostosować wysokość
+                const nestedAccordions = content.querySelectorAll('.accordion-content');
+                nestedAccordions.forEach(nestedAccordion => {
+                    if (nestedAccordion.style.maxHeight) {
+                        content.style.maxHeight = parseInt(content.style.maxHeight) + nestedAccordion.scrollHeight + 'px';
+                    }
+                });
+                
+                // Zaktualizuj wysokość nadrzędnego akordeonu, jeśli istnieje
+                let parent = this.closest('.accordion-content');
+                while (parent) {
+                    parent.style.maxHeight = parseInt(parent.style.maxHeight || 0) + content.scrollHeight + 'px';
+                    parent = parent.parentElement.closest('.accordion-content');
+                }
             }
         });
     });
