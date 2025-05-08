@@ -1500,7 +1500,7 @@ header {
 
 @media (max-width: 768px) {
     .hero {
-        padding: 120px 0 40px; /* Zwiększony padding-top, aby zrobić miejsce na header na mobile */
+        padding: 150px 0 40px !important; /* Znacznie zwiększony padding-top z !important */
         min-height: auto; /* Automatyczna wysokość, aby dopasować się do zawartości */
     }
     
@@ -3071,11 +3071,10 @@ header {
 }
 
 .feature-card-2025 p {
-    color: var(--text-medium);
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 24px;
-    flex-grow: 1;
+    color: rgba(220, 220, 245, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    flex-grow: 1; /* Aby karty miały podobną wysokość jeśli tekst jest różnej długości */
 }
 
 .feature-link-2025 {
@@ -4280,8 +4279,5 @@ header {
     flex-grow: 1; /* Aby karty miały podobną wysokość jeśli tekst jest różnej długości */
 }
 
-@media (max-width: 768px) {
-    header {
-        display: none !important; /* CAŁKOWITE UKRYCIE NAGŁÓWKA NA MOBILE */
-    }
-}
+
+
