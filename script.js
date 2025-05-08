@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSmoothScroll();
     initFloatingElements();
-    initFormValidation();
-    initResultsDisplay();
+    // initFormValidation(); // Usunięto, ponieważ stary formularz został zastąpiony
+    // initResultsDisplay(); // Usunięto, ponieważ stary formularz został zastąpiony
+    initWaitlistForm(); // Dodano obsługę nowego formularza waitlisty
     initCookieBanner();
     initAccordion();
 });
@@ -109,230 +110,342 @@ function initFloatingElements() {
     checkVisibility();
 }
 
-// Walidacja formularza
-function initFormValidation() {
-    const inputs = document.querySelectorAll('.form-page input, .form-page select, .form-page textarea');
-    
-    inputs.forEach(input => {
-        input.addEventListener('blur', () => {
-            validateInput(input);
+// NOWA FUNKCJA: Obsługa formularza waitlisty
+function initWaitlistForm() {
+    const waitlistForm = document.getElementById('waitlist-form');
+    const waitlistMessage = document.getElementById('waitlist-message');
+
+    if (waitlistForm && waitlistMessage) {
+        waitlistForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('waitlist-name');
+            const emailInput = document.getElementById('waitlist-email');
+
+            // Prosta walidacja po stronie klienta
+            if (!nameInput.value.trim() || !emailInput.value.trim()) {
+                showMessage('Proszę wypełnić oba pola.', 'error');
+                return;
+            }
+
+            if (!isValidEmail(emailInput.value.trim())) {
+                showMessage('Proszę podać poprawny adres email.', 'error');
+                return;
+            }
+
+            try {
+                // Przygotuj dane do wysłania do Sendy
+                const formData = new FormData();
+                formData.append('api_key', 'ZtKnELb6pfxVzSH6fXyr'); // Zastąp swoim kluczem API
+                formData.append('name', nameInput.value.trim());
+                formData.append('email', emailInput.value.trim());
+                formData.append('list', 'Rj7RJHx2E9q5kctXibk89A'); // Zastąp swoim ID listy
+                formData.append('boolean', 'true'); // Otrzymamy odpowiedź w formie tekstowej
+                formData.append('gdpr', 'true'); // Zgodność z RODO
+                formData.append('referrer', window.location.href);
+
+                // Wyślij dane do Sendy
+                const response = await fetch('https://sendy.znanytrener.ai/subscribe', {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors', // Explicitly set CORS mode
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.text();
+
+                // Obsługa odpowiedzi z Sendy
+                if (result === 'true') {
+                    showMessage('Dziękujemy za zapisanie się na listę oczekujących! Poinformujemy Cię o starcie.', 'success');
+                    waitlistForm.reset();
+                } else {
+                    // Obsługa różnych błędów z Sendy
+                    switch(result) {
+                        case 'Some fields are missing.':
+                            showMessage('Wystąpił błąd podczas przetwarzania formularza. Proszę spróbować ponownie.', 'error');
+                            break;
+                        case 'Already subscribed.':
+                            showMessage('Ten adres email jest już zapisany na listę oczekujących.', 'error');
+                            break;
+                        case 'Invalid email address.':
+                            showMessage('Nieprawidłowy adres email.', 'error');
+                            break;
+                        case 'Bounced email address.':
+                            showMessage('Ten adres email został wcześniej odrzucony.', 'error');
+                            break;
+                        case 'Email is suppressed.':
+                            showMessage('Ten adres email został wcześniej zablokowany.', 'error');
+                            break;
+                        default:
+                            showMessage('Wystąpił nieoczekiwany błąd. Proszę spróbować ponownie później.', 'error');
+                    }
+                }
+            } catch (error) {
+                console.error('Błąd podczas wysyłania formularza:', error);
+                if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                    showMessage('Nie można połączyć się z serwerem. Proszę sprawdzić połączenie internetowe lub spróbować później.', 'error');
+                } else {
+                    showMessage('Wystąpił błąd podczas wysyłania formularza. Proszę spróbować ponownie później.', 'error');
+                }
+            }
         });
-    });
-}
+    }
 
-function validateInput(input) {
-    const errorElement = input.parentElement.querySelector('.error-message');
-    let isValid = true;
-    let errorMessage = '';
-    
-    // Usuń przestrzenie na początku i końcu wartości
-    input.value = input.value.trim();
-    
-    if (input.hasAttribute('required') && !input.value) {
-        isValid = false;
-        errorMessage = 'To pole jest wymagane';
-    } else if (input.type === 'email' && input.value) {
+    function isValidEmail(email) {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(input.value)) {
-            isValid = false;
-            errorMessage = 'Wprowadź poprawny adres email';
+        return emailPattern.test(email);
+    }
+
+    function showMessage(message, type) {
+        waitlistMessage.textContent = message;
+        waitlistMessage.className = type === 'success' ? 'waitlist-success' : 'waitlist-error';
+        waitlistMessage.style.display = 'block';
+
+        // Ukryj wiadomość po kilku sekundach
+        setTimeout(() => {
+            waitlistMessage.style.display = 'none';
+        }, 5000);
+    }
+}
+// KONIEC NOWEJ FUNKCJI
+
+// ... zachowaj istniejące funkcje initCookieBanner i initAccordion bez zmian ...
+
+// Usunięte funkcje związane ze starym formularzem:
+// - initFormValidation()
+// - validateInput()
+// - populateResults()
+// - initResultsDisplay()
+// - updateActiveNavLink() // Jeśli była specyficzna dla starego formularza
+// - updateSummary()
+// - updateResults()
+// - updateProgress()
+// - showPage()
+// - validateCurrentPage()
+// - initMobileFormHandler() // Jeśli była specyficzna dla starego formularza
+
+// Pozostałe funkcje (initCookieBanner, initAccordion) powinny zostać zachowane,
+// jeśli nie są bezpośrednio powiązane ze starym formularzem.
+
+// Upewnij się, że poniższe funkcje są na końcu pliku, jeśli istnieją
+// i nie zostały usunięte powyżej.
+
+function initCookieBanner() {
+    const cookieBanner = document.querySelector('.cookie-consent-banner');
+    const acceptButton = document.getElementById('accept-cookies');
+    const settingsButton = document.getElementById('cookie-settings-btn');
+    const cookieModal = document.querySelector('.cookie-settings-modal');
+    const closeModalButton = document.querySelector('.cookie-close-modal');
+    const savePreferencesButton = document.getElementById('save-preferences');
+
+    if (!cookieBanner || !acceptButton || !settingsButton || !cookieModal || !closeModalButton || !savePreferencesButton) {
+        console.warn("Cookie banner elements not found. Cookie functionality may be limited.");
+        return;
+    }
+
+    // Sprawdź, czy użytkownik już zaakceptował ciasteczka
+    if (localStorage.getItem('cookieConsent')) {
+        hideCookieBanner();
+            } else {
+        cookieBanner.style.display = 'flex';
+    }
+
+    acceptButton.addEventListener('click', acceptAllCookies);
+    settingsButton.addEventListener('click', openCookieSettings);
+    closeModalButton.addEventListener('click', closeCookieSettings);
+    savePreferencesButton.addEventListener('click', saveCookiePreferences);
+
+    function acceptAllCookies() {
+        localStorage.setItem('cookieConsent', 'all');
+        // Tutaj można ustawić wszystkie typy ciasteczek na aktywne, np. analityczne, marketingowe
+        console.log("Wszystkie ciasteczka zaakceptowane.");
+        hideCookieBanner();
+        closeCookieSettings(); // Zamknij modal, jeśli był otwarty
+    }
+
+    function saveCookiePreferences() {
+        const preferences = {
+            necessary: true, // Niezbędne są zawsze aktywne
+            functional: document.getElementById('functional-cookies')?.checked,
+            analytics: document.getElementById('analytics-cookies')?.checked,
+            marketing: document.getElementById('marketing-cookies')?.checked
+        };
+        localStorage.setItem('cookieConsent', JSON.stringify(preferences));
+        console.log("Preferencje ciasteczek zapisane:", preferences);
+        hideCookieBanner();
+        closeCookieSettings();
+    }
+
+    function hideCookieBanner() {
+        if (cookieBanner) cookieBanner.style.display = 'none';
+    }
+
+    function openCookieSettings() {
+        if (cookieModal) cookieModal.style.display = 'block';
+        // Wczytaj zapisane preferencje, jeśli istnieją
+        const savedPreferences = JSON.parse(localStorage.getItem('cookieConsent'));
+        if (savedPreferences && typeof savedPreferences === 'object') {
+            if(document.getElementById('functional-cookies')) document.getElementById('functional-cookies').checked = savedPreferences.functional !== undefined ? savedPreferences.functional : true;
+            if(document.getElementById('analytics-cookies')) document.getElementById('analytics-cookies').checked = savedPreferences.analytics !== undefined ? savedPreferences.analytics : true;
+            if(document.getElementById('marketing-cookies')) document.getElementById('marketing-cookies').checked = savedPreferences.marketing !== undefined ? savedPreferences.marketing : false;
+        } else {
+            // Domyślne ustawienia przy pierwszym otwarciu modala (jeśli nie ma 'all')
+             if(document.getElementById('functional-cookies')) document.getElementById('functional-cookies').checked = true;
+             if(document.getElementById('analytics-cookies')) document.getElementById('analytics-cookies').checked = true;
+             if(document.getElementById('marketing-cookies')) document.getElementById('marketing-cookies').checked = false;
         }
-    } else if (input.type === 'number' && input.value) {
-        const min = parseInt(input.getAttribute('min'), 10);
-        const max = parseInt(input.getAttribute('max'), 10);
-        const value = parseInt(input.value, 10);
-        
-        if (!isNaN(min) && value < min) {
-            isValid = false;
-            errorMessage = `Minimalna wartość to ${min}`;
-        } else if (!isNaN(max) && value > max) {
-            isValid = false;
-            errorMessage = `Maksymalna wartość to ${max}`;
-        }
     }
-    
-    // Wyświetl lub ukryj komunikat błędu
-    if (errorElement) {
-        errorElement.textContent = errorMessage;
-        errorElement.style.display = isValid ? 'none' : 'block';
+
+    function closeCookieSettings() {
+        if (cookieModal) cookieModal.style.display = 'none';
     }
-    
-    // Dodaj lub usuń klasę błędu
-    if (isValid) {
-        input.classList.remove('error');
-    } else {
-        input.classList.add('error');
-    }
-    
-    return isValid;
 }
 
-// Wypełnianie wyników
-function populateResults() {
-    const resultsSection = document.querySelector('.results-section');
-    if (!resultsSection) return;
-    
-    // Pobierz dane z formularza
-    const name = document.querySelector('[name="name"]')?.value || 'Biegacz';
-    const goal = document.querySelector('[name="training-goal"]:checked')?.value || 'Poprawa wydolności';
-    const distance = document.querySelector('[name="target-distance"]')?.value || '5 km';
-    const trainingDays = document.querySelectorAll('[name="training-days"]:checked').length || 3;
-    const planLength = document.querySelector('[name="plan-length"]')?.value || '8 tygodni';
-    
-    // Przygotuj zalecenia treningowe
-    const workoutTypes = ['Interwały', 'Długi bieg', 'Tempo', 'Regeneracja', 'Siła i mobilność'];
-    let planHTML = '<h3>Twój spersonalizowany plan treningowy</h3>';
-    
-    planHTML += `<p>Plan treningowy dla: <strong>${name}</strong></p>`;
-    planHTML += `<p>Cel: <strong>${goal}</strong> na dystansie <strong>${distance}</strong></p>`;
-    planHTML += `<p>Długość planu: <strong>${planLength}</strong> z treningami <strong>${trainingDays}</strong> razy w tygodniu</p>`;
-    
-    planHTML += '<h4>Przykładowy tydzień:</h4>';
-    planHTML += '<ul class="workout-list">';
-    
-    // Wygeneruj przykładowe treningi
-    const daysOfWeek = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
-    let assignedDays = 0;
-    
-    daysOfWeek.forEach((day, index) => {
-        if (assignedDays < trainingDays) {
-            // Losowo przydzielaj dni treningowe
-            if (Math.random() > 0.3 || index === daysOfWeek.length - 1 - (trainingDays - assignedDays - 1)) {
-                const workoutType = workoutTypes[Math.floor(Math.random() * workoutTypes.length)];
-                let workoutDescription = '';
-                
-                switch (workoutType) {
-                    case 'Interwały':
-                        workoutDescription = 'Rozgrzewka 10 min, 6-8 × 400m szybko z odpoczynkiem 2 min, schłodzenie 10 min';
-                        break;
-                    case 'Długi bieg':
-                        workoutDescription = `${Math.floor(parseFloat(distance) * 0.8)} km w komfortowym tempie konwersacyjnym`;
-                        break;
-                    case 'Tempo':
-                        workoutDescription = `Rozgrzewka 10 min, ${Math.floor(parseFloat(distance) * 0.5)} km w tempie tempa, schłodzenie 10 min`;
-                        break;
-                    case 'Regeneracja':
-                        workoutDescription = '30 min bardzo łatwego biegu lub marszu';
-                        break;
-                    case 'Siła i mobilność':
-                        workoutDescription = '30 min ćwiczeń wzmacniających core, biodra i mobilność';
-                        break;
+
+function initAccordion() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+        const button = item.querySelector('.accordion-button');
+        const content = item.querySelector('.accordion-content');
+        const subAccordion = content ? content.querySelector('.accordion') : null; // Sprawdź, czy istnieje zagnieżdżony akordeon
+
+        if (button && content) {
+            // Sprawdź, czy element powinien być domyślnie otwarty
+            const isOpenByDefault = item.classList.contains('open');
+            if (isOpenByDefault) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.classList.add('active');
+                item.classList.add('open'); // Dodaj klasę 'open' do item
+    } else {
+                content.style.maxHeight = null;
+                button.classList.remove('active');
+                item.classList.remove('open'); // Usuń klasę 'open' z item
+            }
+
+
+            button.addEventListener('click', () => {
+                const isOpen = button.classList.contains('active');
+
+                // Najpierw zamknij wszystkie inne otwarte elementy na tym samym poziomie
+                if (!isOpen) { // Tylko jeśli otwieramy nowy element
+                    const parentAccordion = item.parentElement;
+                    if (parentAccordion && parentAccordion.classList.contains('accordion')) {
+                        const siblingItems = parentAccordion.querySelectorAll(':scope > .accordion-item');
+                        siblingItems.forEach(sibling => {
+                            if (sibling !== item) {
+                                const siblingButton = sibling.querySelector('.accordion-button');
+                                const siblingContent = sibling.querySelector('.accordion-content');
+                                if (siblingButton && siblingContent && siblingButton.classList.contains('active')) {
+                                    siblingContent.style.maxHeight = null;
+                                    siblingButton.classList.remove('active');
+                                    sibling.classList.remove('open');
+                                    // Zamknij zagnieżdżone akordeony w zamykanym elemencie
+                                    const nestedAccordions = siblingContent.querySelectorAll('.accordion-item.open .accordion-content');
+                                    nestedAccordions.forEach(nestedContent => {
+                                        nestedContent.style.maxHeight = null;
+                                        nestedContent.previousElementSibling.classList.remove('active');
+                                        nestedContent.parentElement.classList.remove('open');
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+
+                // Otwórz/zamknij kliknięty element
+                if (isOpen) {
+                    content.style.maxHeight = null;
+                    button.classList.remove('active');
+                    item.classList.remove('open');
+                     // Zamknij zagnieżdżone akordeony w zamykanym elemencie
+                    const nestedAccordions = content.querySelectorAll('.accordion-item.open .accordion-content');
+                    nestedAccordions.forEach(nestedContent => {
+                        nestedContent.style.maxHeight = null;
+                        nestedContent.previousElementSibling.classList.remove('active');
+                        nestedContent.parentElement.classList.remove('open');
+                    });
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    button.classList.add('active');
+                    item.classList.add('open');
+                }
+
+                // Jeśli kliknięty element ma zagnieżdżony akordeon, upewnij się, że rodzic jest otwarty
+                if (subAccordion && !isOpen) {
+                    let parent = item.parentElement.closest('.accordion-item');
+                    while(parent) {
+                        const parentButton = parent.querySelector(':scope > .accordion-button');
+                        const parentContent = parent.querySelector(':scope > .accordion-content');
+                        if(parentButton && parentContent && !parentButton.classList.contains('active')) {
+                            parentContent.style.maxHeight = parentContent.scrollHeight + "px";
+                            parentButton.classList.add('active');
+                            parent.classList.add('open');
+                        }
+                        parent = parent.parentElement.closest('.accordion-item');
+                    }
                 }
                 
-                planHTML += `<li><strong>${day}:</strong> ${workoutType} - ${workoutDescription}</li>`;
-                assignedDays++;
-            } else {
-                planHTML += `<li><strong>${day}:</strong> Odpoczynek</li>`;
-            }
-        } else {
-            planHTML += `<li><strong>${day}:</strong> Odpoczynek</li>`;
-        }
-    });
-    
-    planHTML += '</ul>';
-    
-    // Dodaj wskazówki treningowe
-    planHTML += '<h4>Wskazówki:</h4>';
-    planHTML += '<ul>';
-    planHTML += '<li>Zawsze zaczynaj od rozgrzewki i kończ schłodzeniem</li>';
-    planHTML += '<li>Hydratacja jest kluczowa - pij wodę przed, w trakcie i po treningu</li>';
-    planHTML += '<li>Słuchaj swojego ciała - jeśli czujesz ból, zmodyfikuj trening lub odpocznij</li>';
-    planHTML += '<li>Zwiększaj objętość treningową stopniowo - max. 10% tygodniowo</li>';
-    planHTML += '</ul>';
-    
-    // Umieść wyniki w sekcji
-    const resultsContent = resultsSection.querySelector('.results-content');
-    if (resultsContent) {
-        resultsContent.innerHTML = planHTML;
-    }
-    
-    // Obsługa przycisku do pobrania planu
-    const downloadButton = resultsSection.querySelector('.download-plan');
-    if (downloadButton) {
-        downloadButton.addEventListener('click', () => {
-            alert('Twój plan treningowy został wysłany na podany adres email.');
-        });
-    }
-}
-
-// Obsługa sekcji wyników
-function initResultsDisplay() {
-    const downloadButton = document.querySelector('.btn-download');
-    
-    if (downloadButton) {
-        downloadButton.addEventListener('click', function() {
-            // Symulacja pobierania pliku PDF
-            alert('Trwa przygotowywanie planu treningowego. Za chwilę rozpocznie się pobieranie pliku PDF.');
-            
-            // Możesz tutaj dodać rzeczywistą funkcjonalność pobierania
-            setTimeout(() => {
-                const dummyLink = document.createElement('a');
-                dummyLink.href = '#';
-                dummyLink.setAttribute('download', 'RunAI_Plan_Treningowy.pdf');
-                dummyLink.click();
-            }, 1500);
-        });
-    }
-}
-
-// Obsługa paska nawigacyjnego przy przewijaniu
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-    
-    // Aktualizacja aktywnego linku w menu na podstawie widocznych sekcji
-    updateActiveNavLink();
-});
-
-// Aktualizacja aktywnego linku w menu na podstawie pozycji na stronie
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Znajdź aktualnie widoczną sekcję
-    let currentSectionId = '';
-    const scrollPosition = window.scrollY + 100; // Offset dla lepszego wykrywania
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            currentSectionId = section.getAttribute('id');
-        }
-    });
-    
-    // Aktualizuj aktywny link
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const linkHref = link.getAttribute('href').substring(1); // Usuń #
-        
-        if (linkHref === currentSectionId) {
-            link.classList.add('active');
+                // Aktualizuj maxHeight dla wszystkich rodziców, jeśli content się zmienił
+                let current = item;
+                while(current.parentElement && current.parentElement.closest('.accordion-item .accordion-content')) {
+                    const parentContent = current.parentElement.closest('.accordion-item .accordion-content');
+                    if (parentContent.previousElementSibling && parentContent.previousElementSibling.classList.contains('active')) {
+                         parentContent.style.maxHeight = parentContent.scrollHeight + "px";
+                    }
+                    current = parentContent.parentElement; // Przejdź do rodzica .accordion-item
+                     if (!current) break;
+                }
+            });
         }
     });
 }
+
+// Dodatkowe style dla wiadomości waitlisty (można przenieść do CSS)
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = `
+    .waitlist-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .waitlist-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+    }
+`;
+document.head.appendChild(styleSheet);
+
+
 
 // Funkcja aktualizująca podsumowanie formularza
 function updateSummary() {
-    // Sprawdź, czy element podsumowania istnieje
     const summaryElement = document.querySelector('.form-summary');
     if (!summaryElement) return;
 
-    // Aktualizacja pól podsumowania na podstawie wszystkich danych z formularza
-    // Pobierz wszystkie inputy, selecty i textarea z całego formularza
     const inputs = document.querySelectorAll('.form-page input:not([type="radio"]):not([type="checkbox"]), .form-page select, .form-page textarea');
     const radios = document.querySelectorAll('.form-page input[type="radio"]:checked');
     const checkboxes = document.querySelectorAll('.form-page input[type="checkbox"]:checked');
 
-    // Aktualizuj wartości w podsumowaniu
     inputs.forEach(input => {
         if (input.id && input.value) {
-            const summaryValue = document.querySelector(`.summary-value[data-for="${input.id}"]`);
+            const summaryValue = document.querySelector('.summary-value[data-for="' + input.id + '"]');
             if (summaryValue) {
                 summaryValue.textContent = input.value;
                 summaryValue.classList.remove('empty');
@@ -342,7 +455,7 @@ function updateSummary() {
 
     radios.forEach(radio => {
         if (radio.name && radio.value) {
-            const summaryValue = document.querySelector(`.summary-value[data-for="${radio.name}"]`);
+            const summaryValue = document.querySelector('.summary-value[data-for="' + radio.name + '"]');
             if (summaryValue) {
                 summaryValue.textContent = radio.value;
                 summaryValue.classList.remove('empty');
@@ -350,7 +463,6 @@ function updateSummary() {
         }
     });
 
-    // Dla checkboxów zbieramy wszystkie zaznaczone wartości
     const checkboxGroups = {};
     checkboxes.forEach(checkbox => {
         if (checkbox.name && checkbox.value) {
@@ -361,9 +473,8 @@ function updateSummary() {
         }
     });
 
-    // Aktualizuj podsumowanie dla grup checkboxów
     for (const [name, values] of Object.entries(checkboxGroups)) {
-        const summaryValue = document.querySelector(`.summary-value[data-for="${name}"]`);
+        const summaryValue = document.querySelector('.summary-value[data-for="' + name + '"]');
         if (summaryValue) {
             summaryValue.textContent = values.join(', ');
             summaryValue.classList.remove('empty');
@@ -411,7 +522,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateProgress() {
         const progress = ((currentPage + 1) / formPages.length) * 100;
-        progressBar.style.width = `${progress}%`;
+        progressBar.style.width = progress + '%';
     }
     
     function showPage(pageIndex) {
@@ -555,12 +666,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         for (const radioGroupName in requiredRadioGroups) {
-            const checkedRadio = currentFormPage.querySelector(`input[name="${radioGroupName}"]:checked`);
+            const checkedRadio = currentFormPage.querySelector('input[name="' + radioGroupName + '"]:checked');
             if (!checkedRadio) {
                 isValid = false;
-                const radioGroup = currentFormPage.querySelector(`.radio-group:has(input[name="${radioGroupName}"])`);
+                const radioGroup = currentFormPage.querySelector('.radio-group:has(input[name="' + radioGroupName + '"])');
                 
-                // Dodaj komunikat o błędzie jeśli nie istnieje
                 if (radioGroup && (!radioGroup.nextElementSibling || !radioGroup.nextElementSibling.classList.contains('error-message'))) {
                     const errorMessage = document.createElement('div');
                     errorMessage.className = 'error-message';
