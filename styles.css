@@ -247,15 +247,21 @@ h3::before {
 
 /* Modern Glassmorphism Header */
 header {
-    background: rgba(255, 255, 255, 0.3); /* Increased transparency */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--bg-white); /* Zmiana na białe tło */
+    /* background: rgba(255, 255, 255, 0.3); */ /* Usunięcie poprzedniego tła glassmorphism */
+    /* backdrop-filter: blur(10px); */ /* Usunięcie filtra blur */
+    /* -webkit-backdrop-filter: blur(10px); */ /* Usunięcie filtra blur dla Safari */
     position: fixed;
     width: 100%;
     z-index: 1000;
     padding: 16px 0;
     box-shadow: var(--shadow);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: top 0.3s ease-in-out; /* Dodajemy transition dla płynnego chowania/pokazywania */
+}
+
+.header-hidden {
+    top: -100px; /* Lub inna wartość, która schowa cały nagładek */
 }
 
 .header-container {
@@ -330,7 +336,7 @@ header {
 
 /* Mobile menu */
 .mobile-menu-toggle {
-    display: none;
+    display: none; /* Przywrócenie domyślnego ukrycia na desktopie */
     background: none;
     border: none;
     color: var(--text-dark);
@@ -577,7 +583,9 @@ header {
     }
     
     .mobile-menu-toggle {
-        display: flex;
+        display: flex !important; /* WZMOCNIENIE - Upewnienie się, że jest widoczny */
+        /* display: flex; */ /* Poprzednia próba przywrócenia */
+        /* display: none !important; */ /* Usunięcie poprzedniej reguły ukrywającej */
         grid-column: 2;
         justify-self: end;
         align-items: center;
@@ -784,7 +792,7 @@ header {
 
 /* Modern Hero section with 3D elements and gradient */
 .hero {
-    padding: 180px 0 100px;
+    padding: 180px 0 100px; /* Zwiększony padding-top, aby zrobić miejsce na header */
     /* New Background: Deep space gradient */
     background: linear-gradient(160deg, #00000f 0%, #0a001f 30%, #1a0535 60%, #030010 100%);
     color: var(--text-light);
@@ -1492,7 +1500,7 @@ header {
 
 @media (max-width: 768px) {
     .hero {
-        padding: 110px 0 40px; /* Zwiększony padding-top, zachowany padding-bottom */
+        padding: 120px 0 40px; /* Zwiększony padding-top, aby zrobić miejsce na header na mobile */
         min-height: auto; /* Automatyczna wysokość, aby dopasować się do zawartości */
     }
     
@@ -4270,4 +4278,10 @@ header {
     font-size: 0.9rem;
     line-height: 1.65;
     flex-grow: 1; /* Aby karty miały podobną wysokość jeśli tekst jest różnej długości */
+}
+
+@media (max-width: 768px) {
+    header {
+        display: none !important; /* CAŁKOWITE UKRYCIE NAGŁÓWKA NA MOBILE */
+    }
 }
