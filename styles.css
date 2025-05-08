@@ -363,9 +363,9 @@ header {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(93, 95, 239, 0.97);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(var(--primary-rgb, 93, 95, 239), 0.97); /* Użycie zmiennej CSS dla koloru z fallbackiem */
+    backdrop-filter: blur(12px); /* Nieco mocniejszy blur dla lepszego efektu szkła */
+    -webkit-backdrop-filter: blur(12px);
     z-index: 999;
     display: flex;
     flex-direction: column;
@@ -373,14 +373,19 @@ header {
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    transform: translateY(-20px);
+    transform: translateY(-100%); /* Startuje całkowicie nad ekranem */
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                visibility 0s linear 0.5s; /* Opóźnienie ukrycia visibility */
 }
 
 .mobile-menu.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0); /* Wsuwa się na swoje miejsce */
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                visibility 0s linear 0s;
 }
 
 .mobile-menu-close {
@@ -399,12 +404,12 @@ header {
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Dodano custom timing dla transform */
 }
 
 .mobile-menu-close:hover {
     background-color: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
+    transform: rotate(180deg) scale(1.1); /* Bardziej dynamiczny hover */
 }
 
 .mobile-menu-close svg {
@@ -417,7 +422,7 @@ header {
 .mobile-nav-links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px; /* Zmniejszony odstęp dla bardziej zwartego wyglądu */
     text-align: center;
 }
 
@@ -425,26 +430,43 @@ header {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.5rem;
-    padding: 15px;
-    transition: var(--transition-fast);
-    border-radius: 8px;
+    font-size: 1.6rem; /* Lekko zwiększona czcionka */
+    padding: 12px 25px; /* Dopasowany padding */
+    border-radius: var(--radius-md); /* Zaokrąglenie spójne z innymi elementami */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s, background-color 0.2s ease;
 }
 
-.mobile-nav-link:hover, .mobile-nav-link.active {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+.mobile-menu.active .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Kaskadowe opóźnienie dla linków */
+.mobile-menu.active .mobile-nav-link:nth-child(1) { transition-delay: 0.25s; }
+.mobile-menu.active .mobile-nav-link:nth-child(2) { transition-delay: 0.3s; }
+.mobile-menu.active .mobile-nav-link:nth-child(3) { transition-delay: 0.35s; }
+.mobile-menu.active .mobile-nav-link:nth-child(4) { transition-delay: 0.4s; }
+.mobile-menu.active .mobile-nav-link:nth-child(5) { transition-delay: 0.45s; }
+/* Dodaj więcej, jeśli jest więcej linków */
+
+.mobile-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Subtelne podświetlenie przy najechaniu */
+    transform: scale(1.05) translateY(0); /* Lekkie powiększenie przy hover */
 }
 
 .mobile-cta-button {
-    margin-top: 40px;
-    background-color: white;
-    color: var(--primary);
+    margin-top: 35px; /* Dopasowany margines */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s, background-color 0.2s ease; /* Opóźnienie dla przycisku CTA */
 }
 
-.mobile-cta-button:hover {
-    background-color: white;
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+.mobile-menu.active .mobile-cta-button {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s; /* Największe opóźnienie dla CTA */
 }
 
 /* Utilities */
@@ -1387,6 +1409,18 @@ header {
         justify-content: center;
         flex-wrap: wrap;
         gap: 1.5rem;
+    }
+    .secondary-button {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-top: 16px; /* Increased vertical padding for mobile */
+        padding-bottom: 16px; /* Increased vertical padding for mobile */
+        padding-left: 20px; /* Adjusted horizontal padding */
+        padding-right: 20px; /* Adjusted horizontal padding */
+        /* If the button is part of a flex container that stretches items, 
+           and you want the button to not take full width minus margins: */
+        /* width: auto; */ 
+        /* flex-shrink: 0; /* To prevent shrinking if other items are present */
     }
 }
 
@@ -3674,4 +3708,174 @@ header {
 .cookie-settings-buttons {
     display: flex;
     justify-content: flex-end;
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Lekko zwiększony odstęp dla ikony */
+    padding: 14px 28px; /* Nieco większy padding */
+    border-radius: var(--radius-full);
+    font-weight: 700; /* Nieco grubszy font */
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    /* Style dla przycisku w sekcji Hero */
+    background-color: transparent; /* Całkowicie przezroczyste tło */
+    color: var(--text-light); /* Jasny tekst */
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Bardziej widoczna, jaśniejsza ramka */
+    backdrop-filter: blur(8px); /* Zachowujemy subtelny efekt szkła */
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.secondary-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-light); /* Upewniamy się, że ikona ma jasny kolor */
+    transition: transform 0.3s ease;
+}
+
+.secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Lekko wypełnione tło po najechaniu */
+    color: var(--text-light);
+    border-color: rgba(255, 255, 255, 0.9); /* Jaśniejsza ramka po najechaniu */
+    transform: translateY(-3px) scale(1.03); /* Bardziej dynamiczny efekt hover */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Subtelny cień dla głębi */
+}
+
+.secondary-button:hover svg {
+    transform: translateX(3px); /* Ikona lekko przesuwa się w prawo */
+}
+
+.secondary-button:active {
+    transform: translateY(-1px) scale(1.01);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-content p {
+    /* Assuming you have styles for hero-content p, if not, they can be added or adjusted */
+    margin-bottom: 2rem; /* Można dostosować tę wartość, jeśli istnieje już margines dolny dla p */
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem; /* Istniejący styl - zachowujemy */
+    margin-top: 2.5rem; /* Zwiększony górny margines dla większego odstępu od tekstu powyżej */
+    /* Upewnij się, że jeśli .hero-buttons było wyśrodkowane, to styl justify-content jest odpowiedni */
+    /* np. justify-content: flex-start; lub justify-content: center; w zależności od potrzeb */
+}
+
+@media (max-width: 1024px) { /* Lub inne odpowiednie media query dla mobile */
+    /* ... inne style dla hero-container ... */
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center; /* To już powinno istnieć i pomaga w centrowaniu tekstu */
+    }
+
+    .hero-content {
+        max-width: 100%; /* To już powinno istnieć */
+    }
+
+    .hero-buttons {
+        justify-content: center; /* Dodajemy to, aby wyśrodkować przyciski */
+        /* Upewniamy się, że display: flex; jest nadal aktywne dla .hero-buttons z ogólnych stylów */
+        margin-top: 2.5rem; /* Zachowujemy lub dostosowujemy istniejący margines */
+    }
+    
+    /* Jeśli .secondary-button na mobile ma być pełnej szerokości, można dodać: */
+    /*
+    .secondary-button {
+        width: auto; 
+        max-width: 300px; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+    */
+
+    .hero-form {
+        margin: 2rem auto 0 auto; 
+        max-width: 420px; 
+        padding: 2rem 1.75rem; 
+    }
+}
+
+/* Sekcja "Jak działają plany generowane przez AI?" */
+.how-it-works-ai {
+    padding: 80px 0;
+    background-color: var(--bg-white); /* Użycie jaśniejszego tła dla tej sekcji */
+}
+
+.how-it-works-ai .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.how-it-works-ai .section-title h2 {
+    color: var(--text-dark);
+    font-size: 2.5rem; /* Dostosowanie rozmiaru dla spójności */
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsywny grid */
+    gap: 30px;
+}
+
+.step-item {
+    background-color: var(--bg-light); /* Lekko inne tło dla karty kroku */
+    padding: 30px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Wyrównanie do lewej dla lepszej czytelności */
+    transition: var(--transition-fast);
+}
+
+.step-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+}
+
+.step-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 15px;
+    line-height: 1;
+    position: relative;
+    padding-left: 10px; /* Dodatkowy padding dla numeru */
+}
+
+.step-number::before {
+    content: "";
+    position: absolute;
+    left: -10px; /* Pozycja "ozdobnika" */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px; /* Grubość linii */
+    height: 80%; /* Wysokość linii */
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    border-radius: var(--radius-full);
+}
+
+
+.step-content h3 {
+    font-size: 1.5rem; /* Mniejszy rozmiar dla tytułu kroku */
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    padding-left: 0; /* Usunięcie globalnego stylu padding-left dla h3 w tym kontekście */
+}
+
+.step-content h3::before {
+    display: none; /* Usunięcie globalnego stylu ::before dla h3 w tym kontekście */
+}
+
+.step-content p {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.7;
 }

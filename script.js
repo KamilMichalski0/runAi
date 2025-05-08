@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initFloatingElements();
     // initFormValidation(); // Usunięto, ponieważ stary formularz został zastąpiony
     // initResultsDisplay(); // Usunięto, ponieważ stary formularz został zastąpiony
-    initWaitlistForm(); // Dodano obsługę nowego formularza waitlisty
+    initWaitlistForm('hero-waitlist-form', 'hero-waitlist-name', 'hero-waitlist-email', 'hero-waitlist-message');
+    initWaitlistForm('section-waitlist-form', 'section-waitlist-name', 'section-waitlist-email', 'section-waitlist-message');
     initCookieBanner();
     initAccordion();
 });
@@ -110,45 +111,67 @@ function initFloatingElements() {
     checkVisibility();
 }
 
-// NOWA FUNKCJA: Obsługa formularza waitlisty
-function initWaitlistForm() {
-    const waitlistForm = document.getElementById('waitlist-form');
-    const waitlistMessage = document.getElementById('waitlist-message');
+// NOWA FUNKCJA: Obsługa formularza waitlisty (sparametryzowana)
+function initWaitlistForm(formId, nameInputId, emailInputId, messageId) {
+    const waitlistForm = document.getElementById(formId);
+    const specificMessageElement = document.getElementById(messageId); // Używamy tego dla komunikatów
 
-    if (waitlistForm && waitlistMessage) {
+    // Funkcja pomocnicza do wyświetlania komunikatów dla konkretnego formularza
+    function showMessageForThisForm(message, type) {
+        if (!specificMessageElement) return;
+        specificMessageElement.textContent = message;
+        specificMessageElement.className = ''; // Reset klas
+        specificMessageElement.classList.add(type === 'success' ? 'waitlist-success' : 'waitlist-error');
+        specificMessageElement.style.display = 'block';
+
+        setTimeout(() => {
+            if (specificMessageElement) specificMessageElement.style.display = 'none';
+        }, 5000);
+    }
+
+    // Funkcja pomocnicza do walidacji email (może pozostać zagnieżdżona lub wyniesiona)
+    function isValidEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+
+    if (waitlistForm && specificMessageElement) {
         waitlistForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
-            const nameInput = document.getElementById('waitlist-name');
-            const emailInput = document.getElementById('waitlist-email');
+            const nameInput = document.getElementById(nameInputId);
+            const emailInput = document.getElementById(emailInputId);
 
-            // Prosta walidacja po stronie klienta
+            if (!nameInput || !emailInput) {
+                console.error('Nie znaleziono pól formularza dla: ' + formId);
+                showMessageForThisForm('Błąd konfiguracji formularza.', 'error');
+                return;
+            }
+
             if (!nameInput.value.trim() || !emailInput.value.trim()) {
-                showMessage('Proszę wypełnić oba pola.', 'error');
+                showMessageForThisForm('Proszę wypełnić oba pola.', 'error');
                 return;
             }
 
             if (!isValidEmail(emailInput.value.trim())) {
-                showMessage('Proszę podać poprawny adres email.', 'error');
+                showMessageForThisForm('Proszę podać poprawny adres email.', 'error');
                 return;
             }
 
             try {
-                // Przygotuj dane do wysłania do Sendy
                 const formData = new FormData();
-                formData.append('api_key', 'ZtKnELb6pfxVzSH6fXyr'); // Zastąp swoim kluczem API
+                formData.append('api_key', 'ZtKnELb6pfxVzSH6fXyr'); 
                 formData.append('name', nameInput.value.trim());
                 formData.append('email', emailInput.value.trim());
-                formData.append('list', 'Rj7RJHx2E9q5kctXibk89A'); // Zastąp swoim ID listy
-                formData.append('boolean', 'true'); // Otrzymamy odpowiedź w formie tekstowej
-                formData.append('gdpr', 'true'); // Zgodność z RODO
+                formData.append('list', 'Rj7RJHx2E9q5kctXibk89A'); 
+                formData.append('boolean', 'true'); 
+                formData.append('gdpr', 'true'); 
                 formData.append('referrer', window.location.href);
 
-                // Wyślij dane do Sendy
                 const response = await fetch('https://sendy.znanytrener.ai/subscribe', {
                     method: 'POST',
                     body: formData,
-                    mode: 'cors', // Explicitly set CORS mode
+                    mode: 'cors',
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -160,60 +183,41 @@ function initWaitlistForm() {
 
                 const result = await response.text();
 
-                // Obsługa odpowiedzi z Sendy
                 if (result === 'true') {
-                    showMessage('Dziękujemy za zapisanie się na listę oczekujących! Poinformujemy Cię o starcie.', 'success');
+                    showMessageForThisForm('Dziękujemy za zapisanie się na listę oczekujących! Poinformujemy Cię o starcie.', 'success');
                     waitlistForm.reset();
                 } else {
-                    // Obsługa różnych błędów z Sendy
                     switch(result) {
                         case 'Some fields are missing.':
-                            showMessage('Wystąpił błąd podczas przetwarzania formularza. Proszę spróbować ponownie.', 'error');
+                            showMessageForThisForm('Wystąpił błąd podczas przetwarzania formularza. Proszę spróbować ponownie.', 'error');
                             break;
                         case 'Already subscribed.':
-                            showMessage('Ten adres email jest już zapisany na listę oczekujących.', 'error');
+                            showMessageForThisForm('Ten adres email jest już zapisany na listę oczekujących.', 'error');
                             break;
                         case 'Invalid email address.':
-                            showMessage('Nieprawidłowy adres email.', 'error');
+                            showMessageForThisForm('Nieprawidłowy adres email.', 'error');
                             break;
                         case 'Bounced email address.':
-                            showMessage('Ten adres email został wcześniej odrzucony.', 'error');
+                            showMessageForThisForm('Ten adres email został wcześniej odrzucony.', 'error');
                             break;
                         case 'Email is suppressed.':
-                            showMessage('Ten adres email został wcześniej zablokowany.', 'error');
+                            showMessageForThisForm('Ten adres email został wcześniej zablokowany.', 'error');
                             break;
                         default:
-                            showMessage('Wystąpił nieoczekiwany błąd. Proszę spróbować ponownie później.', 'error');
+                            showMessageForThisForm('Wystąpił nieoczekiwany błąd. Proszę spróbować ponownie później.', 'error');
                     }
                 }
             } catch (error) {
                 console.error('Błąd podczas wysyłania formularza:', error);
                 if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
-                    showMessage('Nie można połączyć się z serwerem. Proszę sprawdzić połączenie internetowe lub spróbować później.', 'error');
+                    showMessageForThisForm('Nie można połączyć się z serwerem. Proszę sprawdzić połączenie internetowe lub spróbować później.', 'error');
                 } else {
-                    showMessage('Wystąpił błąd podczas wysyłania formularza. Proszę spróbować ponownie później.', 'error');
+                    showMessageForThisForm('Wystąpił błąd podczas wysyłania formularza. Proszę spróbować ponownie później.', 'error');
                 }
             }
         });
     }
-
-    function isValidEmail(email) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailPattern.test(email);
-    }
-
-    function showMessage(message, type) {
-        waitlistMessage.textContent = message;
-        waitlistMessage.className = type === 'success' ? 'waitlist-success' : 'waitlist-error';
-        waitlistMessage.style.display = 'block';
-
-        // Ukryj wiadomość po kilku sekundach
-        setTimeout(() => {
-            waitlistMessage.style.display = 'none';
-        }, 5000);
-    }
 }
-// KONIEC NOWEJ FUNKCJI
 
 // ... zachowaj istniejące funkcje initCookieBanner i initAccordion bez zmian ...
 
