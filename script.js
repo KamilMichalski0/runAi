@@ -183,7 +183,7 @@ function initWaitlistForm(formId, nameInputId, emailInputId, messageId) {
 
                 const result = await response.text();
 
-                if (result === 'true') {
+                if (response.ok) {
                     showMessageForThisForm('Dziękujemy za zapisanie się na listę oczekujących! Poinformujemy Cię o starcie.', 'success');
                     waitlistForm.reset();
                 } else {
