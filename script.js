@@ -1070,15 +1070,18 @@ const mobileBreakpoint = 768; // Standard mobile breakpoint
 window.addEventListener('scroll', () => {
     if (window.innerWidth <= mobileBreakpoint) {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop) {
+
+        if (scrollTop === 0) {
+            // Zawsze pokazuj header na górze strony
+            header.style.transform = 'translateY(0)';
+        } else if (scrollTop > lastScrollTop) {
             // Scrolling down
             header.style.transform = 'translateY(-100%)';
         } else {
             // Scrolling up
             header.style.transform = 'translateY(0)';
         }
-        
+
         lastScrollTop = scrollTop;
     } else {
         // Reset transform on desktop
