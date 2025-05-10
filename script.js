@@ -1061,3 +1061,27 @@ document.addEventListener('DOMContentLoaded', function() {
         cookieBanner.classList.remove('show');
     }
 });
+
+// Header scroll behavior for mobile
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+const mobileBreakpoint = 768; // Standard mobile breakpoint
+
+window.addEventListener('scroll', () => {
+    if (window.innerWidth <= mobileBreakpoint) {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop;
+    } else {
+        // Reset transform on desktop
+        header.style.transform = 'translateY(0)';
+    }
+});

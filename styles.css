@@ -247,17 +247,16 @@ h3::before {
 
 /* Modern Glassmorphism Header */
 header {
-    background-color: var(--bg-white); /* Zmiana na białe tło */
-    /* background: rgba(255, 255, 255, 0.3); */ /* Usunięcie poprzedniego tła glassmorphism */
-    /* backdrop-filter: blur(10px); */ /* Usunięcie filtra blur */
-    /* -webkit-backdrop-filter: blur(10px); */ /* Usunięcie filtra blur dla Safari */
     position: fixed;
-    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    background: #fff;
+    transition: transform 0.3s ease-in-out;
     padding: 16px 0;
     box-shadow: var(--shadow);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    transition: top 0.3s ease-in-out; /* Dodajemy transition dla płynnego chowania/pokazywania */
 }
 
 .header-hidden {
