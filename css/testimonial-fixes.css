@@ -1,0 +1,125 @@
+/* Poprawki dla sekcji testimoniali */
+
+.benefits-testimonial {
+    background: white;
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+}
+
+.benefits-testimonial::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+}
+
+.testimonial-quote {
+    position: relative;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.testimonial-quote i.fa-quote-left {
+    color: #3498db;
+    font-size: 24px;
+    margin-bottom: 15px;
+    display: block;
+    opacity: 0.7;
+}
+
+.testimonial-quote p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333; /* Ciemniejszy kolor dla lepszej widoczności */
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    font-weight: 500; /* Lekko pogrubiony tekst dla lepszej widoczności */
+    letter-spacing: 0.2px; /* Lepsza czytelność */
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 3px solid #f0f0f0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #222; /* Ciemniejszy kolor dla lepszej widoczności */
+    letter-spacing: 0.3px;
+}
+
+.author-title {
+    font-size: 14px;
+    color: #555; /* Ciemniejszy kolor dla lepszej widoczności */
+    margin-top: 3px;
+    font-weight: 500; /* Lekko pogrubiony tekst */
+}
+
+/* Poprawki dla całej sekcji CTA */
+.benefits-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 0 15px;
+}
+
+/* Responsywność */
+@media (min-width: 768px) {
+    .benefits-testimonial {
+        padding: 35px 40px;
+    }
+    
+    .testimonial-quote p {
+        font-size: 18px;
+    }
+}
+
+/* Efekt hover */
+.benefits-testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}

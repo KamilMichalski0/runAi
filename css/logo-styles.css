@@ -1,0 +1,77 @@
+/* === Logo Styles === */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 30px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(0, 128, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.hero-logo-container {
+    position: absolute;
+    bottom: 20px; /* Moved higher up */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: 5px; /* 5px border radius as requested */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100; /* Higher z-index to ensure it's above other elements */
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+    animation: fadeInUp 1.2s ease-out forwards, pulseGlow 3s infinite 1.2s;
+    opacity: 0; /* Start invisible */
+}
+
+.hero-logo {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .hero-logo-container {
+        max-width: 180px;
+        padding: 8px 12px;
+        bottom: 80px; /* Positioned higher on mobile to avoid overlapping with other elements */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1050; /* Ensure it's above all other elements */
+    }
+    
+    /* Ensure the logo is properly sized on mobile */
+    .hero-logo {
+        max-height: 45px;
+        width: auto;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+    .hero-logo-container {
+        max-width: 150px;
+        padding: 6px 10px;
+        bottom: 100px; /* Even higher on small mobile screens */
+    }
+    
+    .hero-logo {
+        max-height: 40px;
+    }
+}

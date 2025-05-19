@@ -1,0 +1,316 @@
+/* === Mobile Styles === */
+/* These styles will override the desktop styles for mobile devices */
+
+@media (max-width: 991px) {
+    /* === General === */
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    /* === Navigation === */
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex !important;
+        cursor: pointer;
+    }
+    
+    .main-nav {
+        padding: 0 20px;
+        height: 70px;
+    }
+    
+    .mobile-nav {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
+        padding: 100px 20px 40px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 25px;
+        overflow-y: auto;
+    }
+    
+    .mobile-nav.active {
+        transform: translateX(0);
+    }
+    
+    .mobile-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    
+    .mobile-nav .cta-button {
+        margin-top: 20px;
+        width: 80%;
+        text-align: center;
+        border: none;
+    }
+}
+
+@media (max-width: 768px) {
+    /* === Hero Section === */
+    .hero-section {
+        padding-top: 80px;
+        text-align: center;
+    }
+    .hero-bg,
+    .hero-bg-img,
+    .hero-bg-mask,
+    .hero-content-wrapper {
+        width: 100vw !important;
+        height: auto !important;
+        min-height: unset !important;
+        max-width: 100vw !important;
+    }
+    .hero-content-wrapper {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 24px;
+        padding: 0 0 20px 0;
+        width: 100vw;
+        min-height: unset;
+        background: none;
+    }
+    .hero-flex-row {
+        flex-direction: column;
+        gap: 24px;
+        align-items: stretch;
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .hero-content, .signup-box {
+        max-width: 95vw;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 14px;
+        box-shadow: var(--box-shadow);
+        padding: 24px 10px 18px 10px;
+    }
+    .hero-content {
+        background: rgba(255, 255, 255, 0.95);
+        position: relative;
+        z-index: 5;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+        color: var(--dark-color);
+        -webkit-text-fill-color: var(--dark-color);
+        text-shadow: none;
+        background: none;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+        color: #444;
+    }
+    .signup-box {
+        margin-top: 0;
+        padding: 20px 10px 15px 10px;
+    }
+    .countdown-container {
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-top: 15px;
+        position: relative;
+        z-index: 5;
+    }
+    .countdown-label {
+        color: var(--dark-color);
+    }
+    .countdown-label i, .countdown-label span {
+        color: var(--dark-color);
+    }
+    .cd-box {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+        display: inline-block;
+        min-width: 40px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .cd-label {
+        color: var(--dark-color);
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    /* === Problem & Solution Section === */
+    .challenges-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .solution-showcase {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .solution-content {
+        flex-direction: column;
+    }
+    
+    .solution-image {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    
+    /* Hide decorative line under challenges */
+    .challenges-container::after {
+        display: none;
+    }
+
+    /* Full-width solution segments */
+    .solution-visual,
+    .solution-details {
+        width: 100%;
+    }
+    
+    /* === How It Works Section === */
+    .steps-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .step-card {
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .process-line {
+        display: none;
+    }
+    
+    .step-preview {
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .early-access-info {
+        padding: 30px 20px;
+    }
+    
+    /* === Benefits Section === */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .benefit-card {
+        width: 100%;
+        margin: 0 auto 20px;
+    }
+    .benefit-icon-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    .benefit-title,
+    .benefit-description,
+    .benefit-stats,
+    .benefit-features {
+        text-align: center;
+    }
+    
+    /* === Trust/Future Section === */
+    .integration-logos {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    /* === Pricing Section === */
+    .pricing-section::before,
+    .pricing-section::after {
+        display: none;
+    }
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .pricing-card {
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto 20px;
+    }
+    .pricing-header {
+        text-align: center;
+    }
+    .pricing-action {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    /* === Footer === */
+    .footer-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* === General === */
+    section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    /* === Hero Section === */
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* === Offer CTA Section === */
+    .offer-title {
+        font-size: 1.8rem;
+    }
+    
+    .offer-description {
+        font-size: 1rem;
+    }
+    
+    /* === FAQ Section === */
+    .faq-question h3 {
+        font-size: 1rem;
+    }
+}

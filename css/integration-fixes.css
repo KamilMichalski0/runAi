@@ -1,0 +1,95 @@
+/* Poprawki dla sekcji integracji */
+
+/* Wyśrodkowanie tekstów */
+.integrations-section .section-header {
+    text-align: center;
+}
+
+.integrations-section .section-title {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.integrations-section .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+.integration-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Poprawka dla badge Coming Soon */
+.section-badge.integration-badge {
+    display: block;
+    margin: 0 auto 20px;
+    width: fit-content;
+}
+
+/* Poprawki dla logotypów */
+.watch-container {
+    position: relative;
+    margin: 80px auto;
+}
+
+.logo-static-item {
+    position: absolute;
+}
+
+.logo-top {
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.logo-right {
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.logo-bottom {
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.logo-static-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.logo-static-wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Poprawka dla testimonial */
+.testimonial-section {
+    text-align: center;
+}
+
+.testimonial-card {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.author-info {
+    text-align: left;
+}

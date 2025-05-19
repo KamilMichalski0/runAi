@@ -2,759 +2,1434 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZnanyTrener.AI - Adaptacyjny Generator Planów Treningowych</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZnanyTrener.AI - Twój inteligentny partner na biegowej ścieżce</title>
+    <meta name="description" content="Zapisz się na listę oczekujących i odbierz darmowy, personalizowany plan treningowy AI przy starcie ZnanyTrener.AI – Twój inteligentny partner na biegowej ścieżce.">
+    <link rel="icon" href="favi.jpeg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-mobile.css">
+    <link rel="stylesheet" href="css/solution-styles.css">
+    <link rel="stylesheet" href="css/solution-alignment-fixes.css">
+    <link rel="stylesheet" href="css/form-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/how-it-works-styles.css">
+    <link rel="stylesheet" href="css/how-it-works-enhanced.css">
+    <link rel="stylesheet" href="css/how-it-works-modern.css">
+    <link rel="stylesheet" href="css/pricing-styles.css">
+    <link rel="stylesheet" href="css/benefits-styles.css">
+    <link rel="stylesheet" href="css/integration-fixes.css">
+    <link rel="stylesheet" href="css/modern-nav.css">
+    <link rel="stylesheet" href="css/faq-simple.css">
+    <link rel="stylesheet" href="css/faq-custom-fixes.css">
+    <link rel="stylesheet" href="css/feature-tags-fixes.css">
+    <link rel="stylesheet" href="css/social-icons-fixes.css">
+    <link rel="stylesheet" href="css/testimonial-fixes.css">
+    <link rel="stylesheet" href="css/modal-styles.css">
+    <link rel="stylesheet" href="css/ai-generation-styles.css">
+    <link rel="stylesheet" href="css/ai-process-visualization.css">
+    <link rel="stylesheet" href="css/ai-details-modern.css">
+    <link rel="stylesheet" href="css/cookie-banner.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="favi.jpeg" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="script_sendy.js"></script>
+    <style>
+        /* AI Logos Container Styling */
+        .ai-logos-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin: 30px 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0, 162, 255, 0.5);
+        }
+        
+        #aiLogosCanvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Style dla logo AI */
+        .ai-logo {
+            position: absolute;
+            width: 90px; /* Powiększone o 50% z 60px */
+            height: 90px; /* Powiększone o 50% z 60px */
+            filter: drop-shadow(0 0 10px rgba(0, 162, 255, 0.8));
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.2); /* Białe tło z 20% przezroczystością */
+            border-radius: 50%; /* Okrągłe tło */
+            padding: 5px; /* Dodatkowy padding wokół logotypu */
+        }
+        
+        .ai-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Pozycje początkowe dla logo */
+        .ai-logo:nth-child(1) { 
+            top: 30%; 
+            left: 20%; 
+        }
+        
+        .ai-logo:nth-child(2) { 
+            top: 20%; 
+            left: 40%; 
+        }
+        
+        .ai-logo:nth-child(3) { 
+            top: 60%; 
+            left: 60%; 
+        }
+        
+        .ai-logo:nth-child(4) { 
+            top: 40%; 
+            left: 80%; 
+        }
+        
+        .ai-logo:nth-child(5) { 
+            top: 70%; 
+            left: 30%; 
+        }
+        
+        /* Różne ścieżki animacji dla każdego logo */
+        @keyframes float-1 {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(15px, -15px); }
+            50% { transform: translate(25px, 5px); }
+            75% { transform: translate(10px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        @keyframes float-2 {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-10px, 15px); }
+            50% { transform: translate(-20px, -5px); }
+            75% { transform: translate(-5px, -15px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        @keyframes float-3 {
+            0% { transform: translate(0, 0); }
+            30% { transform: translate(15px, 10px); }
+            60% { transform: translate(-15px, 15px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        @keyframes float-4 {
+            0% { transform: translate(0, 0); }
+            33% { transform: translate(-10px, -10px); }
+            66% { transform: translate(10px, 10px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        @keyframes float-5 {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(15px, 0); }
+            40% { transform: translate(10px, -15px); }
+            60% { transform: translate(-5px, -10px); }
+            80% { transform: translate(-15px, 5px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        .float-1 { animation: float-1 10s infinite ease-in-out; }
+        .float-2 { animation: float-2 12s infinite ease-in-out; }
+        .float-3 { animation: float-3 9s infinite ease-in-out; }
+        .float-4 { animation: float-4 11s infinite ease-in-out; }
+        .float-5 { animation: float-5 14s infinite ease-in-out; }
+        
+        /* Style dla efektów wyładowań elektrycznych */
+        .lightning-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+        
+        .lightning-path-main {
+            stroke-dasharray: 10;
+            stroke-dashoffset: 20;
+            animation: lightning-dash 1s linear forwards;
+        }
+        
+        .lightning-path-glow {
+            stroke-dasharray: 10;
+            stroke-dashoffset: 20;
+            animation: lightning-dash 1s linear forwards, lightning-opacity 1s ease-out forwards;
+        }
+        
+        .lightning-branch {
+            stroke-dasharray: 10;
+            stroke-dashoffset: 10;
+            animation: lightning-dash 0.8s linear forwards, lightning-opacity 0.8s ease-out forwards;
+            animation-delay: 0.1s;
+        }
+        
+        .lightning-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(0, 204, 255, 0.8), 0 0 20px 5px rgba(0, 204, 255, 0.5);
+            pointer-events: none;
+            z-index: 25;
+        }
+        
+        .discharge-flash {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(0, 204, 255, 0.7) 50%, rgba(0, 204, 255, 0) 80%);
+            border-radius: 50%;
+            animation: flash 1s ease-out;
+            z-index: 6;
+        }
+        
+        .lightning {
+            display: none; /* Ukrywamy stare elementy */
+        }
+        
+        .connector {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #00ccff;
+            box-shadow: 
+                0 0 10px 2px rgba(255, 255, 255, 0.8),
+                0 0 20px 5px rgba(0, 204, 255, 0.9),
+                0 0 30px 10px rgba(0, 204, 255, 0.5);
+            z-index: 15;
+        }
+        
+        .pulse {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid #00ccff;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+            z-index: 14;
+        }
+        
+        /* Efekt strumienia łączący z sekcją poniżej */
+        .ai-logos-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(0, 204, 255, 0.9), rgba(0, 204, 255, 0));
+            box-shadow: 0 0 10px 2px rgba(0, 204, 255, 0.5);
+            z-index: 3;
+        }
+        
+        @keyframes lightning-dash {
+            0% { stroke-dashoffset: 500; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes lightning-opacity {
+            0% { opacity: 0.1; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.7; }
+            100% { opacity: 0; }
+        }
+        
+        @keyframes flash {
+            0% { transform: scale(0.5); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+            100% { transform: translateX(-50%) scale(2.5); opacity: 0; }
+        }
+        
+        @keyframes connector-glow {
+            0%, 100% { box-shadow: 0 0 10px 3px rgba(0, 204, 255, 0.8); }
+            50% { box-shadow: 0 0 20px 6px rgba(0, 204, 255, 1); }
+        }
+        
+        .connector {
+            animation: connector-glow 2s infinite alternate;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <a href="/" class="logo">
-                <img src="logo.png" alt="ZnanyTrener.AI Logo" style="height: 60px; width: 120px;"> 
-            </a>
-            <nav class="nav-links">
-                <a href="#ai-capabilities" class="nav-link">Funkcje</a>
-                <a href="#generator" class="nav-link active">Generator planów</a>
-                <a href="#generator" class="nav-link">Kontakt</a>
-            </nav>
-            <button class="mobile-menu-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
-            <a href="#generator" class="cta-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="8.5" cy="7" r="4"></circle>
-                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                </svg>
-                Utwórz konto
-            </a>
+    <!-- Pop-up Modal dla "Generuj Plan" -->
+    <div id="generuj-plan-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-rocket modal-icon"></i>
+                <h3>Funkcja wkrótce dostępna!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Generator planów treningowych będzie dostępny po oficjalnym uruchomieniu aplikacji ZnanyTrener.AI.</p>
+                <p>Zapisz się na listę oczekujących, aby otrzymać powiadomienie o starcie oraz <strong>darmowy, spersonalizowany plan treningowy!</strong></p>
+                <div class="countdown-container modal-countdown">
+                    <div class="countdown-label">
+                        <i class="fas fa-stopwatch"></i>
+                        <span>Do startu pozostało:</span>
+                    </div>
+                    <div class="countdown-timer-group">
+                        <div class="cd-col">
+                            <span class="cd-box" id="modal-cd-days">00</span>
+                            <span class="cd-label">dni</span>
+                        </div>
+                        <span class="cd-sep">:</span>
+                        <div class="cd-col">
+                            <span class="cd-box" id="modal-cd-hours">00</span>
+                            <span class="cd-label">godzin</span>
+                        </div>
+                        <span class="cd-sep">:</span>
+                        <div class="cd-col">
+                            <span class="cd-box" id="modal-cd-minutes">00</span>
+                            <span class="cd-label">minut</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#zapisz-sie" class="cta-button primary modal-cta">Zapisz się na waitlistę</a>
+            </div>
         </div>
-    </header>
-
-    <!-- Mobilne menu hamburgerowe -->
-    <div class="mobile-menu">
-        <button class="mobile-menu-close">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-        <div class="mobile-nav-links">
-            <a href="#ai-capabilities" class="mobile-nav-link">Funkcje</a>
-            <a href="#generator" class="mobile-nav-link active">Generator planów</a>
-            <a href="#generator" class="mobile-nav-link">Kontakt</a>
-        </div>
-        <a href="#generator" class="cta-button mobile-cta-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="8.5" cy="7" r="4"></circle>
-                <line x1="20" y1="8" x2="20" y2="14"></line>
-                <line x1="23" y1="11" x2="17" y2="11"></line>
-            </svg>
-            Utwórz konto
-        </a>
     </div>
 
-    <section class="hero">
-        <div class="hero-pattern"></div>
-        <div class="hero-3d-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
-        <div class="container hero-container">
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="#"><img src="images/Logo Znanytrener.png" alt="Logo ZnanyTrener.AI" class="logo-img"></a>
+            </div>
+            <div class="nav-links desktop-nav">
+                <a href="#" class="nav-link generuj-plan-link">Generuj Plan</a>
+                <a href="#zapisz-sie" class="nav-link">Waitlist</a>
+                <a href="#korzysci" class="nav-link">Korzyści</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </div>
+            <div class="mobile-menu-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="hamburger-icon"></span>
+            </div>
+            <div class="mobile-nav">
+                <a href="#" class="generuj-plan-link">Generuj Plan</a>
+                <a href="#zapisz-sie">Waitlist</a>
+                <a href="#korzysci">Korzyści</a>
+                <a href="#faq">FAQ</a>
+                <a href="#zapisz-sie" class="cta-button primary mobile-cta">Zapisz się</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sekcja 1: Hero Section -->
+        <section id="hero-section" class="hero-section">
+    <div class="hero-bg">
+        <picture>
+            <source srcset="images/hero.png" media="(min-width: 769px)">
+            <source srcset="images/hero-mobile.png" media="(max-width: 768px)">
+            <img src="images/hero.png" alt="Biegacz z ZnanyTrener.AI" class="hero-bg-img" loading="lazy">
+        </picture>
+        <div class="hero-bg-mask"></div>
+    </div>
+    <div class="container">
+        <div class="hero-box hero-content-wrapper hero-flex-row">
+            <div class="hero-badge">Premiera wkrótce</div>
+            
             <div class="hero-content">
-                <h1>Przestań zgadywać i zacznij trenować z planem dopasowanym do Ciebie!</h1>
-                <p>Każdy biegacz jest inny. Twój plan treningowy też powinien taki być. Dzięki sztucznej inteligencji zyskujesz kontrolę nad swoim treningiem.</p>
-                <p>Biegaj jak z profesjonalnym trenerem!</p>
+                <h1 class="hero-title">Twój Personalny Trener Biegania AI</h1>
+                <p class="hero-subtitle">Zrewolucjonizuj swoje treningi z pierwszym w Polsce AI, które tworzy plany biegowe dopasowane do Twoich możliwości i celów</p>
                 
-                <div class="hero-buttons">
-                    <a href="#how-it-works-ai" class="secondary-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 16 16 12 12 8"></polyline>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
-                        </svg>
-                        Dowiedz się więcej
-                    </a>
+                <div class="countdown-container">
+                    <div class="countdown-label">
+                        <i class="fas fa-stopwatch"></i>
+                        <span>Do startu pozostało:</span>
+                    </div>
+                    <div class="countdown-timer-group">
+                        <div class="cd-col">
+                            <span class="cd-box" id="cd-days">00</span>
+                            <span class="cd-label">dni</span>
+                        </div>
+                        <span class="cd-sep">:</span>
+                        <div class="cd-col">
+                            <span class="cd-box" id="cd-hours">00</span>
+                            <span class="cd-label">godzin</span>
+                        </div>
+                        <span class="cd-sep">:</span>
+                        <div class="cd-col">
+                            <span class="cd-box" id="cd-minutes">00</span>
+                            <span class="cd-label">minut</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="hero-form">
-                <div class="waitlist-accent"></div>
-                <h3 class="waitlist-title">Dołącz do listy oczekujących</h3>
-                <p class="waitlist-desc">Zgarnij darmowy, spersonalizowany plan treningowy jako pierwszy!</p>
-                <form id="hero-waitlist-form">
-                    <div class="form-group">
-                        <label for="hero-waitlist-name">Imię</label>
-                        <input type="text" id="hero-waitlist-name" name="waitlist-name" class="form-control" required placeholder="Twoje imię">
-                    </div>
-                    <div class="form-group">
-                        <label for="hero-waitlist-email">Email</label>
-                        <input type="email" id="hero-waitlist-email" name="waitlist-email" class="form-control" required placeholder="Twój adres email">
-                    </div>
-                    <div class="form-group" style="text-align: left;">
-                        <input type="checkbox" id="privacy-policy-checkbox-hero" name="privacy-policy" required style="margin-right: 5px; vertical-align: middle;">
-                        <label for="privacy-policy-checkbox-hero" style="font-size: 0.9em; color: #555;">Akceptuję <a href="polityka-prywatnosci.html" target="_blank" style="color: #007bff; text-decoration: none;">politykę prywatności</a></label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit-waitlist">Zapisz mnie na listę!</button>
-                </form>
-                <div id="hero-waitlist-message"></div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="how-it-works-ai" id="how-it-works-ai">
-        <div class="container">
-            <div class="section-title">
-                <h2>Jak działają plany generowane przez AI?</h2>
-            </div>
-            <div class="steps-container">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>ZAPISZ SIĘ I DOŁĄCZ DO LISTY OCZEKUJĄCYCH</h3>
-                        <p>Wystarczy podać swój adres e-mail, aby dołączyć do naszej listy oczekujących i zarezerwować sobie dostęp do darmowego, spersonalizowanego planu treningowego AI. ZnanyTrener.Al. Powiadomimy Cię gdy tylko usługa wystartuje.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>OPOWIEDZ NAM O SOBIE WYPEŁNIAJĄC ANKIETĘ</h3>
-                        <p>Kiedy nadejdzie Twoja kolej, poprosimy Cię o wypełnienie szczegółowej ankiety online. Pytamy w niej o Twoje cele biegowe, obecny poziom zaawansowania, historię treningową, ewentualne ograniczenia zdrowotne i preferencje. Im dokładniejsze informacje nam przekażesz, tym lepiej nasza AI będzie mogła dopasować plan do Twoich unikalnych potrzeb.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>INTELIGENTNA ANALIZA TWOICH KOMPLEKSOWYCH POTRZEB</h3>
-                        <p>ZnanyTrener.Al bierze pod uwagę całokształt Twoich potrzeb. Analizuje nie tylko Twoje cele biegowe i poziom wytrenowania, ale również informacje dotyczące ewentualnych kontuzji (przeszłych lub obecnych), Twoje zainteresowanie ćwiczeniami wzmacniającymi lub prewencyjnymi, a także preferencje i cele związane z żywieniem okołotreningowym, które wskazałeś w ankiecie.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>GENEROWANIE TWOJEGO INDYWIDUALNEGO PLANU BIEGOWEGO</h3>
-                        <p>Na podstawie tej kompleksowej analizy, AI tworzy dla Ciebie wszechstronny plan. Znajdziesz w nim nie tylko harmonogram biegów, ale także – jeśli o to prosiłeś – propozycje konkretnych ćwiczeń wzmacniających, mobilizacyjnych czy ukierunkowanych na profilaktykę kontuzji, a także praktyczne wskazówki dotyczące odżywiania przed, w trakcie i po treningu. Wygenerowany plan jest Twój.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>ODBIERZ, DOSTOSUJ I REALIZUJ SWÓJ PLAN!</h3>
-                        <p>Gotowy, wszechstronny plan treningowy otrzymasz na swój adres e-mail. Pamiętaj, że to Twój punkt wyjścia – masz możliwość wprowadzania modyfikacji i dostosowywania go do swoich bieżących potrzeb czy nieprzewidzianych sytuacji (np. zmiana dnia treningowego), oczywiście w ramach funkcjonalności dostępnych w Twoim pakiecie. Gotowy? Zacznij realizować swój cel!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="ai-capabilities-section" id="ai-capabilities">
-        <div class="container">
-            <div class="section-title">
-                <span class="badge badge-accent mb-4">Możliwości Systemu</span>
-                <h2>Kluczowe Aspekty Naszego Systemu AI</h2>
-                <p>Odkryj, jak nasza zaawansowana technologia wspiera Cię na każdym etapie Twojej biegowej podróży.</p>
-            </div>
-            <div class="ai-capabilities-grid">
-                <div class="ai-capability-card">
-                    <div class="ai-capability-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline></svg>
-                    </div>
-                    <h3>Strefy biegowe</h3>
-                    <p>Plany zawierają personalizowane strefy tętna lub tempa. Dzięki temu biegasz efektywniej i jesteś pod kontrolą.</p>
-                </div>
-                <div class="ai-capability-card">
-                    <div class="ai-capability-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                    </div>
-                    <h3>Prewencja kontuzji</h3>
-                    <p>AI dobiera plan do Twojego poziomu sprawności, biorąc pod uwagę przeszłe urazy oraz kontuzje.</p>
-                </div>
-                <div class="ai-capability-card">
-                    <div class="ai-capability-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                    </div>
-                    <h3>Modyfikacje planu</h3>
-                    <p>Masz zły dzień? Treningi są zbyt lekkie? Plan biegowy możesz modyfikować w każdym momencie.</p>
-                </div>
-                <div class="ai-capability-card">
-                    <div class="ai-capability-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 2 16 8"></polyline><path d="M12 2v20"></path><path d="M8 2v8c0 2.21 1.79 4 4 4s4-1.79 4-4V2"></path></svg>
-                    </div>
-                    <h3>Żywienie okołotreningowe</h3>
-                    <p>Nie wiesz co jeść przed, po i w trakcie treningu? Dobierz opcję planu żywienia dostosowanego do planu biegowego!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-
-    <section class="form-section" id="generator">
-        <div class="container">
-            <div class="section-title">
-                <span class="badge badge-primary mb-4">Dołącz do Listy Oczekujących</span>
-                <h2>Bądź pierwszy w kolejce!</h2>
-                <p>Zapisz się na naszą listę oczekujących, aby otrzymać powiadomienie, gdy tylko ZnanyTrener.AI będzie dostępny. Pierwsi użytkownicy otrzymają <strong>darmowy, spersonalizowany plan treningowy</strong> oraz specjalne korzyści!</p>
-            </div>
-            
-            <div class="form-container waitlist-form-container" style="max-width: 450px; margin: 20px auto; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px;">
-                <form id="section-waitlist-form">
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label for="section-waitlist-name" style="display: block; margin-bottom: 8px; font-weight: 500;">Imię</label>
-                        <input type="text" id="section-waitlist-name" name="waitlist-name" class="form-control" required placeholder="Twoje imię" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
-                    </div>
-                
-                    <div class="form-group" style="margin-bottom: 25px;">
-                        <label for="section-waitlist-email" style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
-                        <input type="email" id="section-waitlist-email" name="waitlist-email" class="form-control" required placeholder="Twój adres email" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
-                    </div>
-                    <div class="form-group" style="margin-bottom: 20px; text-align: left;">
-                        <input type="checkbox" id="privacy-policy-checkbox-section" name="privacy-policy" required style="margin-right: 5px; vertical-align: middle;">
-                        <label for="privacy-policy-checkbox-section" style="font-size: 0.9em; color: #555;">Akceptuję <a href="polityka-prywatnosci.html" target="_blank" style="color: #007bff; text-decoration: none;">politykę prywatności</a></label>
-                    </div>
-                        
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-submit-waitlist" style="width: 100%; padding: 12px 20px; font-size: 16px; font-weight: 600; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                            Zapisz mnie na listę!
-                        </button>
-                    </div>
-                </form>
-                <div id="section-waitlist-message" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center;"></div>
-            </div>
-        </div>
-    </section>
-<!--FAQ
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-title">
-                <span class="badge badge-primary mb-4">Wprowadzenie</span>
-                <h2>Witaj w sekcji Najczęściej Zadawanych Pytań dotyczącej naszego inteligentnego asystenta tworzącego plany treningowe dla biegaczy.</h2>
-                <p>Znajdziesz tutaj odpowiedzi na pytania dotyczące funkcjonalności, personalizacji, obsługi kontuzji, kosztów i innych aspektów naszej usługi. Naszym celem jest dostarczenie Ci efektywnego i bezpiecznego planu, który pomoże Ci osiągnąć Twoje cele biegowe.</p>
-            </div>
-            <div class="faq-content">
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button class="accordion-button">1. Ogólne Funkcjonalności i Możliwości</button>
-                        <div class="accordion-content">
-                            <div class="accordion">
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Co dokładnie robi ten asystent?</button>
-                                    <div class="accordion-content">
-                                        <p>Nasz asystent AI analizuje podane przez Ciebie informacje (cele, doświadczenie, dostępność, historię kontuzji itp.) i na ich podstawie generuje spersonalizowany, kilkutygodniowy plan treningowy dla biegaczy.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jakie rodzaje planów treningowych potrafisz generować?</button>
-                                    <div class="accordion-content">
-                                        <p>Generujemy plany ukierunkowane na różnorodne cele, w tym:</p>
-                                        <ul>
-                                            <li>Ukończenie dystansów: 5 km, 10 km, półmaraton, maraton</li>
-                                            <li>Poprawa ogólnej kondycji i regularne bieganie</li>
-                                            <li>Poprawa konkretnego wyniku na wybranym dystansie</li>
-                                            <li>Bezpieczny powrót do biegania po przerwie lub kontuzji</li>
-                                        </ul>
-                                        <p>Każdy plan jest dostosowywany do Twoich indywidualnych parametrów.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy plany są odpowiednie dla zupełnie początkujących?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak, asystent tworzy plany dla biegaczy na każdym poziomie zaawansowania, od osób, które dopiero zaczynają swoją przygodę z bieganiem, po doświadczonych zawodników. Plan dla początkujących skupia się na bezpiecznym budowaniu wytrzymałości i techniki.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy potrafisz stworzyć plan dla zaawansowanego biegacza celującego w konkretny wynik?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak, jeśli podasz nam swój cel (np. złamanie 40 minut na 10 km) oraz informacje o aktualnych wynikach i możliwościach treningowych, algorytm przygotuje plan zawierający odpowiednie jednostki treningowe (np. interwały, biegi tempowe) mające na celu poprawę wyniku.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy asystent uwzględnia inne aktywności fizyczne?</button>
-                                    <div class="accordion-content">
-                                        <p><strong>O:</strong> Głównym zadaniem asystenta jest planowanie treningu biegowego. Możesz jednak (i powinieneś) poinformować nas o innych regularnych aktywnościach (np. trening siłowy, joga, rower). Asystent weźmie pod uwagę całkowite obciążenie organizmu i dostępny czas na regenerację przy układaniu planu biegowego, ale nie stworzy szczegółowego planu dla tych innych aktywności.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy asystent oferuje porady dotyczące rozgrzewki, schłodzenia, rozciągania?</button>
-                                    <div class="accordion-content">
-                                        <p><strong>O:</strong> Tak, każdy plan zawiera zalecenia dotyczące odpowiedniej rozgrzewki przed biegiem oraz schłodzenia i delikatnego rozciągania po treningu, które są kluczowe dla prewencji urazów i efektywnej regeneracji.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy asystent daje wskazówki dotyczące odżywiania lub nawodnienia?</button>
-                                    <div class="accordion-content">
-                                        <p><strong>O:</strong> Asystent może dostarczyć ogólnych wskazówek dotyczących nawodnienia i odżywiania w kontekście treningu biegowego (np. znaczenie węglowodanów, picie wody). Nie tworzy jednak indywidualnych planów dietetycznych. W celu uzyskania szczegółowych porad żywieniowych zalecamy konsultację z dietetykiem sportowym.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-button">2. Personalizacja Planu</button>
-                        <div class="accordion-content">
-                            <div class="accordion">
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jakie informacje muszę podać, aby otrzymać spersonalizowany plan?</button>
-                                    <div class="accordion-content">
-                                        <p>Do stworzenia spersonalizowanego planu potrzebujemy następujących informacji:</p>
-                                        <ul>
-                                            <li>Twój cel biegowy (np. ukończenie maratonu, poprawa czasu na 10 km)</li>
-                                            <li>Poziom zaawansowania (początkujący, średniozaawansowany, zaawansowany)</li>
-                                            <li>Historia treningowa (jak długo biegasz, jakie dystanse pokonujesz)</li>
-                                            <li>Dostępność czasowa (ile dni w tygodniu możesz trenować)</li>
-                                            <li>Historia kontuzji i ograniczenia zdrowotne</li>
-                                            <li>Inne aktywności fizyczne</li>
-                                            <li>Preferencje dotyczące rodzaju treningów</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy mogę modyfikować plan w trakcie jego realizacji?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak, plan jest elastyczny i możesz go modyfikować w zależności od:</p>
-                                        <ul>
-                                            <li>Twojego samopoczucia</li>
-                                            <li>Postępów w treningu</li>
-                                            <li>Zmieniających się okoliczności życiowych</li>
-                                            <li>Występowania kontuzji lub przeciążeń</li>
-                                        </ul>
-                                        <p>Asystent może pomóc Ci w dostosowaniu planu do nowych warunków.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jak często plan jest aktualizowany?</button>
-                                    <div class="accordion-content">
-                                        <p>Plan jest aktualizowany w następujących sytuacjach:</p>
-                                        <ul>
-                                            <li>Po każdym tygodniu treningowym (na podstawie Twoich postępów)</li>
-                                            <li>W przypadku kontuzji lub przeciążeń</li>
-                                            <li>Gdy zmienią się Twoje cele lub możliwości treningowe</li>
-                                            <li>Na Twoją prośbę, gdy potrzebujesz modyfikacji</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy plan uwzględnia moje preferencje dotyczące pory treningów?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak, plan jest dostosowywany do Twoich preferencji czasowych. Możesz określić:</p>
-                                        <ul>
-                                            <li>Preferowaną porę dnia na treningi (rano, popołudnie, wieczór)</li>
-                                            <li>Dni tygodnia, w które możesz trenować</li>
-                                            <li>Maksymalny czas, jaki możesz poświęcić na pojedynczy trening</li>
-                                            <li>Dni, w które wolisz mieć lżejsze treningi</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy plan uwzględnia moje ograniczenia sprzętowe?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak, plan jest dostosowywany do dostępnego sprzętu. Możesz określić:</p>
-                                        <ul>
-                                            <li>Czy masz dostęp do bieżni</li>
-                                            <li>Czy masz dostęp do siłowni</li>
-                                            <li>Czy masz dostęp do basenu</li>
-                                            <li>Czy masz dostęp do sprzętu do treningu siłowego</li>
-                                            <li>Czy masz dostęp do terenów biegowych (asfalt, las, stadion)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-button">3. Obsługa Kontuzji (Kluczowy Aspekt)</button>
-                        <div class="accordion-content">
-                            <div class="accordion">
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Mam [nazwa konkretnej kontuzji]. Czy asystent może mi pomóc?</button>
-                                    <div class="accordion-content">
-                                        <p>Asystent może pomóc w dostosowaniu planu biegowego dla wielu powszechnych kontuzji biegowych, takich jak:</p>
-                                        <ul>
-                                            <li>Shin splints (zapalenie okostnej piszczeli)</li>
-                                            <li>Lekkie naciągnięcia mięśni</li>
-                                            <li>Zespół pasma biodrowo-piszczelowego</li>
-                                            <li>Rozcięgno podeszwowe</li>
-                                        </ul>
-                                        <p>Pod warunkiem, że:</p>
-                                        <ul>
-                                            <li>Jesteś w stanie biegać z minimalnym lub żadnym bólem</li>
-                                            <li>Masz zalecenia od lekarza/fizjoterapeuty dotyczące powrotu do aktywności</li>
-                                        </ul>
-                                        <p>Pamiętaj, asystent nie diagnozuje ani nie leczy kontuzji.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Właśnie wracam po [nazwa kontuzji]. Jak asystent dostosuje plan, aby zapobiec nawrotowi?</button>
-                                    <div class="accordion-content">
-                                        <p>Plan powrotu po kontuzji będzie charakteryzował się:</p>
-                                        <ul>
-                                            <li>Bardzo niską intensywnością i objętością początkową</li>
-                                            <li>Bardzo powolnym i ostrożnym progresem obciążeń</li>
-                                            <li>Dużym naciskiem na dni odpoczynku i regenerację</li>
-                                            <li>Potencjalnym uwzględnieniem dni na trening uzupełniający (jeśli to zalecane)</li>
-                                        </ul>
-                                        <p>Kluczowe jest podanie dokładnych informacji o:</p>
-                                        <ul>
-                                            <li>Etapie rekonwalescencji</li>
-                                            <li>Zaleceniach specjalisty</li>
-                                            <li>Obecnych ograniczeniach</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Miałem kontuzję [nazwa] w przeszłości. Czy plan to uwzględni?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak. Poinformuj nas o przebytych kontuzjach. Nawet jeśli obecnie nie odczuwasz bólu, algorytm może uwzględnić tę informację poprzez:</p>
-                                        <ul>
-                                            <li>Wolniejszą progresję</li>
-                                            <li>Dodanie dodatkowych dni regeneracyjnych</li>
-                                            <li>Unikanie specyficznych, potencjalnie ryzykownych jednostek treningowych</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Co się stanie, jeśli doznam kontuzji w trakcie realizacji planu? Czy mogę go zmodyfikować?</button>
-                                    <div class="accordion-content">
-                                        <p>W przypadku kontuzji:</p>
-                                        <ol>
-                                            <li>Natychmiast przerwij trening</li>
-                                            <li>Skonsultuj się z lekarzem lub fizjoterapeutą</li>
-                                            <li>Po uzyskaniu diagnozy i zaleceń, jeśli specjalista zezwoli na modyfikację aktywności, skontaktuj się z nami</li>
-                                        </ol>
-                                        <p>Pamiętaj:</p>
-                                        <ul>
-                                            <li>Nasz asystent AI nie jest narzędziem diagnostycznym</li>
-                                            <li>Priorytetem jest Twoje zdrowie i opinia specjalisty</li>
-                                            <li>W niektórych przypadkach możemy pomóc dostosować plan (w zależności od wykupionego pakietu/oferty)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jakie informacje o mojej kontuzji muszę podać?</button>
-                                    <div class="accordion-content">
-                                        <p>Im więcej informacji, tym lepiej. Przydatne będą:</p>
-                                        <ul>
-                                            <li>Rodzaj kontuzji (jeśli zdiagnozowana)</li>
-                                            <li>Aktualny stan (ból, ograniczenia ruchomości)</li>
-                                            <li>Zalecenia lekarza/fizjoterapeuty (jeśli posiadasz)</li>
-                                            <li>Etap rekonwalescencji (np. "mogę truchtać bez bólu przez 10 minut")</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy asystent sugeruje ćwiczenia alternatywne lub rehabilitacyjne?</button>
-                                    <div class="accordion-content">
-                                        <p>Asystent może zasugerować ogólne formy treningu uzupełniającego o niskim wpływie na stawy, takie jak:</p>
-                                        <ul>
-                                            <li>Pływanie</li>
-                                            <li>Jazda na rowerze stacjonarnym</li>
-                                        </ul>
-                                        <p>Jako alternatywę w:</p>
-                                        <ul>
-                                            <li>Dni nietreningowe</li>
-                                            <li>Podczas powrotu po kontuzji</li>
-                                        </ul>
-                                        <p>Pamiętaj: Asystent nie przepisuje konkretnych ćwiczeń rehabilitacyjnych - te powinny być zawsze dobrane przez fizjoterapeutę.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">WAŻNE: Czy porady dotyczące kontuzji zastępują konsultację z lekarzem lub fizjoterapeutą?</button>
-                                    <div class="accordion-content">
-                                        <p>ABSOLUTNIE NIE. Nasz asystent AI jest narzędziem wspomagającym planowanie treningu, a nie zastępstwem dla profesjonalnej porady medycznej.</p>
-                                        <p>Zawsze należy:</p>
-                                        <ul>
-                                            <li>Konsultować wszelkie bóle, urazy czy wątpliwości zdrowotne z lekarzem lub fizjoterapeutą</li>
-                                            <li>Traktować asystenta jako pomoc w wdrożeniu zaleceń specjalisty w plan treningowy</li>
-                                            <li>Nigdy nie traktować asystenta jako źródła diagnozy czy terapii</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jakich kontuzji asystent nie jest w stanie obsłużyć?</button>
-                                    <div class="accordion-content">
-                                        <p>Asystent nie jest odpowiedni do planowania treningu w przypadku:</p>
-                                        <ul>
-                                            <li>Ostrych, nagłych urazów (złamania, skręcenia, zerwania więzadeł)</li>
-                                            <li>Stanów wymagających interwencji chirurgicznej lub bezpośrednio po niej (bez wyraźnej zgody lekarza na powrót do biegania)</li>
-                                            <li>Przewlekłego, silnego bólu uniemożliwiającego bieganie</li>
-                                            <li>Sytuacji, gdzie lekarz lub fizjoterapeuta wyraźnie odradził bieganie</li>
-                                        </ul>
-                                        <p>W takich przypadkach priorytetem jest leczenie i rehabilitacja pod okiem specjalistów.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-button">4. Koszt i Płatność</button>
-                        <div class="accordion-content">
-                            <div class="accordion">
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Ile kosztuje wygenerowanie planu treningowego?</button>
-                                    <div class="accordion-content">
-                                        <p>Oferujemy generowanie spersonalizowanego planu treningowego za niewielką, jednorazową opłatą. Aktualna cena jest zawsze widoczna na naszej stronie przed dokonaniem zakupu. Staramy się, aby była ona znacznie bardziej przystępna niż koszt indywidualnej współpracy z trenerem.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy jest to opłata jednorazowa za jeden plan, czy subskrypcja?</button>
-                                    <div class="accordion-content">
-                                        <p>Standardowo jest to opłata jednorazowa za wygenerowanie jednego, kompletnego planu treningowego na określony cel i czas (np. 12-tygodniowy plan na półmaraton). Nie jest to model subskrypcyjny.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Co dokładnie otrzymuję w ramach opłaty?</button>
-                                    <div class="accordion-content">
-                                        <p>W ramach opłaty otrzymujesz:</p>
-                                        <ul>
-                                            <li>Spersonalizowany, wielotygodniowy plan treningowy w formacie cyfrowym (np. PDF)</li>
-                                            <li>Szczegółowe opisy poszczególnych jednostek treningowych</li>
-                                            <li>Wskazówki dotyczące rozgrzewki i schłodzenia</li>
-                                            <li>Plan uwzględniający Twoje cele, poziom zaawansowania i ewentualne ograniczenia/kontuzje (zgodnie z podanymi informacjami)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jakie metody płatności są akceptowane?</button>
-                                    <div class="accordion-content">
-                                        <p>Akceptujemy popularne metody płatności online, takie jak:</p>
-                                        <ul>
-                                            <li>Karty kredytowe/debetowe</li>
-                                            <li>Szybkie przelewy internetowe (np. Przelewy24, Blik)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy płatność jest bezpieczna?</button>
-                                    <div class="accordion-content">
-                                        <p>Tak, korzystamy z renomowanych i bezpiecznych bramek płatniczych, które:</p>
-                                        <ul>
-                                            <li>Szyfrują Twoje dane podczas transakcji</li>
-                                            <li>Nie przechowują danych Twojej karty kredytowej</li>
-                                            <li>Spełniają najwyższe standardy bezpieczeństwa</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy jest możliwość darmowego przetestowania lub wersja demo?</button>
-                                    <div class="accordion-content">
-                                        <p>Obecnie nie oferujemy darmowego okresu próbnego ani wersji demo generującej pełny plan. Na naszej stronie możesz jednak znaleźć:</p>
-                                        <ul>
-                                            <li>Przykładowe fragmenty planów</li>
-                                            <li>Szczegółowe opisy działania asystenta</li>
-                                            <li>Opinie innych użytkowników</li>
-                                        </ul>
-                                        <p>Dzięki temu możesz podjąć świadomą decyzję przed zakupem.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy mogę otrzymać zwrot pieniędzy, jeśli nie będę zadowolony z planu?</button>
-                                    <div class="accordion-content">
-                                        <p>Ze względu na natychmiastowe dostarczenie spersonalizowanego produktu cyfrowego, co do zasady nie oferujemy zwrotów pieniędzy po wygenerowaniu i dostarczeniu planu.</p>
-                                        <p>Zwroty są możliwe jedynie w przypadku:</p>
-                                        <ul>
-                                            <li>Udokumentowanych problemów technicznych uniemożliwiających otrzymanie planu</li>
-                                            <li>Problemów technicznych uniemożliwiających wykorzystanie planu</li>
-                                        </ul>
-                                        <p>Prosimy o zapoznanie się z naszym regulaminem przed zakupem.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-button">5. Techniczne Aspekty i Użytkowanie</button>
-                        <div class="accordion-content">
-                            <div class="accordion">
-                                <div class="accordion-item">
-                                    <button class="accordion-button">W jakiej formie otrzymam plan treningowy?</button>
-                                    <div class="accordion-content">
-                                        <p>Plan treningowy otrzymasz w przejrzystym formacie cyfrowym, najczęściej jako plik PDF wysłany na podany przez Ciebie adres e-mail. Może być również dostępny do pobrania z Twojego konta użytkownika na naszej stronie (jeśli system kont jest wdrożony).</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy potrzebuję specjalnej aplikacji, czy działa to przez stronę internetową?</button>
-                                    <div class="accordion-content">
-                                        <p>Proces generowania planu odbywa się przez naszą stronę internetową. Nie musisz instalować żadnej specjalnej aplikacji. Otrzymany plan możesz przeglądać na dowolnym urządzeniu obsługującym pliki PDF (komputer, tablet, smartfon) lub wydrukować.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Czy asystent integruje się z zegarkami sportowymi lub aplikacjami typu Strava/Garmin Connect?</button>
-                                    <div class="accordion-content">
-                                        <p>Obecnie nasz asystent nie oferuje bezpośredniej integracji z zegarkami sportowymi ani popularnymi aplikacjami. Plan zawiera jednak jasne wytyczne dotyczące każdego treningu:</p>
-                                        <ul>
-                                            <li>Dystans</li>
-                                            <li>Tempo</li>
-                                            <li>Czas trwania</li>
-                                            <li>Rodzaj wysiłku</li>
-                                        </ul>
-                                        <p>Możesz łatwo wprowadzić te parametry ręcznie do swojego zegarka lub po prostu realizować, monitorując parametry na bieżąco podczas biegu.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Jak mogę śledzić postępy lub wprowadzać dane o zrealizowanych treningach?</button>
-                                    <div class="accordion-content">
-                                        <p>Asystent generuje plan, natomiast śledzenie postępów leży po Twojej stronie. Możesz do tego wykorzystać:</p>
-                                        <ul>
-                                            <li>Zegarek sportowy</li>
-                                            <li>Ulubioną aplikację biegową (np. Strava, Garmin Connect, Endomondo)</li>
-                                            <li>Tradycyjny dzienniczek treningowy</li>
-                                        </ul>
-                                        <p>Asystent (w obecnej wersji) nie analizuje danych z Twoich zrealizowanych treningów w celu automatycznej modyfikacji planu.</p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button class="accordion-button">Co jeśli będę miał problem techniczny z dostępem do planu lub płatnością?</button>
-                                    <div class="accordion-content">
-                                        <p>W razie jakichkolwiek problemów technicznych związanych z procesem płatności lub dostarczeniem planu, prosimy o kontakt z naszym wsparciem technicznym pod adresem e-mail: [Wstaw adres e-mail wsparcia technicznego]. Postaramy się pomóc jak najszybciej.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
--->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="logo.png" alt="ZnanyTrener.AI Logo" style="height: 60px; width: 120px;">
-                    </div>
-                    <p class="footer-description">
-                        ZnanyTrener.AI to innowacyjna platforma wykorzystująca sztuczną inteligencję do tworzenia spersonalizowanych planów treningowych dostosowanych do Twoich celów, historii kontuzji i możliwości.
-                    </p>
+            <div class="signup-box" id="zapisz-sie">
+                <div class="form-header">
+                    <h3 class="form-title">Dołącz do listy oczekujących</h3>
+                    <p class="form-subtitle">Zapisz się i odbierz <span class="highlight">darmowy, personalizowany plan treningowy</span> przy starcie</p>
                 </div>
                 
-                <div class="footer-nav">
-                    <h4>Informacje</h4>
-                    <ul>
-                        <li><a href="#ai-capabilities">Funkcje</a></li>
-                        <li><a href="#generator">Generator planów</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#generator">Kontakt</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-nav">
-                    <h4>Przydatne linki</h4>
-                    <ul>
-                        <li><a href="#">O nas</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#generator">Wsparcie</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-nav">
-                    <h4>Kontakt</h4>
-                    <ul>
-                        <li><a href="mailto:kontakt@ZnanyTrener.AI.pl">kontakt@ZnanyTrener.AI</a></li>
-                    </ul>
+                <form class="signup-form" id="hero-waitlist-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <div class="input-icon-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" name="name" id="hero-waitlist-name" placeholder="Imię (opcjonalnie)" class="form-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-icon-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="email" id="hero-waitlist-email" placeholder="Twój adres e-mail" required class="form-input">
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/znanytrener.ai/" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu zapisania mnie na listę oczekujących oraz otrzymywania informacji marketingowych.</label>
+                    </div>
+                    
+                    <button type="submit" class="cta-button primary form-submit">
+                        <i class="fas fa-paper-plane"></i> Zapisz się i odbierz darmowy plan
+                    </button>
+                    
+                    <div id="hero-waitlist-message" style="display: none;"></div>
+                </form>
+                
+                <div class="form-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-crown"></i>
+                        <span>Pierwszeństwo dostępu</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-running"></i>
+                        <span>Darmowy plan treningowy</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-gift"></i>
+                        <span>Specjalna oferta startowa</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p class="copyright">© 2025 ZnanyTrener.AI. Wszelkie prawa zastrzeżone.</p>
-                <div class="footer-legal">
-                    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-                    <a href="polityka-prywatnosci.html">Cookies</a>
+        </div>
+    </div>
+</section>
+
+        <!-- Sekcja 2: Wyzwania i Rozwiązania -->
+        <section id="problem-solution-section" class="problem-solution-section">
+            <div class="container">
+                <!-- Wyzwania Biegaczy -->
+                <div class="section-header">
+                    <h2 class="section-title">Z czym zmagają się biegacze?</h2>
+                    <p class="section-intro">Poznaj najczęstsze problemy, które spowalniają rozwój biegaczy na każdym poziomie zaawansowania</p>
                 </div>
+                
+                <div class="challenges-container">
+                    <div class="challenges-grid">
+                        <div class="challenge-card" data-aos="fade-up">
+                            <div class="challenge-icon-container">
+                                <div class="challenge-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="challenge-connector"></div>
+                            </div>
+                            <div class="challenge-content">
+                                <h3 class="challenge-title">Stagnacja wyników</h3>
+                                <p class="challenge-description">Brak postępów mimo regularnych treningów i trudności w przełamaniu bariery rozwoju.</p>
+                                <div class="challenge-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">67%</span>
+                                        <span class="stat-label">biegaczy</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="challenge-icon-container">
+                                <div class="challenge-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <div class="challenge-connector"></div>
+                            </div>
+                            <div class="challenge-content">
+                                <h3 class="challenge-title">Kontuzje i przeciążenia</h3>
+                                <p class="challenge-description">Nawracające urazy wynikające z nieodpowiedniego obciążenia lub błędów w technice biegu.</p>
+                                <div class="challenge-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">78%</span>
+                                        <span class="stat-label">biegaczy</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="challenge-icon-container">
+                                <div class="challenge-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div class="challenge-connector"></div>
+                            </div>
+                            <div class="challenge-content">
+                                <h3 class="challenge-title">Brak personalizacji</h3>
+                                <p class="challenge-description">Trudności w znalezieniu wiarygodnych, spersonalizowanych porad treningowych dopasowanych do indywidualnych potrzeb.</p>
+                                <div class="challenge-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">83%</span>
+                                        <span class="stat-label">biegaczy</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rozwiązanie -->
+                <div class="solution-container">
+                    <div class="solution-header" style="text-align: center; margin-bottom: 30px;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Jak łatwo wygenerować swój plan w 3 prostych krokach</h3>
+                        <p style="font-size: 1.1rem; opacity: 0.9;">Stworzenie idealnego planu treningowego nigdy nie było tak proste!</p>
+                    </div>
+                    
+                    <div class="solution-showcase" style="display: flex; align-items: stretch; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                        <div class="solution-visual" data-aos="fade-up" data-aos-delay="100" style="display: flex; align-items: flex-start; width: 38%; min-width: 300px;">  
+                            <div class="solution-image-container" style="display: flex; flex-direction: column; height: 100%; width: 100%;">
+                                <img src="images/kobietastojaca.png" alt="ZnanyTrener.AI w akcji" class="solution-img" style="height: 575px; width: 100%; object-fit: cover; object-position: top center; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                                <div class="solution-image-overlay">
+                                    <div class="solution-badge-container">
+                                        <span class="solution-badge-item animate-pulse"><i class="fas fa-robot"></i> AI</span>
+                                        <span class="solution-badge-item animate-pulse"><i class="fas fa-shield-alt"></i> Bezpieczne</span>
+                                        <span class="solution-badge-item animate-pulse"><i class="fas fa-bolt"></i> Efektywne</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="solution-details" style="width: 58%; min-width: 300px;">
+                            <div class="solution-features" style="height: 100%;">
+                                <div class="solution-feature" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="feature-icon" style="position: relative;">
+                                        <div class="step-number" style="position: absolute; top: -10px; right: -10px; background: #5E60CE; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 3px 10px rgba(94,96,206,0.3);">1</div>
+                                        <i class="fas fa-bullseye" style="color: #5E60CE;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Wybór celu</h4>
+                                        <p>Wybierz swój cel biegowy, który najlepiej pasuje do Twoich ambicji i aktualnej formy.</p>
+                                        <div class="feature-benefits" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                            <span class="benefit-tag"><i class="fas fa-running"></i> Zaczynasz biegać</span>
+                                            <span class="benefit-tag"><i class="fas fa-heart"></i> Bieganie dla zdrowia</span>
+                                            <span class="benefit-tag"><i class="fas fa-flag-checkered"></i> 5K / 10K</span>
+                                            <span class="benefit-tag"><i class="fas fa-route"></i> Półmaraton / Maraton</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="solution-feature" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="feature-icon" style="position: relative;">
+                                        <div class="step-number" style="position: absolute; top: -10px; right: -10px; background: #5E60CE; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 3px 10px rgba(94,96,206,0.3);">2</div>
+                                        <i class="fas fa-sliders-h" style="color: #5E60CE;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Dostosowanie szczegółów</h4>
+                                        <p>Wybierz dodatkowe elementy planu, które pomogą Ci osiągnąć optymalny efekt treningowy.</p>
+                                        <div class="feature-benefits" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                            <span class="benefit-tag"><i class="fas fa-band-aid"></i> Uwzględnienie kontuzji</span>
+                                            <span class="benefit-tag"><i class="fas fa-apple-alt"></i> Żywienie okołotreningowe</span>
+                                            <span class="benefit-tag"><i class="fas fa-shoe-prints"></i> Technika biegu</span>
+                                            <span class="benefit-tag"><i class="fas fa-dumbbell"></i> Ćwiczenia wspomagające</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="solution-feature" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="feature-icon" style="position: relative;">
+                                        <div class="step-number" style="position: absolute; top: -10px; right: -10px; background: #5E60CE; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 3px 10px rgba(94,96,206,0.3);">3</div>
+                                        <i class="fas fa-magic" style="color: #5E60CE;"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Generuj swój plan!</h4>
+                                        <p>Nasze AI analizuje Twoje preferencje i tworzy idealny, spersonalizowany plan treningowy w kilka sekund.</p>
+                                        <div class="generate-button" style="margin-top: 15px;">
+                                            <a href="#zapisz-sie" class="cta-button primary" style="display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-bolt"></i> Wygeneruj plan</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        
+        <!-- Sekcja: Oferta Specjalna -->
+        <section id="special-offer" class="special-offer-section">
+            <div class="container">
+                <div class="early-access-info" style="background: linear-gradient(135deg, rgba(94, 96, 206, 0.9) 0%, rgba(83, 144, 217, 0.9) 100%); padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(94, 96, 206, 0.4); border: 1px solid rgba(100, 223, 223, 0.3);">
+                    <div class="early-access-badge" style="background: #64DFDF; color: #1a1a1a; font-weight: 600;">Plan dla początkujących</div>
+                    <h3 class="early-access-title" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Rozpocznij swoją przygodę z bieganiem <span style="color: #64DFDF; font-weight: 700;">całkowicie za darmo</span></h3>
+                    <p class="early-access-description" style="color: rgba(255,255,255,0.9); margin: 20px 0; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">Specjalnie dla osób stawiających pierwsze kroki w bieganiu przygotowaliśmy profesjonalny, <strong style="color: #64DFDF">darmowy plan treningowy na 6 tygodni</strong>. Zbuduj solidne podstawy i rozpocznij swoją biegową przygodę z pomocą AI!</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                        <a href="#plany" class="cta-button primary" style="display: inline-flex; align-items: center; gap: 8px; background: white; color: #5E60CE; font-weight: 600; padding: 14px 28px; box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);"><i class="fas fa-running"></i> Wygeneruj darmowy plan</a>
+                        <span style="display: flex; align-items: center; font-weight: 500; color: white; background: rgba(94, 96, 206, 0.3); padding: 10px 20px; border-radius: 50px;"><i class="fas fa-clock" style="margin-right: 8px; color: #64DFDF;"></i> Pełen program na 6 tygodni</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja 4: Dlaczego ZnanyTrener.AI? (Kluczowe Korzyści) -->
+        <section id="benefits-section" class="benefits-section">
+            <div class="container">
+                <div class="benefits-header" data-aos="fade-up">
+                    <span class="benefits-badge">Twój sukces, nasze rozwiązanie</span>
+                    <h2 class="section-title">Dlaczego ZnanyTrener.AI?</h2>
+                    <p class="benefits-intro">Odkryj, jak nasza platforma rewolucjonizuje sposób tworzenia planów treningowych i pomaga osiągać wyniki, o których marzysz.</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <!-- Karta 1: Personalizacja -->
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon animate-pulse-soft">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                        </div>
+                        <h3 class="benefit-title">Pełna personalizacja</h3>
+                        <p class="benefit-description">Każdy plan jest tworzony indywidualnie dla Ciebie, uwzględniając Twoje możliwości, cele i preferencje.</p>
+                        <div class="benefit-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">98%</span>
+                                <span class="stat-label">użytkowników potwierdza dopasowanie planu</span>
+                            </div>
+                        </div>
+                        <div class="benefit-features">
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Dopasowanie do poziomu</span>
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Uwzględnienie celów</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Karta 2: Adaptacja do kontuzji -->
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon animate-pulse-soft">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                        </div>
+                        <h3 class="benefit-title">Adaptacja do kontuzji</h3>
+                        <p class="benefit-description">Plany treningowe uwzględniają Twoją historię kontuzji i pomagają bezpiecznie wrócić do formy.</p>
+                        <div class="benefit-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">87%</span>
+                                <span class="stat-label">mniej nawrotów kontuzji</span>
+                            </div>
+                        </div>
+                        <div class="benefit-features">
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Bezpieczny powrót</span>
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Ćwiczenia rehabilitacyjne</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Karta 3: Wsparcie żywieniowe -->
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon animate-pulse-soft">
+                                <i class="fas fa-apple-alt"></i>
+                            </div>
+                        </div>
+                        <h3 class="benefit-title">Wsparcie żywieniowe</h3>
+                        <p class="benefit-description">Otrzymuj spersonalizowane wskazówki żywieniowe i przepisy dostosowane do Twojego planu treningowego.</p>
+                        <div class="benefit-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">300+</span>
+                                <span class="stat-label">przepisów dostosowanych do treningów</span>
+                            </div>
+                        </div>
+                        <div class="benefit-features">
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Kalkulacja makroskładników</span>
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Żywienie okołotreningowe</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Karta 4: Idealne dla początkujących -->
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon animate-pulse-soft">
+                                <i class="fas fa-running"></i>
+                            </div>
+                        </div>
+                        <h3 class="benefit-title">Idealne dla początkujących</h3>
+                        <p class="benefit-description">Rozpocznij przygodę z bieganiem bezpiecznie i efektywnie, nawet jeśli nigdy wcześniej nie biegałeś regularnie.</p>
+                        <div class="benefit-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">87%</span>
+                                <span class="stat-label">użytkowników kontynuuje bieganie po 3 miesiącach</span>
+                            </div>
+                        </div>
+                        <div class="benefit-features">
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Program od zera</span>
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Stopniowa progresja</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Karta 5: Przystępna cena -->
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon animate-pulse-soft">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                        </div>
+                        <h3 class="benefit-title">Bieganie dla zdrowia</h3>
+                        <p class="benefit-description">Utrzymuj formę i poprawiaj zdrowie dzięki ułożonym planom treningowym, które zapewniają równowagę między wysiłkiem a regeneracją.</p>
+                        <div class="benefit-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">76%</span>
+                                <span class="stat-label">użytkowników zauważa poprawę ogólnego stanu zdrowia</span>
+                            </div>
+                        </div>
+                        <div class="benefit-features">
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Zrównoważony wysiłek</span>
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Bieganie bez przeciążeń</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Karta 6: Ciągły rozwój -->
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="benefit-icon-wrapper">
+                            <div class="benefit-icon animate-pulse-soft">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                        </div>
+                        <h3 class="benefit-title">Treningi pod cel dystansowy</h3>
+                        <p class="benefit-description">Otrzymaj spersonalizowany plan treningowy pod konkretny dystans - 5km, 10km, półmaraton czy maraton - dostosowany do Twoich możliwości.</p>
+                        <div class="benefit-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">94%</span>
+                                <span class="stat-label">biegaczy osiąga zaplanowany cel dystansowy</span>
+                            </div>
+                        </div>
+                        <div class="benefit-features">
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Dedykowane plany na każdy dystans</span>
+                            <span class="feature-item"><i class="fas fa-check-circle"></i> Strategie tempa i startu</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </section>
+
+        <!-- Sekcja 5: Jak generowane są plany AI -->
+        <section id="ai-plan-generation" class="ai-generation-section">
+            <div class="video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/Film bieg.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+            <div class="container">
+                <div class="section-header" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 class="section-title">Jak generowane są plany AI</h2>
+                    <p class="section-subtitle">Poznaj proces tworzenia personalizowanych planów treningowych</p>
+                </div>
+                
+                <div class="ai-generation-content">
+                    <div class="ai-process-intro">
+                        <p>Twój plan treningowy to nie standardowy szablon - to <strong>precyzyjnie dopasowany program</strong> uwzględniający Twoje indywidualne potrzeby. Każdy plan tworzymy tak, by był maksymalnie efektywny i jednocześnie bezpieczny.</p>
+                    </div>
+                    
+                    <!-- Interaktywna wizualizacja procesu AI -->
+                    <div class="ai-process-visualization">
+                        <!-- Ścieżka biegowa symbolizująca przepływ danych -->
+                        <div class="process-path">
+                            <!-- Węzły na ścieżce -->
+                            <div class="process-node node-1"></div>
+                            <div class="process-node node-2"></div>
+                            <div class="process-node node-3"></div>
+                            <div class="process-node node-4"></div>
+                        </div>
+                        
+                        <!-- Etapy procesu z wizualizacjami -->
+                        <div class="process-stages">
+                            <!-- Etap 1: Dane użytkownika -->
+                            <div class="process-stage">
+                                <div class="stage-icon-container">
+                                    <div class="stage-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                </div>
+                                <h3 class="stage-title">Wszystko zaczyna się od Ciebie</h3>
+                                <p class="stage-description">Podstawą każdego planu są <strong>Twoje indywidualne informacje</strong>, które wprowadzasz do systemu. To fundament, na którym budujemy Twój trening.</p>
+                            </div>
+                            
+                            <!-- Etap 2: Analiza AI -->
+                            <div class="process-stage">
+                                <div class="stage-icon-container">
+                                    <div class="stage-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                </div>
+                                <h3 class="stage-title">Inteligentna analiza AI</h3>
+                                <p class="stage-description">Sztuczna inteligencja działa jak doświadczony trener, analizując Twoje dane w oparciu o zasady fizjologii wysiłku, metodyki treningu biegowego i progresji obciążeń.</p>
+                            </div>
+                            
+                            <!-- Etap 3: Spersonalizowany plan -->
+                            <div class="process-stage">
+                                <div class="stage-icon-container">
+                                    <div class="stage-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                </div>
+                                <h3 class="stage-title">Twój plan skrojony na miarę</h3>
+                                <p class="stage-description">Efektem pracy AI jest <strong>całkowicie spersonalizowany plan treningowy</strong>, który uwzględnia Twoją formę, cele, dostępność czasową oraz minimalizuje ryzyko kontuzji.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Szczegółowe informacje o procesie -->
+                    <div class="ai-generation-details">
+                        <h2 class="ai-details-title">Co tworzy Twój idealny plan treningowy?</h2>
+                        
+                        <!-- AI Logos Floating Container -->
+                        <div class="ai-logos-container">
+                            <!-- Logo AI - statyczne elementy -->
+                            <img src="images/1.png" alt="Claude AI" class="ai-logo" id="claude-logo">
+                            <img src="images/2.png" alt="ChatGPT" class="ai-logo" id="chatgpt-logo">
+                            <img src="images/3.png" alt="Gemini" class="ai-logo" id="gemini-logo">
+                            <img src="images/4.png" alt="Grok" class="ai-logo" id="grok-logo">
+                            <img src="images/5.png" alt="DeepSeek" class="ai-logo" id="deepseek-logo">
+                            
+                            <!-- Efekty wyładowań elektrycznych -->
+                            <div class="lightning" id="lightning1"></div>
+                            <div class="lightning" id="lightning2"></div>
+                            <div class="lightning" id="lightning3"></div>
+                            <div class="lightning" id="lightning4"></div>
+                            <div class="lightning" id="lightning5"></div>
+                            
+                            <!-- Punkt połączenia -->
+                            <div class="connector"></div>
+                            <div class="pulse"></div>
+                        </div>
+                        
+                        <div class="ai-steps-grid">
+                            <div class="ai-feature-card">
+                                <div class="ai-feature-header">
+                                    <div class="ai-feature-icon">
+                                        <i class="fas fa-user-chart pulse-light"></i>
+                                    </div>
+                                    <h3>Analiza kluczowych danych</h3>
+                                </div>
+                                <div class="ai-feature-points">
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-running"></i></div>
+                                        <div class="point-content">
+                                            <strong>Poziom zaawansowania</strong>
+                                            <span>Twoje aktualne możliwości i doświadczenie</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-trophy"></i></div>
+                                        <div class="point-content">
+                                            <strong>Cele biegowe</strong>
+                                            <span>5k, 10k, maraton czy osobisty rekord</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-calendar-check"></i></div>
+                                        <div class="point-content">
+                                            <strong>Dostępność czasowa</strong>
+                                            <span>Dostosowana liczba treningów tygodniowo</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-heartbeat"></i></div>
+                                        <div class="point-content">
+                                            <strong>Historia kontuzji</strong>
+                                            <span>Bezpieczne treningi z uwzględnieniem ograniczeń</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-feature-card">
+                                <div class="ai-feature-header">
+                                    <div class="ai-feature-icon">
+                                        <i class="fas fa-brain-circuit pulse-light"></i>
+                                    </div>
+                                    <h3>Zaawansowana technologia AI</h3>
+                                </div>
+                                <div class="ai-feature-points">
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-dumbbell"></i></div>
+                                        <div class="point-content">
+                                            <strong>Fizjologia wysiłku</strong>
+                                            <span>Naukowe podejście do treningu biegowego</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-chart-line"></i></div>
+                                        <div class="point-content">
+                                            <strong>Progresja obciążeń</strong>
+                                            <span>Optymalna intensywność dla stałych postępów</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-users-gear"></i></div>
+                                        <div class="point-content">
+                                            <strong>Weryfikowane doświadczenie</strong>
+                                            <span>Metodyka sprawdzona z biegaczami</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-microscope"></i></div>
+                                        <div class="point-content">
+                                            <strong>Najnowsze badania</strong>
+                                            <span>Ciągła aktualizacja w oparciu o naukę</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-feature-card">
+                                <div class="ai-feature-header">
+                                    <div class="ai-feature-icon">
+                                        <i class="fas fa-shield-check pulse-light"></i>
+                                    </div>
+                                    <h3>Korzyści spersonalizowanego planu</h3>
+                                </div>
+                                <div class="ai-feature-points">
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-bullseye"></i></div>
+                                        <div class="point-content">
+                                            <strong>Dopasowanie do Ciebie</strong>
+                                            <span>Plan idealnie skrojony na Twoje potrzeby</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-clock"></i></div>
+                                        <div class="point-content">
+                                            <strong>Efektywne wykorzystanie czasu</strong>
+                                            <span>Każdy trening z określonym celem</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-shield-heart"></i></div>
+                                        <div class="point-content">
+                                            <strong>Minimalizacja ryzyka</strong>
+                                            <span>Bezpieczny trening bez przeciążeń</span>
+                                        </div>
+                                    </div>
+                                    <div class="feature-point">
+                                        <div class="point-icon"><i class="fas fa-medal"></i></div>
+                                        <div class="point-content">
+                                            <strong>Stały postęp</strong>
+                                            <span>Systematyczna poprawa wyników</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-generation-cta">
+                        <p>Dzięki personalizacji i zaawansowanej analizie AI, Twój plan treningowy jest nie tylko skuteczny, ale przede wszystkim <strong>bezpieczny</strong> - pozwala osiągać cele przy minimalizacji ryzyka kontuzji.</p>
+                        <a href="#zapisz-sie" class="cta-button primary"><i class="fas fa-rocket"></i> Zapisz się i zdobądź swój plan AI</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja 6: Plany -->
+       <section id="plany" class="pricing-section">
+            <div class="container">
+                <div style="max-width: 560px; margin: 0 auto; text-align: center;">
+                    <h2 class="section-title" style="position: center; padding-bottom: 30px; text-align: center; width: 100%;">Wybierz plan idealny dla Ciebie</h2>
+                    <p class="section-subtitle" style="margin-top: -15px; text-align: center; width: 100%;">Dopasuj poziom wsparcia do swoich potrzeb treningowych</p>
+                </div>
+                
+                <div class="pricing-container">
+                    <!-- Plan Freemium -->
+                    <div class="pricing-card pricing-card-freemium" data-aos="fade-up" data-aos-delay="0">
+                        <div class="pricing-header">
+                            <div class="pricing-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 class="pricing-title">Freemium</h3>
+                            <div class="pricing-price">
+                                <span class="price">0 zł</span>
+                                <span class="period">za darmo</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Wygenerowanie planu AI</li>
+                                <li><i class="fas fa-check"></i> Dostęp do planu przez 14 dni</li>
+                                <li><i class="fas fa-check"></i> Podgląd pierwszych 2 tygodni</li>
+                                <li class="disabled"><i class="fas fa-lock"></i> Dostęp do pełnego planu</li>
+                                <li class="disabled"><i class="fas fa-lock"></i> Poprawki do planu</li>
+                                <li class="disabled"><i class="fas fa-lock"></i> Zmiany dni treningowych</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#generuj-plan" class="cta-button secondary">Wypróbuj za darmo</a>
+                        </div>
+                        <div class="pricing-tag">Bez zobowiązań</div>
+                    </div>
+                    
+                    <!-- Plan Standard -->
+                    <div class="pricing-card pricing-card-standard" data-aos="fade-up" data-aos-delay="100">
+                        <div class="pricing-header">
+                            <div class="pricing-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h3 class="pricing-title">Standard</h3>
+                            <div class="pricing-price">
+                                <span class="price">29 zł</span>
+                                <span class="period">miesięcznie</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Wygenerowanie planu AI</li>
+                                <li><i class="fas fa-check"></i> Nielimitowane poprawki</li>
+                                <li><i class="fas fa-check"></i> 3 zmiany dni treningowych/tydzień</li>
+                                <li><i class="fas fa-check"></i> 1 zmiana tygodnia treningowego/miesiąc</li>
+                                <li><i class="fas fa-check"></i> Stały dostęp do planu</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Priorytetowe wsparcie</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#generuj-plan" class="cta-button primary">Wybierz plan</a>
+                        </div>
+                        <div class="pricing-tag">Popularny wybór</div>
+                    </div>
+                    
+                    <!-- Plan Jednorazowy -->
+                    <div class="pricing-card pricing-card-onetime featured" data-aos="fade-up" data-aos-delay="200">
+                        <div class="pricing-badge">Najlepszy start</div>
+                        <div class="pricing-header">
+                            <div class="pricing-icon pulse-animation">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="pricing-title">Jednorazowy</h3>
+                            <div class="pricing-price">
+                                <span class="price">25 zł</span>
+                                <span class="period">jednorazowo</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Wygenerowanie planu AI</li>
+                                <li><i class="fas fa-check"></i> 2 poprawki do planu</li>
+                                <li><i class="fas fa-check"></i> Dostęp do planu przez 30 dni</li>
+                                <li><i class="fas fa-check"></i> 1 zmiana dni treningowych</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Zmiany tygodni treningowych</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Priorytetowe wsparcie</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#generuj-plan" class="cta-button primary">Wybierz plan</a>
+                        </div>
+                        <div class="pricing-tag">Bez subskrypcji</div>
+                    </div>
+                    
+                    <!-- Plan Premium -->
+                    <div class="pricing-card pricing-card-premium" data-aos="fade-up" data-aos-delay="300">
+                        <div class="pricing-header">
+                            <div class="pricing-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h3 class="pricing-title">Premium</h3>
+                            <div class="pricing-price">
+                                <span class="price">49 zł</span>
+                                <span class="period">miesięcznie</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Wygenerowanie planu AI</li>
+                                <li><i class="fas fa-check"></i> Nielimitowane poprawki</li>
+                                <li><i class="fas fa-check"></i> 5 zmian dni treningowych/tydzień</li>
+                                <li><i class="fas fa-check"></i> 3 zmiany tygodni treningowych/miesiąc</li>
+                                <li><i class="fas fa-check"></i> Priorytetowe wsparcie</li>
+                                <li><i class="fas fa-check"></i> Stały dostęp do planu</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#generuj-plan" class="cta-button primary">Wybierz Premium</a>
+                        </div>
+                        <div class="pricing-tag">Pełne wsparcie</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja 6: Sekcja Ofertowa / Powtórzenie CTA -->
+        <section id="offer-cta-section" class="offer-cta-section">
+            <div class="container">
+                <div class="offer-content">
+                    <h2 class="offer-title">Nie przegap okazji!</h2>
+                    <p class="offer-description">Zapisz się na listę oczekujących już dziś i odbierz darmowy, personalizowany plan treningowy AI przy starcie ZnanyTrener.AI.</p>
+                    <div class="offer-highlight">
+                        <span class="highlight-text">Tylko dla osób z listy oczekujących</span>
+                    </div>
+                    <a href="#zapisz-sie" class="cta-button primary large">Zapisz się i odbierz darmowy plan</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja 6: Integracje i Przyszłość -->
+        <section id="integrations-section" class="integrations-section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <span class="section-badge integration-badge" style="display: inline-block;">Coming Soon</span>
+                </div>
+                <div class="section-header" style="text-align: center;">
+                    <h2 class="section-title">Integracje, które zmienią Twój trening</h2>
+                    <p class="section-intro" style="max-width: 700px; margin: 20px auto 0;">Połączymy Twoje ulubione platformy do śledzenia aktywności z ZnanyTrener.AI, aby zapewnić jeszcze lepsze doświadczenia treningowe</p>
+                </div>
+                
+                <div class="watch-integration-showcase" style="margin: 60px 0; display: flex; justify-content: center;">
+                    <div class="watch-container" style="position: relative; width: 400px; height: 400px; display: flex; justify-content: center; align-items: center;">
+                        <div class="watch-wrapper" style="position: relative; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center; z-index: 2;">
+                            <img src="images/Zegarek.png" alt="Zegarek sportowy" class="watch-image" style="width: 100%; height: auto; object-fit: contain;">
+                            <div class="watch-overlay"></div>
+                        </div>
+                        
+                        <div class="logos-static" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <div class="logo-static-item" style="position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 100px; height: 60px;" data-aos="fade-down" data-aos-delay="100">
+                                <div class="logo-static-wrapper" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                    <img src="images/garmin-logo-vector.png" alt="Garmin" class="static-logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                            <div class="logo-static-item" style="position: absolute; top: 50%; right: -70px; transform: translateY(-50%); width: 100px; height: 60px;" data-aos="fade-left" data-aos-delay="200">
+                                <div class="logo-static-wrapper" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                    <img src="images/strava-logo-png-4.webp" alt="Strava" class="static-logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                            <div class="logo-static-item" style="position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 100px; height: 60px;" data-aos="fade-up" data-aos-delay="300">
+                                <div class="logo-static-wrapper" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                    <img src="images/Training-Peaks-Logo.webp" alt="Training Peaks" class="static-logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="integration-features" style="flex: 1; max-width: 500px; margin-left: 40px;">
+                        <div class="integration-feature" style="display: flex; align-items: flex-start; gap: 20px; background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); margin-bottom: 20px;" data-aos="fade-left" data-aos-delay="100">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%); width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 style="margin-top: 0;">Synchronizacja danych</h4>
+                                <p style="margin-bottom: 0;">Automatyczne pobieranie danych treningowych z Twoich ulubionych platform i urządzeń.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="integration-feature" style="display: flex; align-items: flex-start; gap: 20px; background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); margin-bottom: 20px;" data-aos="fade-left" data-aos-delay="200">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 style="margin-top: 0;">Analiza postępów</h4>
+                                <p style="margin-bottom: 0;">Zaawansowana analiza Twoich wyników i dynamiczne dostosowywanie planu treningowego.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="integration-feature" style="display: flex; align-items: flex-start; gap: 20px; background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);" data-aos="fade-left" data-aos-delay="300">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); width: 50px; height: 50px; min-width: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 style="margin-top: 0;">Dostęp mobilny</h4>
+                                <p style="margin-bottom: 0;">Pełna integracja z aplikacjami mobilnymi, zegarkami i innymi urządzeniami sportowymi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+                <div class="integration-cta" style="text-align: center; margin-top: 40px;">
+                    <a href="#zapisz-sie" class="cta-button primary" style="display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; font-size: 1.1rem; border-radius: 50px;"><i class="fas fa-bell"></i> Powiadom mnie o integracji</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja 7: FAQ (Najczęściej Zadawane Pytania) -->
+        <section id="faq-section" class="faq-section">
+            <div class="container">
+                <div class="faq-header">
+                    <h2 class="section-title">Najczęściej zadawane pytania</h2>
+                    <p class="faq-intro">Poznaj odpowiedzi na najczęściej zadawane pytania dotyczące ZnanyTrener.AI i naszych planów treningowych</p>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100" id="faq-item-1">
+                        <div class="faq-question" onclick="toggleFaq('faq-item-1')">
+                            <h3><span class="faq-icon"><i class="fas fa-calendar-alt"></i></span> Kiedy nastąpi oficjalny start ZnanyTrener.AI?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Planujemy oficjalny start platformy w ciągu najbliższych miesięcy. Dokładna data zostanie przekazana wszystkim osobom zapisanym na listę oczekujących z odpowiednim wyprzedzeniem.</p>
+                            <ul>
+                                <li>Osoby z listy oczekujących otrzymają dostęp w pierwszej kolejności</li>
+                                <li>Planujemy fazę beta testów dla wybranych użytkowników</li>
+                                <li>Pełne uruchomienie platformy nastąpi po zebraniu opinii od testerów</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200" id="faq-item-2">
+                        <div class="faq-question" onclick="toggleFaq('faq-item-2')">
+                            <h3><span class="faq-icon"><i class="fas fa-infinity"></i></span> Czy darmowy plan treningowy jest ograniczony czasowo?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Nie, darmowy plan treningowy, który otrzymasz jako osoba z listy oczekujących, będzie Twój na zawsze. Będziesz mógł/mogła korzystać z niego bez ograniczeń czasowych.</p>
+                            <ul>
+                                <li>Pełny dostęp do wszystkich funkcji planu</li>
+                                <li>Możliwość pobrania planu w formacie PDF</li>
+                                <li>Brak ukrytych opłat czy ograniczeń czasowych</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300" id="faq-item-3">
+                        <div class="faq-question" onclick="toggleFaq('faq-item-3')">
+                            <h3><span class="faq-icon"><i class="fas fa-running"></i></span> Dla kogo przeznaczona jest platforma ZnanyTrener.AI?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>ZnanyTrener.AI jest przeznaczony dla biegaczy na różnym poziomie zaawansowania - od początkujących po średniożaawansowanych, w tym osoby powracające po kontuzjach. Nasz system dostosowuje plany treningowe do indywidualnych potrzeb i możliwości każdego biegacza.</p>
+                            <ul>
+                                <li>Początkujący biegacze chcący rozpocząć przygodę z bieganiem</li>
+                                <li>Osoby powracające do aktywności po kontuzjach</li>
+                                <li>Biegacze średniożaawansowani chcący poprawić swoje wyniki</li>
+                                <li>Każdy, kto chce trenować mądrze i bezpiecznie</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400" id="faq-item-4">
+                        <div class="faq-question" onclick="toggleFaq('faq-item-4')">
+                            <h3><span class="faq-icon"><i class="fas fa-sliders-h"></i></span> Czy będzie możliwość modyfikacji planu treningowego?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tak, po pełnym uruchomieniu platformy, będziesz mieć możliwość modyfikacji planu treningowego w zależności od Twoich postępów, samopoczucia czy zmiany celów. Nasz system AI będzie się adaptował do Twoich potrzeb.</p>
+                            <ul>
+                                <li>Możliwość dostosowania intensywności treningu</li>
+                                <li>Opcje zmiany dni treningowych w tygodniu</li>
+                                <li>Automatyczne dostosowanie planu do Twoich postępów</li>
+                                <li>Inteligentne sugestie zmian bazujące na Twoich wynikach</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="500" id="faq-item-5">
+                        <div class="faq-question" onclick="toggleFaq('faq-item-5')">
+                            <h3><span class="faq-icon"><i class="fas fa-mobile-alt"></i></span> Czy ZnanyTrener.AI będzie dostępny na urządzeniach mobilnych?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tak, ZnanyTrener.AI będzie w pełni responsywny i dostępny na wszystkich urządzeniach. Planujemy również dedykowaną aplikację mobilną na systemy iOS i Android w późniejszym etapie rozwoju.</p>
+                            <ul>
+                                <li>Pełna funkcjonalność na urządzeniach mobilnych</li>
+                                <li>Możliwość śledzenia treningu w czasie rzeczywistym</li>
+                                <li>Powiadomienia i przypomnienia o treningach</li>
+                                <li>Synchronizacja z popularnymi zegarkami sportowymi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-cta">
+                    <p class="cta-text">Nie znalazłeś odpowiedzi na swoje pytanie?</p>
+                    <a href="#kontakt" class="cta-button primary"><i class="fas fa-envelope"></i> Skontaktuj się z nami</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sekcja 8: Stopka (Footer) -->
+    <footer id="footer-section" class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/ZnanyTrener.AI (logo białe tło).png" alt="Logo ZnanyTrener.AI" class="footer-logo-img">
+                    <p class="footer-tagline">Twój inteligentny partner na biegowej ścieżce</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Nawigacja</h4>
+                        <a href="#jak-to-dziala">Jak to działa</a>
+                        <a href="#korzysci">Korzyści</a>
+                        <a href="#faq">FAQ</a>
+                    </div>
+                    <div class="footer-links-column">
+                        <h4>Dokumenty prawne</h4>
+                        <a href="#">Polityka prywatności</a>
+                        <a href="#">Regulamin</a>
+                        <a href="#">Kontakt</a>
+                    </div>
+                    <div class="footer-links-column">
+                        <h4>Śledź nas</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">ZnanyTrener.AI &copy; 2025. Wszelkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Usuwam istniejący baner cookie i dodaję nowy cookie consent banner oraz modal -->
-    
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/aos-init.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/solution-animations.js"></script>
+    <script src="js/how-it-works-animations.js"></script>
+    <script src="js/modern-nav.js"></script>
+    <script src="js/modern-faq.js"></script>
+    <script src="js/modal.js"></script>
+    <script>
+        // Funkcja do przełączania stanu FAQ
+        function toggleFaq(itemId) {
+            // Pobierz element FAQ
+            const faqItem = document.getElementById(itemId);
+            
+            // Sprawdź, czy element jest już aktywny
+            const isActive = faqItem.classList.contains('active');
+            
+            // Zamknij wszystkie aktywne elementy
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                if (item.id !== itemId) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Przełącz stan aktywności klikniętego elementu
+            if (isActive) {
+                faqItem.classList.remove('active');
+            } else {
+                faqItem.classList.add('active');
+            }
+        }
+        
+        // Automatyczne otwieranie pierwszego pytania wyłączone
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     setTimeout(function() {
+        //         document.getElementById('faq-item-1').classList.add('active');
+        //     }, 1000);
+        // });
+    </script>
+    <!-- Skrypt wizualizacji procesu AI -->
+    <script src="js/ai-process-visualization.js"></script>
+    <script src="js/ai-logos-animation.js"></script>
+    <!-- Stary kod animacji został przeniesiony do pliku ai-logos-animation.js -->
+            
+
     <!-- Cookie Consent Banner -->
     <div class="cookie-consent-banner">
-        <div class="cookie-consent-container">
-            <div class="cookie-consent-text">
-                <h3>Używamy ciasteczek (cookies)</h3>
-                <p>Ta strona korzysta z plików cookies, aby zapewnić najlepsze doświadczenie użytkownika. Kontynuując przeglądanie strony, zgadzasz się na ich wykorzystanie.</p>
-            </div>
-            <div class="cookie-consent-buttons">
-                <button class="cookie-btn cookie-btn-primary" id="accept-cookies">Akceptuję wszystkie</button>
-                <button class="cookie-btn cookie-btn-secondary" id="cookie-settings-btn">Ustawienia</button>
-            </div>
+        <div class="cookie-content">
+            <p>Nasza strona korzysta z plików cookies, aby zapewnić Ci najlepsze doświadczenia. Dowiedz się więcej w naszej <a href="/polityka-prywatnosci.html">Polityce Prywatności</a>.</p>
+        </div>
+        <div class="cookie-actions">
+            <button id="cookie-settings-btn" class="btn btn-secondary">Ustawienia</button>
+            <button id="accept-cookies" class="btn btn-primary">Akceptuj wszystko</button>
         </div>
     </div>
-    
+
     <!-- Cookie Settings Modal -->
     <div class="cookie-settings-modal">
-        <div class="cookie-settings-content">
-            <span class="cookie-close-modal">&times;</span>
-            <h3>Ustawienia plików cookie</h3>
-            <p>Możesz zdecydować, które rodzaje plików cookie chcesz zaakceptować. Kliknij na kategorie, aby uzyskać więcej informacji o każdym z nich i zmienić domyślne ustawienia.</p>
-            
-            <div class="cookie-settings-options">
-                <div class="cookie-option">
-                    <input type="checkbox" id="necessary-cookies" checked disabled>
-                    <label for="necessary-cookies">
-                        <strong>Niezbędne</strong>
-                        <p>Te pliki cookie są niezbędne do działania strony i nie mogą być wyłączone. Zwykle są one ustawiane tylko w odpowiedzi na podjęte przez Ciebie działania, takie jak ustawienie preferencji prywatności, logowanie lub wypełnianie formularzy.</p>
-                    </label>
-                </div>
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h3>Ustawienia plików cookies</h3>
+                <span class="cookie-close-modal">&times;</span>
+            </div>
+            <div class="cookie-modal-body">
+                <p>Aby zapewnić Ci najlepszą obsługę, używamy plików cookies. Możesz dostosować swoje preferencje poniżej. Pamiętaj, że niektóre pliki cookies są niezbędne do prawidłowego działania strony.</p>
                 
-                <div class="cookie-option">
-                    <input type="checkbox" id="functional-cookies" checked>
-                    <label for="functional-cookies">
-                        <strong>Funkcjonalne</strong>
-                        <p>Te pliki cookie umożliwiają stronie zapewnienie lepszej funkcjonalności i personalizacji. Mogą być ustawiane przez nas lub przez zewnętrznych dostawców, których usługi dodaliśmy do naszych stron.</p>
-                    </label>
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Niezbędne</h4>
+                        <label class="switch disabled-switch">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Te pliki cookies są kluczowe dla funkcjonowania strony i nie mogą zostać wyłączone. Umożliwiają podstawowe funkcje, takie jak nawigacja czy dostęp do zabezpieczonych obszarów.</p>
                 </div>
-                
-                <div class="cookie-option">
-                    <input type="checkbox" id="analytics-cookies" checked>
-                    <label for="analytics-cookies">
-                        <strong>Analityczne</strong>
-                        <p>Te pliki cookie pomagają nam zrozumieć, w jaki sposób użytkownicy wchodzą w interakcję z naszą witryną. Pomagają nam ulepszać naszą stronę i zapewniać bardziej angażujące treści.</p>
-                    </label>
+
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Funkcjonalne</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="functional-cookies" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Te pliki cookies pozwalają stronie zapamiętać Twoje wybory (np. język) i dostarczyć ulepszone, bardziej spersonalizowane funkcje.</p>
                 </div>
-                
-                <div class="cookie-option">
-                    <input type="checkbox" id="marketing-cookies">
-                    <label for="marketing-cookies">
-                        <strong>Marketingowe</strong>
-                        <p>Te pliki cookie są używane do śledzenia użytkowników na różnych stronach internetowych w celu wyświetlania odpowiednich reklam. Dezaktywacja tych plików cookie spowoduje wyświetlanie mniej trafnych reklam.</p>
-                    </label>
+
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Analityczne</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="analytics-cookies" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Pomagają nam zrozumieć, jak odwiedzający wchodzą w interakcję ze stroną, zbierając i raportując anonimowe informacje. Dzięki nim możemy ulepszać naszą stronę.</p>
+                </div>
+
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Marketingowe</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Są używane do śledzenia odwiedzających na stronach internetowych w celu wyświetlania reklam, które są odpowiednie i interesujące dla indywidualnego użytkownika.</p>
                 </div>
             </div>
-            
-            <div class="cookie-settings-buttons">
-                <button class="cookie-btn cookie-btn-primary" id="save-preferences">Zapisz preferencje</button>
+            <div class="cookie-modal-footer">
+                <button id="save-preferences" class="btn btn-primary">Zapisz preferencje</button>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+
+    </script>
 </body>
 </html>

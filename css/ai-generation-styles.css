@@ -1,0 +1,213 @@
+/* Styles for the AI Plan Generation Section */
+
+.ai-generation-section {
+    position: relative;
+    padding: 80px 0;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Video Background Styles */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 25, 40, 0.46);
+    z-index: 2;
+}
+
+.ai-generation-section .container {
+    position: relative;
+    z-index: 3;
+}
+
+.ai-generation-section .section-title,
+.ai-generation-section .section-subtitle {
+    color: #fff;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ai-generation-section .section-title {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.ai-generation-section .section-subtitle {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.ai-generation-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.ai-process-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+}
+
+.ai-generation-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.ai-step {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+}
+
+.ai-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.ai-step-icon {
+    background: linear-gradient(135deg, #5E60CE 0%, #64DFDF 100%);
+    min-width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(100, 223, 223, 0.4);
+}
+
+.ai-step-content {
+    flex: 1;
+}
+
+.ai-step-content h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 1.4rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.ai-data-points,
+.ai-analysis-points,
+.ai-benefits-points {
+    list-style-type: none;
+    padding-left: 5px;
+    margin-top: 15px;
+}
+
+.ai-data-points li,
+.ai-analysis-points li,
+.ai-benefits-points li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+}
+
+.ai-data-points i {
+    margin-right: 10px;
+    color: #7EF9FF;
+    min-width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    text-shadow: 0 0 8px rgba(126, 249, 255, 0.6);
+}
+
+.ai-generation-cta {
+    text-align: center;
+    background-color: #f0f8ff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.ai-generation-cta p {
+    margin-bottom: 25px;
+    font-size: 1.15rem;
+}
+
+.ai-generation-cta .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .ai-generation-section {
+        padding: 60px 0;
+    }
+    
+    .ai-step {
+        flex-direction: column;
+        padding: 25px;
+        gap: 20px;
+    }
+    
+    .ai-step-icon {
+        min-width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .ai-process-intro {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+    
+    .ai-generation-content {
+        padding: 20px;
+    }
+    
+    .ai-generation-cta {
+        padding: 25px 20px;
+    }
+}

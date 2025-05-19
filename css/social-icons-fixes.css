@@ -1,0 +1,56 @@
+/* Poprawki dla ikon social media w stopce */
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #2ecc71, #3498db);
+}
+
+.social-icon i {
+    font-size: 22px;
+}
+
+/* Indywidualne style dla poszczególnych platform */
+.social-icon.facebook {
+    background: linear-gradient(135deg, #3b5998, #8b9dc3);
+}
+
+.social-icon.facebook:hover {
+    background: linear-gradient(135deg, #8b9dc3, #3b5998);
+}
+
+.social-icon.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon.instagram:hover {
+    background: linear-gradient(225deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon.twitter {
+    background: linear-gradient(135deg, #1DA1F2, #14171A);
+}
+
+.social-icon.twitter:hover {
+    background: linear-gradient(135deg, #14171A, #1DA1F2);
+}

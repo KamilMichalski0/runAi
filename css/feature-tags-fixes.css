@@ -1,0 +1,107 @@
+/* Poprawki dla tagów i etykiet w sekcji rozwiązań */
+
+/* Styl dla tagów z korzyściami */
+.benefit-tag {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 50px !important;
+    padding: 8px 16px !important;
+    margin: 5px 10px 5px 0 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #495057 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+.benefit-tag:hover {
+    background-color: #e9ecef !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Styl dla ikon w tagach */
+.benefit-tag i {
+    color: #2ecc71 !important;
+    margin-right: 8px !important;
+    font-size: 16px !important;
+}
+
+/* Styl dla kontenerów z tagami */
+.feature-benefits {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-top: 15px !important;
+    gap: 10px !important;
+}
+
+/* Styl dla nagłówków funkcji */
+.feature-content h4 {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    color: #333 !important;
+}
+
+/* Styl dla opisów funkcji */
+.feature-content p {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 15px !important;
+    color: #555 !important;
+}
+
+/* Styl dla ikon funkcji */
+.feature-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, #3498db, #2ecc71) !important;
+    border-radius: 50% !important;
+    margin-right: 20px !important;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3) !important;
+}
+
+.feature-icon i {
+    font-size: 24px !important;
+    color: white !important;
+}
+
+/* Styl dla całego elementu funkcji */
+.solution-feature {
+    display: flex !important;
+    align-items: flex-start !important;
+    margin-bottom: 30px !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+    background-color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.solution-feature:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Styl dla badge'a rozwiązania */
+.solution-badge {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #3498db, #2ecc71) !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    border-radius: 50px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2) !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 10 !important;
+}

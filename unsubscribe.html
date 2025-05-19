@@ -6,9 +6,31 @@
     <title>Anuluj Subskrypcję - ZnanyTrener.AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-mobile.css">
+    <link rel="stylesheet" href="css/solution-styles.css">
+    <link rel="stylesheet" href="css/solution-alignment-fixes.css">
+    <link rel="stylesheet" href="css/form-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/how-it-works-styles.css">
+    <link rel="stylesheet" href="css/how-it-works-enhanced.css">
+    <link rel="stylesheet" href="css/how-it-works-modern.css">
+    <link rel="stylesheet" href="css/pricing-styles.css">
+    <link rel="stylesheet" href="css/benefits-styles.css">
+    <link rel="stylesheet" href="css/integration-fixes.css">
+    <link rel="stylesheet" href="css/modern-nav.css">
+    <link rel="stylesheet" href="css/faq-simple.css">
+    <link rel="stylesheet" href="css/faq-custom-fixes.css">
+    <link rel="stylesheet" href="css/feature-tags-fixes.css">
+    <link rel="stylesheet" href="css/social-icons-fixes.css">
+    <link rel="stylesheet" href="css/testimonial-fixes.css">
+    <link rel="stylesheet" href="css/modal-styles.css">
+    <link rel="stylesheet" href="css/ai-generation-styles.css">
+    <link rel="stylesheet" href="css/ai-process-visualization.css">
+    <link rel="stylesheet" href="css/ai-details-modern.css">
+    <link rel="stylesheet" href="css/cookie-banner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="favi.jpeg" type="image/png">
     <style>
         body {
@@ -22,7 +44,7 @@
             align-items: center;
             justify-content: center;
             padding: 60px 20px;
-            background-color: #f9f9f9;
+            /* background-color: #f9f9f9; */ /* Removed to allow global styles to take effect */
         }
         .unsubscribe-container {
             background-color: #fff;
@@ -35,12 +57,12 @@
         }
         .unsubscribe-container h1 {
             font-size: 28px;
-            color: #333;
+            /* color: #333; */ /* Allow global styles */
             margin-bottom: 15px;
         }
         .unsubscribe-container p {
             font-size: 16px;
-            color: #666;
+            /* color: #666; */ /* Allow global styles */
             margin-bottom: 30px;
         }
         .unsubscribe-form .form-group {
@@ -51,7 +73,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #333;
+            /* color: #333; */ /* Allow global styles */
         }
         .unsubscribe-form .form-control {
             width: 100%;
@@ -61,21 +83,21 @@
             font-size: 16px;
             box-sizing: border-box;
         }
-        .unsubscribe-form .btn-unsubscribe {
+        .unsubscribe-form .btn-unsubscribe { /* Will be styled by .cta-button.primary potentially */
             width: 100%;
             padding: 12px 20px;
             font-size: 16px;
             font-weight: 600;
             border-radius: 8px;
-            background-color: #007bff;
-            color: white;
+            /* background-color: #007bff; */
+            /* color: white; */
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            /* transition: background-color 0.3s ease; */
         }
-        .unsubscribe-form .btn-unsubscribe:hover {
+        /* .unsubscribe-form .btn-unsubscribe:hover {
             background-color: #0056b3;
-        }
+        } */
         .unsubscribe-message {
             margin-top: 20px;
             padding: 15px;
@@ -94,265 +116,234 @@
         }
 
         /* Reusing some header/footer styles from styles.css if not fully covered */
-        .header-container, .footer {
+        /* Removed as new header/footer will be used */
+        /* .header-container, .footer {
             flex-shrink: 0;
-        }
+        } */
     </style>
 </head>
 <body>
     <header>
-        <div class="container header-container">
-            <a href="/" class="logo">
-                <img src="logo.png" alt="ZnanyTrener.AI Logo" style="height: 60px; width: 120px;"> 
-            </a>
-            <nav class="nav-links">
-                <a href="/#ai-capabilities" class="nav-link">Funkcje</a>
-                <a href="/#generator" class="nav-link">Generator planów</a>
-                <a href="/#faq" class="nav-link">FAQ</a>
-                <a href="/#generator" class="nav-link">Kontakt</a>
-            </nav>
-            <button class="mobile-menu-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
-            <a href="/#generator" class="cta-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="8.5" cy="7" r="4"></circle>
-                    <line x1="20" y1="8" x2="20" y2="14"></line>
-                    <line x1="23" y1="11" x2="17" y2="11"></line>
-                </svg>
-                Utwórz konto
-            </a>
-        </div>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"><img src="images/Logo Znanytrener.png" alt="Logo ZnanyTrener.AI" class="logo-img"></a>
+            </div>
+            <div class="nav-links desktop-nav">
+                <a href="index.html#hero-section" class="nav-link">Strona Główna</a>
+                <a href="index.html#problem-solution-section" class="nav-link">Rozwiązania</a>
+                <a href="index.html#benefits-section" class="nav-link">Korzyści</a>
+                <a href="index.html#faq-section" class="nav-link">FAQ</a>
+                <a href="index.html#zapisz-sie" class="cta-button primary">Zapisz się</a>
+            </div>
+            <div class="mobile-menu-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="hamburger-icon"></span>
+            </div>
+            <div class="mobile-nav">
+                <a href="index.html#hero-section" class="nav-link">Strona Główna</a>
+                <a href="index.html#problem-solution-section" class="nav-link">Rozwiązania</a>
+                <a href="index.html#benefits-section" class="nav-link">Korzyści</a>
+                <a href="index.html#faq-section" class="nav-link">FAQ</a>
+                <a href="index.html#zapisz-sie" class="cta-button primary mobile-cta">Zapisz się</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- Mobilne menu hamburgerowe (copied from index.html for consistency) -->
-    <div class="mobile-menu">
-        <button class="mobile-menu-close">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-        <div class="mobile-nav-links">
-            <a href="/#ai-capabilities" class="mobile-nav-link">Funkcje</a>
-            <a href="/#generator" class="mobile-nav-link">Generator planów</a>
-            <a href="/#faq" class="mobile-nav-link">FAQ</a>
-            <a href="/#generator" class="mobile-nav-link">Kontakt</a>
-        </div>
-        <a href="/#generator" class="cta-button mobile-cta-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="8.5" cy="7" r="4"></circle>
-                <line x1="20" y1="8" x2="20" y2="14"></line>
-                <line x1="23" y1="11" x2="17" y2="11"></line>
-            </svg>
-            Utwórz konto
-        </a>
-    </div>
-
-    <section class="unsubscribe-section">
-        <div class="unsubscribe-container">
-            <h1>Anuluj subskrypcję</h1>
-            <p>Przykro nam, że chcesz zrezygnować. Wpisz swój adres e-mail poniżej, aby anulować subskrypcję naszego newslettera.</p>
-            <form id="unsubscribe-form" class="unsubscribe-form">
-                <div class="form-group">
-                    <label for="unsubscribe-email">Adres e-mail</label>
-                    <input type="email" id="unsubscribe-email" name="email" class="form-control" required placeholder="Twój adres email">
+    <main>
+        <section class="unsubscribe-section section">
+            <div class="container">
+                <div class="unsubscribe-container">
+                    <h1>Anuluj subskrypcję</h1>
+                    <p>Przykro nam, że chcesz zrezygnować. Wpisz swój adres e-mail poniżej, aby anulować subskrypcję naszego newslettera.</p>
+                    <form id="unsubscribe-form" class="unsubscribe-form">
+                        <div class="form-group">
+                            <label for="unsubscribe-email">Adres e-mail</label>
+                            <input type="email" id="unsubscribe-email" name="email" class="form-control" required placeholder="Twój adres email">
+                        </div>
+                        <button type="submit" class="cta-button primary btn-unsubscribe">Anuluj subskrypcję</button>
+                    </form>
+                    <div id="unsubscribe-message" class="unsubscribe-message" style="display: none;"></div>
                 </div>
-                <button type="submit" class="btn-unsubscribe">Anuluj subskrypcję</button>
-            </form>
-            <div id="unsubscribe-message" class="unsubscribe-message" style="display: none;"></div>
-        </div>
-    </section>
+            </div>
+        </section>
+    </main>
 
-    <footer class="footer" id="contact">
+    <footer id="footer-section" class="footer-section">
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="logo.png" alt="ZnanyTrener.AI Logo" style="height: 60px; width: 120px;">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/ZnanyTrener.AI (logo białe tło).png" alt="Logo ZnanyTrener.AI" class="footer-logo-img">
+                    <p class="footer-tagline">Twój inteligentny partner na biegowej ścieżce</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Nawigacja</h4>
+                        <a href="index.html#problem-solution-section">Jak to działa</a>
+                        <a href="index.html#benefits-section">Korzyści</a>
+                        <a href="index.html#faq-section">FAQ</a>
                     </div>
-                    <p class="footer-description">
-                        ZnanyTrener.AI to innowacyjna platforma wykorzystująca sztuczną inteligencję do tworzenia spersonalizowanych planów treningowych dostosowanych do Twoich celów, historii kontuzji i możliwości.
-                    </p>
-                </div>
-                
-                <div class="footer-nav">
-                    <h4>Informacje</h4>
-                    <ul>
-                        <li><a href="/#ai-capabilities">Funkcje</a></li>
-                        <li><a href="/#generator">Generator planów</a></li>
-                        <li><a href="/#faq">FAQ</a></li>
-                        <li><a href="/#generator">Kontakt</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-nav">
-                    <h4>Przydatne linki</h4>
-                    <ul>
-                        <li><a href="#">O nas</a></li>
-                        <li><a href="/#faq">FAQ</a></li>
-                        <li><a href="/#generator">Wsparcie</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-nav">
-                    <h4>Kontakt</h4>
-                    <ul>
-                         <li><a href="mailto:kontakt@ZnanyTrener.AI">kontakt@ZnanyTrener.AI</a></li>
-                    </ul>
-                    
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/znanytrener.ai/" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
+                    <div class="footer-links-column">
+                        <h4>Dokumenty prawne</h4>
+                        <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+                    </div>
+                    <div class="footer-links-column">
+                        <h4>Śledź nas</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/znanytrener.ai/" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p class="copyright">© 2025 ZnanyTrener.AI. Wszelkie prawa zastrzeżone.</p>
-                <div class="footer-legal">
-                    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-                    <a href="polityka-prywatnosci.html">Cookies</a>
-                </div>
+                <p class="copyright">ZnanyTrener.AI &copy; 2025. Wszelkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent-banner">
+        <div class="cookie-content">
+            <p>Nasza strona korzysta z plików cookies, aby zapewnić Ci najlepsze doświadczenia. Dowiedz się więcej w naszej <a href="polityka-prywatnosci.html">Polityce Prywatności</a>.</p>
+        </div>
+        <div class="cookie-actions">
+            <button id="cookie-settings-btn" class="btn btn-secondary">Ustawienia</button>
+            <button id="accept-cookies" class="btn btn-primary">Akceptuj wszystko</button>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-settings-modal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h3>Ustawienia plików cookies</h3>
+                <span class="cookie-close-modal">&times;</span>
+            </div>
+            <div class="cookie-modal-body">
+                <p>Aby zapewnić Ci najlepszą obsługę, używamy plików cookies. Możesz dostosować swoje preferencje poniżej. Pamiętaj, że niektóre pliki cookies są niezbędne do prawidłowego działania strony.</p>
+                
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Niezbędne</h4>
+                        <label class="switch disabled-switch">
+                            <input type="checkbox" id="necessary-cookies" checked disabled>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Te pliki cookies są kluczowe dla funkcjonowania strony i nie mogą zostać wyłączone. Umożliwiają podstawowe funkcje, takie jak nawigacja czy dostęp do zabezpieczonych obszarów.</p>
+                </div>
+
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Funkcjonalne</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="functional-cookies" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Te pliki cookies pozwalają stronie zapamiętać Twoje wybory (np. język) i dostarczyć ulepszone, bardziej spersonalizowane funkcje.</p>
+                </div>
+
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Analityczne</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="analytics-cookies" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Pomagają nam zrozumieć, jak odwiedzający wchodzą w interakcję ze stroną, zbierając i raportując anonimowe informacje. Dzięki nim możemy ulepszać naszą stronę.</p>
+                </div>
+
+                <div class="cookie-preference">
+                    <div class="cookie-preference-header">
+                        <h4>Marketingowe</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="marketing-cookies">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Są używane do śledzenia odwiedzających na stronach internetowych w celu wyświetlania reklam, które są odpowiednie i interesujące dla indywidualnego użytkownika.</p>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button id="save-preferences" class="btn btn-primary">Zapisz preferencje</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/modern-nav.js"></script>
+    <script src="js/script.js"></script> 
     <script>
-        // Script for mobile menu (copied from index.html for consistency)
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
-        const navLinks = document.querySelectorAll('.nav-link'); // For active state
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-        if (mobileMenuToggle && mobileMenu && mobileMenuClose) {
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-            });
-
-            mobileMenuClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                });
-            });
-        }
-        
-        // Active link highlighting (copied from index.html for consistency)
-        function setActiveLink() {
-            const sections = document.querySelectorAll('section[id]');
-            let currentSection = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === currentSection) {
-                    link.classList.add('active');
-                }
-            });
-            mobileNavLinks.forEach(link => {
-                link.classList.remove('active');
-                 if (link.getAttribute('href').substring(1) === currentSection) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        if(navLinks.length > 0) { // Run only if navlinks exist
-          window.addEventListener('scroll', setActiveLink);
-          setActiveLink(); // Set active link on page load
-        }
-
-
         // Unsubscribe form submission
         const unsubscribeForm = document.getElementById('unsubscribe-form');
         const unsubscribeEmailInput = document.getElementById('unsubscribe-email');
         const unsubscribeMessageDiv = document.getElementById('unsubscribe-message');
 
-        unsubscribeForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            unsubscribeMessageDiv.style.display = 'none';
-            unsubscribeMessageDiv.className = 'unsubscribe-message'; // Reset classes
+        if (unsubscribeForm) { // Ensure the form exists before adding listener
+            unsubscribeForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                unsubscribeMessageDiv.style.display = 'none';
+                unsubscribeMessageDiv.className = 'unsubscribe-message'; // Reset classes
 
-            const email = unsubscribeEmailInput.value;
-            
-            // !!! --- CONFIGURATION REQUIRED --- !!!
-            // !!! Replace with your Sendy installation URL !!!
-            const sendyURL = 'https://sendy.znanytrener.ai/unsubscribe'; 
-            // !!! Replace with your Sendy List ID !!!
-            const listId = 'Rj7RJHx2E9q5kctXibk89A'; 
-            // !!! --- END CONFIGURATION --- !!!
+                const email = unsubscribeEmailInput.value;
+                
+                // !!! --- CONFIGURATION REQUIRED --- !!!
+                // !!! Replace with your Sendy installation URL !!!
+                const sendyURL = 'https://sendy.znanytrener.ai/unsubscribe'; 
+                // !!! Replace with your Sendy List ID !!!
+                const listId = 'Rj7RJHx2E9q5kctXibk89A'; 
+                // !!! --- END CONFIGURATION --- !!!
 
-            if (sendyURL.includes('YOUR_SENDY_INSTALLATION_URL') || listId.includes('YOUR_LIST_ID')) {
-                unsubscribeMessageDiv.textContent = 'Błąd konfiguracji: URL Sendy lub ID listy nie zostało ustawione w skrypcie.';
-                unsubscribeMessageDiv.classList.add('error');
-                unsubscribeMessageDiv.style.display = 'block';
-                console.error('Sendy URL or List ID not configured in the script.');
-                return;
-            }
+                if (sendyURL.includes('YOUR_SENDY_INSTALLATION_URL') || listId.includes('YOUR_LIST_ID')) {
+                    unsubscribeMessageDiv.textContent = 'Błąd konfiguracji: URL Sendy lub ID listy nie zostało ustawione w skrypcie.';
+                    unsubscribeMessageDiv.classList.add('error');
+                    unsubscribeMessageDiv.style.display = 'block';
+                    console.error('Sendy URL or List ID not configured in the script.');
+                    return;
+                }
 
-            const formData = new FormData();
-            formData.append('email', email);
-            formData.append('list', listId);
-            formData.append('boolean', 'true'); // For plain text response
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('list', listId);
+                formData.append('boolean', 'true'); // For plain text response
 
-            try {
-                const response = await fetch(sendyURL, {
-                    method: 'POST',
-                    body: formData
-                });
+                try {
+                    const response = await fetch(sendyURL, {
+                        method: 'POST',
+                        body: formData
+                    });
 
-                const responseText = await response.text();
+                    const responseText = await response.text();
 
-                if (response.ok) { // Check for 2xx status codes
-                    unsubscribeMessageDiv.textContent = 'Pomyślnie anulowano subskrypcję dla adresu ' + email + '.';
-                    unsubscribeMessageDiv.classList.add('success');
-                    unsubscribeEmailInput.value = ''; // Clear input
-                } else {
-                    // Display Sendy's error or a generic one based on responseText if not response.ok
-                    let errorMessage = 'Wystąpił błąd podczas anulowania subskrypcji. Status: ' + response.status;
-                    if (responseText.toLowerCase().includes('invalid email address')) {
-                        errorMessage = 'Podany adres email jest nieprawidłowy.';
-                    } else if (responseText.toLowerCase().includes('some fields are missing')) {
-                        errorMessage = 'Niektóre pola formularza są wymagane.';
-                    } else if (responseText.toLowerCase().includes('email does not exist')) {
-                        // Technically an error from Sendy's perspective, but for UX, we can show a softer message
-                        // Or, if you prefer, treat it as a hard error by keeping the generic message.
-                        errorMessage = 'Ten adres e-mail nie został znaleziony na liście lub został już wypisany.';
+                    if (response.ok) { // Check for 2xx status codes
+                        unsubscribeMessageDiv.textContent = 'Pomyślnie anulowano subskrypcję dla adresu ' + email + '.';
+                        unsubscribeMessageDiv.classList.add('success');
+                        if(unsubscribeEmailInput) unsubscribeEmailInput.value = ''; // Clear input
                     } else {
-                        // For other errors from Sendy, you might want to log them or display a generic message
-                        console.error('Sendy API Error:', responseText);
+                        // Display Sendy's error or a generic one based on responseText if not response.ok
+                        let errorMessage = 'Wystąpił błąd podczas anulowania subskrypcji. Status: ' + response.status;
+                        if (responseText.toLowerCase().includes('invalid email address')) {
+                            errorMessage = 'Podany adres email jest nieprawidłowy.';
+                        } else if (responseText.toLowerCase().includes('some fields are missing')) {
+                            errorMessage = 'Niektóre pola formularza są wymagane.';
+                        } else if (responseText.toLowerCase().includes('email does not exist')) {
+                            errorMessage = 'Ten adres e-mail nie został znaleziony na liście lub został już wypisany.';
+                        } else {
+                            console.error('Sendy API Error:', responseText);
+                        }
+                        unsubscribeMessageDiv.textContent = errorMessage;
+                        unsubscribeMessageDiv.classList.add('error');
                     }
-                    unsubscribeMessageDiv.textContent = errorMessage;
+                } catch (error) {
+                    console.error('Fetch Error:', error);
+                    unsubscribeMessageDiv.textContent = 'Wystąpił błąd połączenia. Spróbuj ponownie później.';
                     unsubscribeMessageDiv.classList.add('error');
                 }
-            } catch (error) {
-                console.error('Fetch Error:', error);
-                unsubscribeMessageDiv.textContent = 'Wystąpił błąd połączenia. Spróbuj ponownie później.';
-                unsubscribeMessageDiv.classList.add('error');
-            }
-            unsubscribeMessageDiv.style.display = 'block';
-        });
+                unsubscribeMessageDiv.style.display = 'block';
+            });
+        }
     </script>
 </body>
 </html> 
