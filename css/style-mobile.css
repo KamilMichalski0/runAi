@@ -171,6 +171,7 @@
     .solution-showcase {
         flex-direction: column;
         gap: 30px;
+        align-items: center;
     }
     
     .solution-content {
