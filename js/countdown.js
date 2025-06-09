@@ -1,7 +1,7 @@
 // Countdown timer to launch date (1 month from now)
 document.addEventListener('DOMContentLoaded', function() {
     // Set launch date: 1 month from now
-    const launchDate = new Date('2025-06-13T21:22:18+02:00');
+    const launchDate = new Date('2025-08-13T21:22:18+02:00');
     function updateTimer() {
         const now = new Date();
         let diff = launchDate - now;
